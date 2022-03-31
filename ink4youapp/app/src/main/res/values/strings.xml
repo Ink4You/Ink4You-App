@@ -1,3 +1,23 @@
 <resources>
-    <string name="app_name">ink4youapp</string>
+    <string name="app_name">Ink4YouApp</string>
+    <string name="welcome_msg">Bem vindo!</string>
+    <string name="slogan">"Procurando tattoo? Ink4You"</string>
+
+    <string name="login_label">Logar-se</string>
+    <string name="login_desc">Preencha os campos abaixo para se logar ;)</string>
+
+    <string name="email_placeholder">Email</string>
+    <string name="password_placeholder">Senha</string>
+
+    <string name="login_btn">Entrar</string>
+    <string name="register_btn">Não possuo cadastro</string>
+
+    <string name="registry_label">Cadastrar-se</string>
+    <string name="registry_desc">Escolha uma das opções abaixo para se cadastrar</string>
+
+    <string name="user_btn">Quero me tatuar!</string>
+    <string name="tattoo_artist_btn">Sou tatuador!</string>
+
+    <string name="back_label">Voltar</string>
+
 </resources>
