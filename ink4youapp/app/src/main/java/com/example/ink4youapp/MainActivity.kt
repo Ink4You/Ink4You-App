@@ -1,6 +1,7 @@
 package com.example.ink4youapp
 
 import android.animation.ObjectAnimator
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
@@ -26,6 +27,7 @@ class MainActivity : AppCompatActivity() {
 
     fun showRegistryOptions(view: View) {
         var animation = AnimationUtils.loadAnimation(this, R.anim.fade_out)
+
         linear_login.startAnimation(animation)
         linear_login.visibility = View.GONE
 
@@ -38,6 +40,7 @@ class MainActivity : AppCompatActivity() {
 
     fun showLogin(view: View) {
         var animation = AnimationUtils.loadAnimation(this, R.anim.fade_out)
+
         linear_registry.startAnimation(animation)
         linear_registry.visibility = View.GONE
 
@@ -46,6 +49,11 @@ class MainActivity : AppCompatActivity() {
             linear_login.startAnimation(animation)
             linear_login.visibility = View.VISIBLE
         }, 300)
+    }
+
+    fun goToUserRegistry(view: View) {
+        val userRegistry: Intent = Intent(baseContext, UserRegistry::class.java)
+        startActivity(userRegistry)
     }
 
 }

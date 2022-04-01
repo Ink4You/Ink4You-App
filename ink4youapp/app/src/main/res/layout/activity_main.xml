@@ -125,7 +125,7 @@
                         android:layout_height="55dp"
                         android:layout_marginTop="15dp"
                         android:background="@drawable/blue_gradient"
-                        android:text="@string/login_btn"
+                        android:text="@string/getin_label"
                         android:textAllCaps="false"
                         android:textColor="@color/white" />
 
@@ -134,9 +134,10 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="15dp"
                         android:onClick="showRegistryOptions"
-                        android:text="@string/register_btn"
+                        android:text="@string/havent_registry"
                         android:textAlignment="center"
                         android:textSize="14dp" />
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -170,19 +171,20 @@
                         android:layout_width="match_parent"
                         android:layout_height="55dp"
                         android:layout_marginTop="25dp"
+                        android:background="@drawable/blue_gradient"
+                        android:onClick="goToUserRegistry"
                         android:text="@string/user_btn"
                         android:textAllCaps="false"
-                        android:textColor="@color/white"
-                        android:background="@drawable/blue_gradient"/>
+                        android:textColor="@color/white" />
 
                     <Button
                         android:layout_width="match_parent"
                         android:layout_height="55dp"
                         android:layout_marginTop="12dp"
+                        android:background="@drawable/blue_gradient"
                         android:text="@string/tattoo_artist_btn"
                         android:textAllCaps="false"
-                        android:textColor="@color/white"
-                        android:background="@drawable/blue_gradient"/>
+                        android:textColor="@color/white" />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -194,7 +196,11 @@
                         android:textSize="14dp" />
 
                 </LinearLayout>
+
             </LinearLayout>
+
         </LinearLayout>
+
     </ScrollView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -6,18 +6,34 @@
     <string name="login_label">Logar-se</string>
     <string name="login_desc">Preencha os campos abaixo para se logar ;)</string>
 
+    <string name="user_label">Usuário</string>
+    <string name="tattoo_artist_label">Tatuador</string>
+
+    <string name="personal_infos">Dados pessoais</string>
+    <string name="personal_infos_desc">Preencha seus dados para prosseguir com o cadastro</string>
+
+    <string name="name_placeholder">Nome</string>
+    <string name="cpf_placeholder">CPF</string>
+    <string name="birth_date_placeholder">Data de nascimento</string>
+    <string name="telephone_placeholder">Telefone</string>
+    <string name="zip_code_placeholder">CEP</string>
+
     <string name="email_placeholder">Email</string>
     <string name="password_placeholder">Senha</string>
+    <string name="confirm_password_placeholder">Confirmar senha</string>
 
-    <string name="login_btn">Entrar</string>
-    <string name="register_btn">Não possuo cadastro</string>
+    <string name="getin_label">Entrar</string>
+    <string name="next_label">Próximo</string>
+
+    <string name="have_registry">Já possuo cadastro</string>
+    <string name="havent_registry">Não possuo cadastro</string>
 
     <string name="registry_label">Cadastrar-se</string>
+    <string name="registry_label_2">Cadastro</string>
     <string name="registry_desc">Escolha uma das opções abaixo para se cadastrar</string>
 
     <string name="user_btn">Quero me tatuar!</string>
     <string name="tattoo_artist_btn">Sou tatuador!</string>
 
     <string name="back_label">Voltar</string>
-
 </resources>
