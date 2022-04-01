@@ -154,7 +154,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:onClick="showLogin"
+                android:onClick="backToLogin"
                 android:text="@string/have_registry"
                 android:textAlignment="center"
                 android:textSize="14dp" />
