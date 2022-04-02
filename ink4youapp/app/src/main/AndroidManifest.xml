@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Ink4youapp">
         <activity
+            android:name=".UserTattooRegistry"
+            android:exported="false" />
+        <activity
             android:name=".UserRegistry"
             android:exported="true" />
         <activity

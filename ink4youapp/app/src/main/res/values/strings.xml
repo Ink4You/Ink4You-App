@@ -2,6 +2,8 @@
     <string name="app_name">Ink4YouApp</string>
     <string name="welcome_msg">Bem vindo!</string>
     <string name="slogan">"Procurando tattoo? Ink4You"</string>
+    <string name="instagram_msg_conection">Gostaria de utilizar a integração com o instagram?</string>
+    <string name="import_photos_instagram">Importar fotos do instagram</string>
 
     <string name="login_label">Logar-se</string>
     <string name="login_desc">Preencha os campos abaixo para se logar ;)</string>
@@ -14,16 +16,20 @@
 
     <string name="name_placeholder">Nome</string>
     <string name="cpf_placeholder">CPF</string>
+    <string name="cnpj_placeholder">CNPJ</string>
     <string name="birth_date_placeholder">Data de nascimento</string>
     <string name="telephone_placeholder">Telefone</string>
     <string name="zip_code_placeholder">CEP</string>
+    <string name="number_home_placeholder">Nº</string>
 
     <string name="email_placeholder">Email</string>
     <string name="password_placeholder">Senha</string>
     <string name="confirm_password_placeholder">Confirmar senha</string>
+    <string name="username">Username</string>
 
     <string name="getin_label">Entrar</string>
     <string name="next_label">Próximo</string>
+    <string name="finish_label">Finalizar</string>
 
     <string name="have_registry">Já possuo cadastro</string>
     <string name="havent_registry">Não possuo cadastro</string>
