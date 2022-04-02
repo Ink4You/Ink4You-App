@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cnb_unselectedColor="#333333">
+
+    <item
+        android:id="@+id/nav_explore"
+        android:icon="@drawable/ic_explore"
+        android:title="@string/nav_title_explorer"
+        app:cnb_iconColor="@color/primary_cian" />
+    <item
+        android:id="@+id/nav_artist"
+        android:icon="@drawable/ic_tattoo"
+        android:title="@string/nav_title_tattooartist"
+        app:cnb_iconColor="@color/primary_blue" />
+    <item
+        android:id="@+id/nav_tattoo"
+        android:icon="@drawable/ic_dragon"
+        android:title="@string/nav_title_tattoo"
+        app:cnb_iconColor="@color/primary_purple" />
+    <item
+        android:id="@+id/nav_profile"
+        android:icon="@drawable/ic_profile"
+        android:title="@string/nav_title_profile"
+        app:cnb_iconColor="@color/primary_grey" />
+
+</menu>

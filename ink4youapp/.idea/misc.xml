@@ -3,6 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Bandtec/4_Semestre/PI/Ink4You-App/ink4youapp/app/src/main/res/drawable/ic_dragon.xml" value="0.3828125" />
+        <entry key="..\:/Bandtec/4_Semestre/PI/Ink4You-App/ink4youapp/app/src/main/res/drawable/ic_explore.xml" value="0.3828125" />
+        <entry key="..\:/Bandtec/4_Semestre/PI/Ink4You-App/ink4youapp/app/src/main/res/drawable/ic_profile.xml" value="0.3828125" />
+        <entry key="..\:/Bandtec/4_Semestre/PI/Ink4You-App/ink4youapp/app/src/main/res/drawable/ic_tattoo.xml" value="0.3828125" />
+        <entry key="..\:/Bandtec/4_Semestre/PI/Ink4You-App/ink4youapp/app/src/main/res/layout/activity_home.xml" value="0.28306159420289856" />
+        <entry key="..\:/Bandtec/4_Semestre/PI/Ink4You-App/ink4youapp/app/src/main/res/layout/activity_main.xml" value="0.28306159420289856" />
+        <entry key="..\:/Bandtec/4_Semestre/PI/Ink4You-App/ink4youapp/app/src/main/res/menu/nav_menu.xml" value="0.36666666666666664" />
         <entry key="..\:/Bandtec/4_Semestre/PI/ink4youapp/app/src/main/res/drawable/custom_input.xml" value="0.3828125" />
         <entry key="..\:/Bandtec/4_Semestre/PI/ink4youapp/app/src/main/res/drawable/ic_email.xml" value="0.3828125" />
         <entry key="..\:/Bandtec/4_Semestre/PI/ink4youapp/app/src/main/res/drawable/ic_password.xml" value="0.3828125" />

@@ -56,4 +56,9 @@ class MainActivity : AppCompatActivity() {
         startActivity(userRegistry)
     }
 
+    fun goToHome(view: View) {
+        val homeActivity: Intent = Intent(baseContext, HomeActivity::class.java)
+        startActivity(homeActivity)
+    }
+
 }

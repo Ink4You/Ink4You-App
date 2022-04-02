@@ -41,5 +41,10 @@
     <string name="user_btn">Quero me tatuar!</string>
     <string name="tattoo_artist_btn">Sou tatuador!</string>
 
+    <string name="nav_title_explorer">Explorar</string>
+    <string name="nav_title_tattooartist">Tatuadores</string>
+    <string name="nav_title_tattoo">Tatuagens</string>
+    <string name="nav_title_profile">Perfil</string>
+
     <string name="back_label">Voltar</string>
 </resources>
