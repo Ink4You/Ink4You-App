@@ -24,6 +24,7 @@
 
     <string name="getin_label">Entrar</string>
     <string name="next_label">Próximo</string>
+    <string name="finish_label">Finalizar</string>
 
     <string name="have_registry">Já possuo cadastro</string>
     <string name="havent_registry">Não possuo cadastro</string>
