@@ -69,7 +69,7 @@
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:orientation="vertical"
-                    android:paddingHorizontal="30dp">
+                    android:paddingHorizontal="20dp">
 
                     <TextView
                         android:layout_width="match_parent"
@@ -189,7 +189,7 @@
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:orientation="vertical"
-                    android:paddingHorizontal="30dp">
+                    android:paddingHorizontal="20dp">
 
                     <TextView
                         android:layout_width="match_parent"

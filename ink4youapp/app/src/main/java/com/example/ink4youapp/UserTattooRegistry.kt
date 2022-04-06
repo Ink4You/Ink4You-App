@@ -25,13 +25,12 @@ class UserTattooRegistry : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_tattoo_registry)
+
+        linear_personal_date = findViewById(R.id.linear_personal_date)
+        linear_date_account = findViewById(R.id.linear_date_account)
     }
 
-    fun backToLogin(view: View) {
-        startActivity(Intent(baseContext, MainActivity::class.java))
-    }
-
-    fun showRegistryOptions(view: View) {
+    fun goToSecondStep(view: View) {
         var animation = AnimationUtils.loadAnimation(this, R.anim.fade_out)
 
         linear_personal_date.startAnimation(animation)
@@ -44,7 +43,7 @@ class UserTattooRegistry : AppCompatActivity() {
         }, 300)
     }
 
-    fun showLogin(view: View) {
+    fun backToFirstStep(view: View) {
         var animation = AnimationUtils.loadAnimation(this, R.anim.fade_out)
 
         linear_date_account.startAnimation(animation)
@@ -57,10 +56,14 @@ class UserTattooRegistry : AppCompatActivity() {
         }, 300)
     }
 
-    fun goToUserRegistry(view: View) {
-        val userRegistry: Intent = Intent(baseContext, UserRegistry::class.java)
-        startActivity(userRegistry)
+    fun backToLogin(view: View) {
+        startActivity(Intent(baseContext, MainActivity::class.java))
     }
+
+    fun goToHome(view: View) {
+
+    }
+
 
     /*fun validarCampos(et_name: EditText, et_cnpj: EditText, et_birth_date: EditText,
                       et_telephone: EditText, et_zip_code: EditText, et_number_home: EditText):Boolean{
@@ -72,10 +75,4 @@ class UserTattooRegistry : AppCompatActivity() {
         }
         return true
     }*/
-
-    fun next(view: View){
-
-    }
-
-
 }
