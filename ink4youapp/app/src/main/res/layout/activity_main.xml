@@ -96,6 +96,7 @@
                         android:textSize="15dp" />
 
                     <EditText
+                        android:id="@+id/et_email"
                         android:layout_width="match_parent"
                         android:layout_height="55dp"
                         android:layout_gravity="center"
@@ -109,6 +110,7 @@
                         android:textSize="14dp" />
 
                     <EditText
+                        android:id="@+id/et_password"
                         android:layout_width="match_parent"
                         android:layout_height="55dp"
                         android:layout_gravity="center"
@@ -128,7 +130,8 @@
                         android:background="@drawable/blue_gradient"
                         android:text="@string/getin_label"
                         android:textAllCaps="false"
-                        android:textColor="@color/white" />
+                        android:textColor="@color/white"
+                        android:onClick="authUser"/>
 
                     <TextView
                         android:layout_width="match_parent"
