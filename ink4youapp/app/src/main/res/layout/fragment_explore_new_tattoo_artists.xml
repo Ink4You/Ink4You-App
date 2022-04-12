@@ -26,11 +26,12 @@
             android:text="@string/explore_new_tattoo_artists_description" />
     </LinearLayout>
 
-    <ScrollView
+    <HorizontalScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:paddingLeft="32dp">
+        android:paddingBottom="8dp"
+        android:scrollbars="none">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -40,6 +41,7 @@
                 android:id="@+id/card1Fragment"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="32dp"
                 android:layout_marginRight="16dp"
                 class="com.example.ink4youapp.TattooArtistCardFragment"
                 tools:layout="@layout/fragment_tattoo_artist_card"
@@ -74,6 +76,6 @@
 
         </LinearLayout>
 
-    </ScrollView>
+    </HorizontalScrollView>
 
 </LinearLayout>
