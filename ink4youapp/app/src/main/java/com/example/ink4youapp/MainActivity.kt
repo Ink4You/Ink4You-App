@@ -56,6 +56,11 @@ class MainActivity : AppCompatActivity() {
         startActivity(userRegistry)
     }
 
+    fun goToTattooRegistry(view: View) {
+        val tattooRegistry: Intent = Intent(baseContext, UserTattooRegistry::class.java)
+        startActivity(tattooRegistry)
+    }
+
     fun goToHome(view: View) {
         val homeActivity: Intent = Intent(baseContext, HomeActivity::class.java)
         startActivity(homeActivity)
