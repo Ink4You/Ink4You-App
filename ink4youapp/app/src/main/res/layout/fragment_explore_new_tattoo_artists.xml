@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ExploreNewTattooArtistsFragment"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="32dp"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textSize="18dp"
+            android:text="@string/explore_new_tattoo_artists_title" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16dp"
+            android:text="@string/explore_new_tattoo_artists_description" />
+    </LinearLayout>
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:paddingBottom="8dp"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <fragment
+                android:id="@+id/card1Fragment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="32dp"
+                android:layout_marginRight="16dp"
+                class="com.example.ink4youapp.TattooArtistCardFragment"
+                tools:layout="@layout/fragment_tattoo_artist_card"
+                />
+
+            <fragment
+                android:id="@+id/card2Fragment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="16dp"
+                class="com.example.ink4youapp.TattooArtistCardFragment"
+                tools:layout="@layout/fragment_tattoo_artist_card"
+                />
+
+            <fragment
+                android:id="@+id/card3Fragment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="16dp"
+                class="com.example.ink4youapp.TattooArtistCardFragment"
+                tools:layout="@layout/fragment_tattoo_artist_card"
+                />
+
+            <fragment
+                android:id="@+id/card4Fragment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="16dp"
+                class="com.example.ink4youapp.TattooArtistCardFragment"
+                tools:layout="@layout/fragment_tattoo_artist_card"
+                />
+
+        </LinearLayout>
+
+    </HorizontalScrollView>
+
+</LinearLayout>
