@@ -328,7 +328,7 @@
                         android:layout_height="55dp"
                         android:layout_marginTop="15dp"
                         android:background="@drawable/blue_gradient"
-                        android:onClick="goToHome"
+                        android:onClick="createUserTattoo"
                         android:text="@string/finish_label"
                         android:textAllCaps="false"
                         android:textColor="@color/white" />
@@ -349,6 +349,5 @@
         </LinearLayout>
 
     </ScrollView>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

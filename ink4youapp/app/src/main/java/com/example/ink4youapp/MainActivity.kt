@@ -85,6 +85,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun authUser(view: View) {
+        if (!isValidFields(etEmail, etPassword)) {
+            return
+        }
+
         val email = etEmail.text.toString()
         val password = etPassword.text.toString()
 
@@ -93,11 +97,11 @@ class MainActivity : AppCompatActivity() {
         tattooArtist.auth(email, password).enqueue(object: Callback<Tatuador> {
             override fun onResponse(call: Call<Tatuador>, response: Response<Tatuador>) {
                 if (response.isSuccessful) {
-                    val artistName = response.body()?.nome
-                    print(response.body()?.nome)
-                    Toast.makeText(baseContext, artistName, Toast.LENGTH_LONG).show()
+                    Toast.makeText(baseContext, "Logado com sucesso!", Toast.LENGTH_LONG).show()
+                    goToHome(view)
+
                 } else {
-                    Toast.makeText(baseContext, "Deu ruim, mas nem tanto", Toast.LENGTH_LONG).show()
+                    Toast.makeText(baseContext, "Email ou senha inválidos!", Toast.LENGTH_LONG).show()
                 }
             }
 
@@ -106,6 +110,19 @@ class MainActivity : AppCompatActivity() {
             }
 
         })
+    }
+
+    fun isValidFields(etEmail: EditText, etPassword: EditText): Boolean {
+        if (etEmail.text.toString().isEmpty()) {
+            etEmail.error = "O campo não pode estar em branco!"
+            return false
+
+        } else if (etPassword.text.toString().isEmpty()) {
+            etPassword.error = "O campo não pode estar em branco!"
+            return false
+        }
+
+        return true
     }
 
 }
