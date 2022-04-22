@@ -113,7 +113,7 @@
                         android:paddingEnd="12dp"
                         android:textSize="14dp" />
 
-                    <EditText
+                    <com.vicmikhailau.maskededittext.MaskedEditText
                         android:id="@+id/et_cnpj"
                         android:layout_width="match_parent"
                         android:layout_height="55dp"
@@ -124,9 +124,10 @@
                         android:hint="@string/cnpj_placeholder"
                         android:paddingStart="12dp"
                         android:paddingEnd="12dp"
-                        android:textSize="14dp" />
+                        android:textSize="14dp"
+                        app:mask="##.###.###/####-##" />
 
-                    <EditText
+                    <com.vicmikhailau.maskededittext.MaskedEditText
                         android:id="@+id/et_birth_date"
                         android:layout_width="match_parent"
                         android:layout_height="55dp"
@@ -138,9 +139,10 @@
                         android:inputType="date"
                         android:paddingStart="12dp"
                         android:paddingEnd="12dp"
-                        android:textSize="14dp" />
+                        android:textSize="14dp"
+                        app:mask="####-##-##" />
 
-                    <EditText
+                    <com.vicmikhailau.maskededittext.MaskedEditText
                         android:id="@+id/et_telephone"
                         android:layout_width="match_parent"
                         android:layout_height="55dp"
@@ -152,9 +154,10 @@
                         android:inputType="phone"
                         android:paddingStart="12dp"
                         android:paddingEnd="12dp"
-                        android:textSize="14dp" />
+                        android:textSize="14dp"
+                        app:mask="(##) #####-####" />
 
-                    <EditText
+                    <com.vicmikhailau.maskededittext.MaskedEditText
                         android:id="@+id/et_zip_code"
                         android:layout_width="match_parent"
                         android:layout_height="55dp"
@@ -166,7 +169,8 @@
                         android:inputType="number"
                         android:paddingStart="12dp"
                         android:paddingEnd="12dp"
-                        android:textSize="14dp" />
+                        android:textSize="14dp"
+                        app:mask="#####-###" />
 
                     <EditText
                         android:id="@+id/et_number_home"
@@ -277,10 +281,10 @@
                         android:textSize="14dp" />
 
                     <ImageView
-                        android:layout_width="45dp"
-                        android:layout_height="45dp"
+                        android:layout_width="47dp"
+                        android:layout_height="47dp"
                         android:layout_marginTop="15dp"
-                        android:background="@drawable/ink_logo" />
+                        android:background="@drawable/instagram_logo" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -299,7 +303,8 @@
                         <Switch
                             android:id="@+id/sw_import_photos_instagram"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            android:onClick="showOrHideUsernameInput"/>
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -320,18 +325,18 @@
                         android:inputType="text"
                         android:paddingStart="12dp"
                         android:paddingEnd="12dp"
-                        android:textSize="14dp" />
+                        android:textSize="14dp"
+                        android:visibility="gone"/>
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp">
+                        android:layout_marginTop="15dp">
 
                         <CheckBox
                             android:id="@+id/cb_term_of_use"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content">
-                        </CheckBox>
+                            android:layout_height="wrap_content"></CheckBox>
 
                         <TextView
                             android:layout_width="wrap_content"

@@ -2,8 +2,8 @@
     <string name="app_name">Ink4YouApp</string>
     <string name="welcome_msg">Bem vindo!</string>
     <string name="slogan">"Procurando tattoo? Ink4You"</string>
-    <string name="instagram_msg_conection">Gostaria de utilizar a integração com o instagram?</string>
-    <string name="import_photos_instagram">Importar fotos do instagram</string>
+    <string name="instagram_msg_conection">Gostaria de utilizar a integração com o Instagram?</string>
+    <string name="import_photos_instagram">Importar fotos do Instagram</string>
     <string name="accept_term_of_use">Aceitar os termos de uso do Ink4You.</string>
 
     <string name="login_label">Logar-se</string>
@@ -42,8 +42,8 @@
     <string name="registry_label_2">Cadastro</string>
     <string name="registry_desc">Escolha uma das opções abaixo para se cadastrar</string>
 
-    <string name="user_btn">Quero me tatuar!</string>
-    <string name="tattoo_artist_btn">Sou tatuador!</string>
+    <string name="user_btn">Quero me tatuar</string>
+    <string name="tattoo_artist_btn">Sou tatuador</string>
 
     <string name="nav_title_explorer">Explorar</string>
     <string name="nav_title_tattooartist">Tatuadores</string>
