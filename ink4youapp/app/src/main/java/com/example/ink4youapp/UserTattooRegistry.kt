@@ -275,8 +275,9 @@ class UserTattooRegistry : AppCompatActivity() {
                 et_username.error = "O campo não pode estar em branco!"
                 return false
             }
+        }
 
-        } else if (!cb_term_of_use.isChecked) {
+        if (!cb_term_of_use.isChecked) {
             cb_term_of_use.error = "Aceite os termos de uso antes de prosseguir!"
             return false
         }
@@ -289,6 +290,7 @@ class UserTattooRegistry : AppCompatActivity() {
             et_username.visibility = View.VISIBLE
         } else {
             et_username.visibility = View.GONE
+            et_username.text = null
         }
     }
 }
