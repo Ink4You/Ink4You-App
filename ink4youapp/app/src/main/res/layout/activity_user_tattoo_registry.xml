@@ -210,13 +210,13 @@
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:orientation="vertical"
-                    android:paddingHorizontal="25dp"
+                    android:paddingHorizontal="20dp"
                     android:visibility="gone">
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/personal_infos"
+                        android:text="@string/account_infos"
                         android:textAlignment="center"
                         android:textColor="@color/black"
                         android:textSize="20dp"
@@ -228,7 +228,7 @@
                         android:layout_marginTop="10dp"
                         android:layout_marginBottom="10dp"
                         android:onClick="backToLogin"
-                        android:text="@string/personal_infos_desc"
+                        android:text="@string/account_infos_desc"
                         android:textAlignment="center"
                         android:textColor="@color/black"
                         android:textSize="14dp" />
@@ -321,6 +321,24 @@
                         android:paddingStart="12dp"
                         android:paddingEnd="12dp"
                         android:textSize="14dp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp">
+
+                        <CheckBox
+                            android:id="@+id/cb_term_of_use"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                        </CheckBox>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/accept_term_of_use" />
+
+                    </LinearLayout>
 
                     <Button
                         android:id="@+id/btn_finish"

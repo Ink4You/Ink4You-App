@@ -4,6 +4,7 @@
     <string name="slogan">"Procurando tattoo? Ink4You"</string>
     <string name="instagram_msg_conection">Gostaria de utilizar a integração com o instagram?</string>
     <string name="import_photos_instagram">Importar fotos do instagram</string>
+    <string name="accept_term_of_use">Aceitar os termos de uso do Ink4You.</string>
 
     <string name="login_label">Logar-se</string>
     <string name="login_desc">Preencha os campos abaixo para se logar ;)</string>
@@ -13,6 +14,9 @@
 
     <string name="personal_infos">Dados pessoais</string>
     <string name="personal_infos_desc">Preencha seus dados para prosseguir com o cadastro</string>
+
+    <string name="account_infos">Dados da conta</string>
+    <string name="account_infos_desc">Preencha seus dados para finalizar o cadastro</string>
 
     <string name="name_placeholder">Nome</string>
     <string name="cpf_placeholder">CPF</string>
