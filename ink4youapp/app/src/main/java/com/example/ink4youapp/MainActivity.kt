@@ -16,6 +16,7 @@ import android.widget.Toast
 import com.example.ink4youapp.models.Tatuador
 import com.example.ink4youapp.rest.Rest
 import com.example.ink4youapp.services.TatuadorService
+import com.example.ink4youapp.utils.SnackBar
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -97,18 +98,17 @@ class MainActivity : AppCompatActivity() {
         tattooArtist.auth(email, password).enqueue(object: Callback<Tatuador> {
             override fun onResponse(call: Call<Tatuador>, response: Response<Tatuador>) {
                 if (response.isSuccessful) {
-                    Toast.makeText(baseContext, "Logado com sucesso!", Toast.LENGTH_LONG).show()
+                    //Toast.makeText(baseContext, "Logado com sucesso!", Toast.LENGTH_LONG).show()
                     goToHome(view)
 
                 } else {
-                    Toast.makeText(baseContext, "Email ou senha inválidos!", Toast.LENGTH_LONG).show()
+                    SnackBar.showSnackBar(view, "error", "Email ou senha inválidos!")
                 }
             }
 
             override fun onFailure(call: Call<Tatuador>, t: Throwable) {
-                Toast.makeText(baseContext, t.message, Toast.LENGTH_LONG).show()
+                t.message?.let { SnackBar.showSnackBar(view, "error", it) }
             }
-
         })
     }
 
