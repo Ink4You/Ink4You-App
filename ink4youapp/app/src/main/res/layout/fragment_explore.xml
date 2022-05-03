@@ -31,34 +31,65 @@
                 android:textStyle="bold" />
         </LinearLayout>
 
-
-
-        <fragment
-            android:id="@+id/lastPostsFragment"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
-            class="com.example.ink4youapp.ExploreRecentTattoosFragment"
-            tools:layout="@layout/fragment_explore_recent_tattos">
-        </fragment>
+            android:orientation="vertical">
 
-        <fragment
-            android:id="@+id/popularStylesFragment"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            class="com.example.ink4youapp.ExplorePopularStylesFragment"
-            tools:layout="@layout/fragment_explore_popular_styles">
-        </fragment>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="32dp"
+                android:textStyle="bold"
+                android:textSize="18dp"
+                android:text="@string/explore_recent_tattos_title" />
 
-        <fragment
-            android:id="@+id/newTattooArtistsFragment"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            class="com.example.ink4youapp.ExploreNewTattooArtistsFragment"
-            tools:layout="@layout/fragment_explore_new_tattoo_artists">
-        </fragment>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="32dp"
+                android:textSize="16dp"
+                android:text="@string/explore_recent_tattos_description" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewNewTattoos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                tools:listitem="@layout/fragment_tattoo_card"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+
+        </LinearLayout>
+
+
+
+<!--        <fragment-->
+<!--            android:id="@+id/lastPostsFragment"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="32dp"-->
+<!--            class="com.example.ink4youapp.ExploreRecentTattoosFragment"-->
+<!--            tools:layout="@layout/fragment_explore_recent_tattos">-->
+<!--        </fragment>-->
+
+<!--        <fragment-->
+<!--            android:id="@+id/popularStylesFragment"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="32dp"-->
+<!--            class="com.example.ink4youapp.ExplorePopularStylesFragment"-->
+<!--            tools:layout="@layout/fragment_explore_popular_styles">-->
+<!--        </fragment>-->
+
+<!--        <fragment-->
+<!--            android:id="@+id/newTattooArtistsFragment"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="32dp"-->
+<!--            class="com.example.ink4youapp.ExploreNewTattooArtistsFragment"-->
+<!--            tools:layout="@layout/fragment_explore_new_tattoo_artists">-->
+<!--        </fragment>-->
 
 
 
