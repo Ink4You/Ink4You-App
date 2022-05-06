@@ -57,7 +57,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                tools:listitem="@layout/fragment_tattoo_card"
+
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 
         </LinearLayout>
@@ -67,6 +67,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
+            android:layout_marginBottom="80dp"
             android:orientation="vertical">
 
             <TextView
@@ -89,7 +90,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                tools:listitem="@layout/fragment_tattoo_artist_card"
+
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
         </LinearLayout>
