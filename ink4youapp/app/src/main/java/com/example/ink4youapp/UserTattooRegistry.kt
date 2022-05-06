@@ -9,6 +9,7 @@ import android.view.View
 import android.view.animation.AnimationUtils
 import android.widget.*
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AlertDialog
 import com.example.ink4youapp.models.Tatuador
 import com.example.ink4youapp.rest.Rest
 import com.example.ink4youapp.rest.RestViaCep
@@ -34,6 +35,8 @@ class UserTattooRegistry : AppCompatActivity() {
     private lateinit var et_confirm_password: EditText
     private lateinit var sw_import_photos_instagram: Switch
     private lateinit var cb_term_of_use: CheckBox
+
+    private lateinit var builder : AlertDialog.Builder
 
 //    private lateinit var adress: String
 //    private lateinit var uf: String
@@ -63,6 +66,8 @@ class UserTattooRegistry : AppCompatActivity() {
         et_confirm_password = findViewById(R.id.et_confirm_password)
         sw_import_photos_instagram = findViewById(R.id.sw_import_photos_instagram)
         cb_term_of_use = findViewById(R.id.cb_term_of_use)
+
+        builder = AlertDialog.Builder(this)
     }
 
     fun goToSecondStep(view: View) {
@@ -292,5 +297,15 @@ class UserTattooRegistry : AppCompatActivity() {
             et_username.visibility = View.GONE
             et_username.text = null
         }
+    }
+
+    fun showTermsOfUse(view: View) {
+        builder.setTitle(getString(R.string.term_of_use_label))
+            .setMessage(getString(R.string.large_text))
+            .setCancelable(true)
+            .setPositiveButton("OK"){ dialogInterface, it ->
+                dialogInterface.cancel()
+            }
+            .show()
     }
 }

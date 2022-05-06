@@ -92,6 +92,7 @@
                         android:textSize="14dp" />
 
                     <EditText
+                        android:id="@+id/et_name"
                         android:layout_width="match_parent"
                         android:layout_height="55dp"
                         android:layout_gravity="center"
@@ -103,7 +104,8 @@
                         android:paddingEnd="12dp"
                         android:textSize="14dp" />
 
-                    <EditText
+                    <com.vicmikhailau.maskededittext.MaskedEditText
+                        android:id="@+id/et_cpf"
                         android:layout_width="match_parent"
                         android:layout_height="55dp"
                         android:layout_gravity="center"
@@ -113,9 +115,11 @@
                         android:hint="@string/cpf_placeholder"
                         android:paddingStart="12dp"
                         android:paddingEnd="12dp"
-                        android:textSize="14dp" />
+                        android:textSize="14dp"
+                        app:mask="###.###.###-##"/>
 
-                    <EditText
+                    <com.vicmikhailau.maskededittext.MaskedEditText
+                        android:id="@+id/et_birth_date"
                         android:layout_width="match_parent"
                         android:layout_height="55dp"
                         android:layout_gravity="center"
@@ -126,9 +130,11 @@
                         android:inputType="date"
                         android:paddingStart="12dp"
                         android:paddingEnd="12dp"
-                        android:textSize="14dp" />
+                        android:textSize="14dp"
+                        app:mask="####-##-##"/>
 
-                    <EditText
+                    <com.vicmikhailau.maskededittext.MaskedEditText
+                        android:id="@+id/et_telephone"
                         android:layout_width="match_parent"
                         android:layout_height="55dp"
                         android:layout_gravity="center"
@@ -139,9 +145,11 @@
                         android:inputType="date"
                         android:paddingStart="12dp"
                         android:paddingEnd="12dp"
-                        android:textSize="14dp" />
+                        android:textSize="14dp"
+                        app:mask="(##) #####-####" />
 
-                    <EditText
+                    <com.vicmikhailau.maskededittext.MaskedEditText
+                        android:id="@+id/et_zip_code"
                         android:layout_width="match_parent"
                         android:layout_height="55dp"
                         android:layout_gravity="center"
@@ -152,7 +160,8 @@
                         android:inputType="date"
                         android:paddingStart="12dp"
                         android:paddingEnd="12dp"
-                        android:textSize="14dp" />
+                        android:textSize="14dp"
+                        app:mask="#####-###"/>
 
                     <Button
                         android:layout_width="match_parent"
@@ -231,6 +240,7 @@
                         android:textColor="@android:color/white" />
 
                     <EditText
+                        android:id="@+id/et_email"
                         android:layout_width="match_parent"
                         android:layout_height="55dp"
                         android:layout_gravity="center"
@@ -243,6 +253,7 @@
                         android:textSize="14dp" />
 
                     <EditText
+                        android:id="@+id/et_password"
                         android:layout_width="match_parent"
                         android:layout_height="55dp"
                         android:layout_gravity="center"
@@ -250,12 +261,13 @@
                         android:background="@drawable/custom_input"
                         android:drawablePadding="10dp"
                         android:hint="@string/password_placeholder"
-                        android:inputType="date"
+                        android:inputType="textPassword"
                         android:paddingStart="12dp"
                         android:paddingEnd="12dp"
                         android:textSize="14dp" />
 
                     <EditText
+                        android:id="@+id/et_confirm_password"
                         android:layout_width="match_parent"
                         android:layout_height="55dp"
                         android:layout_gravity="center"
@@ -263,10 +275,28 @@
                         android:background="@drawable/custom_input"
                         android:drawablePadding="10dp"
                         android:hint="@string/confirm_password_placeholder"
-                        android:inputType="date"
+                        android:inputType="textPassword"
                         android:paddingStart="12dp"
                         android:paddingEnd="12dp"
                         android:textSize="14dp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp">
+
+                        <CheckBox
+                            android:id="@+id/cb_term_of_use"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"></CheckBox>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/accept_term_of_use"
+                            android:onClick="showTermsOfUse"/>
+
+                    </LinearLayout>
 
                     <Button
                         android:layout_width="match_parent"
@@ -275,7 +305,8 @@
                         android:background="@drawable/blue_gradient"
                         android:text="@string/finish_label"
                         android:textAllCaps="false"
-                        android:textColor="@color/white" />
+                        android:textColor="@color/white"
+                        android:onClick="createUser" />
 
                     <TextView
                         android:layout_width="match_parent"
