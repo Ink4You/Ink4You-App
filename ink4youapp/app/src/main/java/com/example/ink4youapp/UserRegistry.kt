@@ -23,8 +23,13 @@ import android.graphics.Bitmap
 import android.util.Base64
 import android.util.Base64.DEFAULT
 import android.util.Base64.encodeToString
+import okhttp3.MediaType
 import java.io.ByteArrayOutputStream
 import java.util.*
+import okhttp3.RequestBody
+
+
+
 
 
 class UserRegistry : AppCompatActivity() {
@@ -46,8 +51,8 @@ class UserRegistry : AppCompatActivity() {
     private lateinit var cb_term_of_use: CheckBox
 
     private var SELECT_PICTURE: Int = 200
-    private var userImage: ByteArray? = null
-//    private var encodedImage: String? = null
+//    private var userImage: ByteArray? = null
+//    private var stringImage: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -118,31 +123,31 @@ class UserRegistry : AppCompatActivity() {
                 val selectedImageUri: Uri? = data?.data
                 if (selectedImageUri != null) {
                     IVPreviewImage.setImageURI(selectedImageUri)
-                    val imageStream = contentResolver.openInputStream(selectedImageUri)
-                    val selectedImage = BitmapFactory.decodeStream(imageStream)
-                    userImage = encodeImage(selectedImage)
+//                    val imageStream = contentResolver.openInputStream(selectedImageUri)
+//                    val selectedImage = BitmapFactory.decodeStream(imageStream)
+//                    stringImage = encodeImage(selectedImage)
+//                    print(stringImage)
                 }
             }
         }
     }
 
-    private fun encodeImage(bm: Bitmap): ByteArray? {
-        val baos = ByteArrayOutputStream()
-        bm.compress(Bitmap.CompressFormat.JPEG, 100, baos)
-        val b = baos.toByteArray()
-        return b
-        // return Base64.encodeToString(b, Base64.DEFAULT)
-    }
+//    private fun encodeImage(bm: Bitmap): String? {
+//        val byteArrayOutputStream = ByteArrayOutputStream()
+//        bm.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream)
+//        val imageBytes: ByteArray = byteArrayOutputStream.toByteArray()
+//        return Base64.encodeToString(imageBytes, Base64.DEFAULT)
+//    }
+//
+//    fun ByteArray.toHexString() : String {
+//        return this.joinToString("") {
+//            java.lang.String.format("%02x", it)
+//        }
+//    }
 
     @RequiresApi(Build.VERSION_CODES.O)
     fun createUser(view: View) {
-        if (!isValidAccountInfos(
-                et_email,
-                et_password,
-                et_confirm_password,
-                cb_term_of_use
-            )
-        ) {
+        if (!isValidAccountInfos(et_email, et_password, et_confirm_password, cb_term_of_use)) {
             return
         }
 
@@ -179,8 +184,11 @@ class UserRegistry : AppCompatActivity() {
                 t.message?.let { SnackBar.showSnackBar(view, "error", it) }
             }
         })
-
-//        user.createUser(postData).enqueue(object : Callback<Void> {
+//
+//
+//        val body: RequestBody = RequestBody.create(MediaType.parse("foto"), stringImage)
+//
+//        user.insertPhoto(body).enqueue(object : Callback<Void> {
 //            override fun onResponse(call: Call<Void>, response: Response<Void>) {
 //                if (response.isSuccessful) {
 //                    SnackBar.showSnackBar(view, "success", "Foto inserida com sucesso!")
@@ -190,7 +198,7 @@ class UserRegistry : AppCompatActivity() {
 //                    }, 600)
 //
 //                } else {
-//                    SnackBar.showSnackBar(view, "error", "Erro ao realizar cadastro :(")
+//                    SnackBar.showSnackBar(view, "error", "Erro ao realizar inserção da foto :(")
 //                }
 //            }
 //
