@@ -61,6 +61,8 @@
     <string name="explore_new_tattoo_artists_title">Novos tatuadores</string>
     <string name="explore_new_tattoo_artists_description">Os tatuadores que acabaram de chegar!</string>
 
+    <string name="search_placeholder_tattoo">Pesquisar tatuagens</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="large_text">
