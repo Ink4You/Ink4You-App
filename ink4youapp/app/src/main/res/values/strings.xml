@@ -4,6 +4,7 @@
     <string name="slogan">"Procurando tattoo? Ink4You"</string>
     <string name="instagram_msg_conection">Gostaria de utilizar a integração com o Instagram?</string>
     <string name="import_photos_instagram">Importar fotos do Instagram</string>
+    <string name="term_of_use_label">Termos de uso</string>
     <string name="accept_term_of_use">Aceitar os termos de uso do Ink4You.</string>
 
     <string name="login_label">Logar-se</string>

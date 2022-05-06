@@ -1,5 +1,6 @@
 package com.example.ink4youapp
 
+import android.app.ProgressDialog.show
 import android.content.Intent
 import android.net.Uri
 import android.os.Build
@@ -23,14 +24,11 @@ import android.graphics.Bitmap
 import android.util.Base64
 import android.util.Base64.DEFAULT
 import android.util.Base64.encodeToString
+import androidx.appcompat.app.AlertDialog
 import okhttp3.MediaType
 import java.io.ByteArrayOutputStream
 import java.util.*
 import okhttp3.RequestBody
-
-
-
-
 
 class UserRegistry : AppCompatActivity() {
     private val inkApi = Rest.getInstance()
@@ -49,6 +47,8 @@ class UserRegistry : AppCompatActivity() {
     private lateinit var et_password: EditText
     private lateinit var et_confirm_password: EditText
     private lateinit var cb_term_of_use: CheckBox
+
+    private lateinit var builder : AlertDialog.Builder
 
     private var SELECT_PICTURE: Int = 200
 //    private var userImage: ByteArray? = null
@@ -72,6 +72,8 @@ class UserRegistry : AppCompatActivity() {
         et_password = findViewById(R.id.et_password)
         et_confirm_password = findViewById(R.id.et_confirm_password)
         cb_term_of_use = findViewById(R.id.cb_term_of_use)
+
+        builder = AlertDialog.Builder(this)
     }
 
     fun goToSecondStep (view: View){
@@ -284,4 +286,13 @@ class UserRegistry : AppCompatActivity() {
         return true
     }
 
+    fun showTermsOfUse(view: View) {
+        builder.setTitle(getString(R.string.term_of_use_label))
+            .setMessage(getString(R.string.large_text))
+            .setCancelable(true)
+            .setPositiveButton("OK"){ dialogInterface, it ->
+                dialogInterface.cancel()
+            }
+            .show()
+    }
 }
