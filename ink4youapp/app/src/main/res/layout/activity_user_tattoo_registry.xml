@@ -341,7 +341,8 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/accept_term_of_use" />
+                            android:text="@string/accept_term_of_use"
+                            android:onClick="showTermsOfUse"/>
 
                     </LinearLayout>
 
