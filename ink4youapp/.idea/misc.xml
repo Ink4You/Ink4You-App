@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Bandtec/4_Semestre/PI/Ink4You-App/ink4youapp/app/src/main/res/layout/activity_home.xml" value="0.19427083333333334" />
+        <entry key="..\:/Bandtec/4_Semestre/PI/Ink4You-App/ink4youapp/app/src/main/res/layout/activity_tattoo_details.xml" value="0.36666666666666664" />
         <entry key="..\:/Bandtec/4_Semestre/PI/Ink4You-App/ink4youapp/app/src/main/res/layout/fragment_artists.xml" value="0.36666666666666664" />
         <entry key="..\:/Bandtec/4_Semestre/PI/Ink4You-App/ink4youapp/app/src/main/res/layout/fragment_explore.xml" value="0.25" />
         <entry key="..\:/Bandtec/4_Semestre/PI/Ink4You-App/ink4youapp/app/src/main/res/layout/fragment_explore_new_tattoo_artists.xml" value="0.19791666666666666" />
@@ -29,10 +30,9 @@
         <entry key="app/src/main/res/font/saira_bold.xml" value="0.2921875" />
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.22780797101449277" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.33" />
-        <entry key="app/src/main/res/layout/activity_tattoo_details.xml" value="0.17983789260385005" />
-        <entry key="app/src/main/res/layout/activity_user_registry.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/activity_user_registry.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_user_registry2.xml" value="0.3713768115942029" />
-        <entry key="app/src/main/res/layout/activity_user_tattoo_registry.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_user_tattoo_registry.xml" value="0.25" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/profile_img.xml" value="0.15260416666666668" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/profile_img_round.xml" value="0.15260416666666668" />
       </map>
