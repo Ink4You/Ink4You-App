@@ -299,7 +299,7 @@ class UserTattooRegistry : AppCompatActivity() {
 
     fun showTermsOfUse(view: View) {
         builder.setTitle(getString(R.string.term_of_use_label))
-            .setMessage(getString(R.string.large_text))
+            .setMessage(getString(R.string.terms_of_use))
             .setCancelable(true)
             .setPositiveButton("OK"){ dialogInterface, it ->
                 dialogInterface.cancel()
