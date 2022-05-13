@@ -9,6 +9,9 @@ import retrofit2.http.Body
 import retrofit2.http.POST
 
 interface TatuadorService {
+    @GET("/tatuadores/{id}")
+    fun getTattooArtist(@Path("id") id :Int) : Call<Tatuador>
+
     @GET("/tatuadores/login/{email}/{senha}")
     fun auth(@Path("email") email: String, @Path("senha") senha: String): Call<Tatuador>
 

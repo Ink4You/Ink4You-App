@@ -63,6 +63,7 @@
                         android:orientation="vertical">
 
                         <ImageView
+                            android:id="@+id/iv_tattoo"
                             android:layout_width="match_parent"
                             android:layout_height="350dp"
                             android:background="@drawable/tattoo_test"
@@ -80,6 +81,7 @@
                                 android:orientation="vertical">
 
                                 <TextView
+                                    android:id="@+id/tv_title"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="Tatuagem floral"
@@ -101,6 +103,7 @@
                                         android:textStyle="bold" />
 
                                     <TextView
+                                        android:id="@+id/tv_local"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:text="Braço"
@@ -119,6 +122,7 @@
                                     android:textStyle="bold" />
 
                                 <TextView
+                                    android:id="@+id/tv_description"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="Uma tatuagem cheia de estilo, para você que quer ser lembrado..."
@@ -137,6 +141,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
+                    android:layout_marginBottom="64dp"
                     app:cardCornerRadius="10dp">
 
                     <LinearLayout
@@ -167,6 +172,7 @@
                                         app:cardCornerRadius="20dp">
 
                                         <ImageView
+                                            android:id="@+id/iv_tattoArtist"
                                             android:layout_width="match_parent"
                                             android:layout_height="match_parent"
                                             android:background="@drawable/tatuador_imagem"
@@ -180,6 +186,7 @@
                                         android:orientation="vertical">
 
                                         <TextView
+                                            android:id="@+id/tv_name"
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:text="Robson"
@@ -188,6 +195,7 @@
                                             android:textStyle="bold" />
 
                                         <TextView
+                                            android:id="@+id/tv_infos"
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:textColor="@color/black"
@@ -226,6 +234,7 @@
                                     android:textStyle="bold" />
 
                                 <TextView
+                                    android:id="@+id/tv_about"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="Olá, me chamo Robson e estou iniciando agora na área, venha ser minha cobaia, 50% off 🔥"

@@ -26,7 +26,7 @@ fun tatuagem(block: TatuagemDTOBuilder.() -> Unit) : TatuagemDTO = TatuagemDTOBu
 
 fun fakeTatuagens() = mutableListOf(
     tatuagem {
-        id_tatuador = 1;
+        id_tatuagem = 49;
         titulo = "The last of Us";
         src_imagem = "https://i.pinimg.com/originals/f1/ef/2a/f1ef2a0a3c8637a82e915eaa6f69de8c.png";
         id_tatuador = 1;
@@ -35,7 +35,7 @@ fun fakeTatuagens() = mutableListOf(
         foto_perfil = "https://www.osaogoncalo.com.br/img/inline/100000/tatuadordascelebridades-3_00105058_1.jpg?xid=289596"
     },
     tatuagem {
-        id_tatuador = 2;
+        id_tatuagem = 2;
         titulo = "Pata de dog";
         src_imagem = "https://i.pinimg.com/originals/4c/fc/17/4cfc173ea26db98b8df480620f4694e8.jpg";
         id_tatuador = 2;
@@ -44,7 +44,7 @@ fun fakeTatuagens() = mutableListOf(
         foto_perfil = "https://api.inkclub.tattoo/Content/images/tatuadores/273_25_10_2019_negocio-de-tatuagem.jpg"
     },
     tatuagem {
-        id_tatuador = 3;
+        id_tatuagem = 3;
         titulo = "Gato";
         src_imagem = "https://i.pinimg.com/originals/02/16/c1/0216c1391eb85ad43a1b09df30939da6.jpg";
         id_tatuador = 3;
@@ -53,7 +53,7 @@ fun fakeTatuagens() = mutableListOf(
         foto_perfil = "https://claudia.abril.com.br/wp-content/uploads/2016/09/miro-dantas-tatuador.jpg"
     },
     tatuagem {
-        id_tatuador = 4;
+        id_tatuagem = 4;
         titulo = "Astronauta";
         src_imagem = "https://i.pinimg.com/originals/26/d6/17/26d6173a666510c879b609bb86c13bdc.jpg";
         id_tatuador = 4;
@@ -62,37 +62,37 @@ fun fakeTatuagens() = mutableListOf(
         foto_perfil = "https://2.bp.blogspot.com/-xWfpo0cmrzY/WvH4iR7YywI/AAAAAAAALKk/NqJCvzN3xasweLkUZy0RKovIx5g9CYdUACLcBGAs/s1600/Hugo%2B4.jpg"
     },
     tatuagem {
-        id_tatuador = 1;
+        id_tatuagem = 5;
         titulo = "The last of Us";
         src_imagem = "https://i.pinimg.com/originals/f1/ef/2a/f1ef2a0a3c8637a82e915eaa6f69de8c.png";
-        id_tatuador = 1;
+        id_tatuador = 5;
         nome = "Osvaldo Pateta";
         uf = "SP";
         foto_perfil = "https://www.osaogoncalo.com.br/img/inline/100000/tatuadordascelebridades-3_00105058_1.jpg?xid=289596"
     },
     tatuagem {
-        id_tatuador = 2;
+        id_tatuagem = 6;
         titulo = "Pata de dog";
         src_imagem = "https://i.pinimg.com/originals/4c/fc/17/4cfc173ea26db98b8df480620f4694e8.jpg";
-        id_tatuador = 2;
+        id_tatuador = 6;
         nome = "Gabriel Aleatório";
         uf = "SP";
         foto_perfil = "https://api.inkclub.tattoo/Content/images/tatuadores/273_25_10_2019_negocio-de-tatuagem.jpg"
     },
     tatuagem {
-        id_tatuador = 3;
+        id_tatuagem = 7;
         titulo = "Gato";
         src_imagem = "https://i.pinimg.com/originals/02/16/c1/0216c1391eb85ad43a1b09df30939da6.jpg";
-        id_tatuador = 3;
+        id_tatuador = 7;
         nome = "David Surfista";
         uf = "SP";
         foto_perfil = "https://claudia.abril.com.br/wp-content/uploads/2016/09/miro-dantas-tatuador.jpg"
     },
     tatuagem {
-        id_tatuador = 4;
+        id_tatuagem = 8;
         titulo = "Astronauta";
         src_imagem = "https://i.pinimg.com/originals/26/d6/17/26d6173a666510c879b609bb86c13bdc.jpg";
-        id_tatuador = 4;
+        id_tatuador = 8;
         nome = "Alex Maluco";
         uf = "SP";
         foto_perfil = "https://2.bp.blogspot.com/-xWfpo0cmrzY/WvH4iR7YywI/AAAAAAAALKk/NqJCvzN3xasweLkUZy0RKovIx5g9CYdUACLcBGAs/s1600/Hugo%2B4.jpg"

@@ -42,6 +42,10 @@ class TatuagemDtoAdpter(val tatuagens: MutableList<TatuagemDTO>) : RecyclerView.
                 itemView.findViewById<TextView>(R.id.tv_artist).text = nome;
                 itemView.setOnClickListener { view ->
                     val intent = Intent(view.context, TattooDetails::class.java)
+                    if (id_tatuagem != null && id_tatuador != null){
+                        intent.putExtra("idTatuagem", id_tatuagem.toString());
+                        intent.putExtra("idTatuador", id_tatuador.toString());
+                    }
                     startActivity(view.context,intent, null);
                 }
             }
