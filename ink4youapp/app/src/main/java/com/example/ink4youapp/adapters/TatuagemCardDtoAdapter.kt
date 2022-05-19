@@ -7,7 +7,6 @@ import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat.startActivity
 import androidx.core.view.marginLeft
@@ -21,7 +20,7 @@ import java.net.URL
 import androidx.core.content.ContextCompat.startActivity
 import androidx.core.content.ContextCompat.startActivity
 
-class TatuagemDtoAdpter(val tatuagens: MutableList<TatuagemDTO>) : RecyclerView.Adapter<TatuagemDtoAdpter.TatuagemViewHolder>() {
+class TatuagemCardDtoAdapter(val tatuagens: MutableList<TatuagemDTO>) : RecyclerView.Adapter<TatuagemCardDtoAdapter.TatuagemViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TatuagemViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.fragment_tattoo_card, parent, false);
