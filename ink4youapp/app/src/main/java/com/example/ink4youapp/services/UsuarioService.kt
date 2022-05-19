@@ -8,6 +8,9 @@ import retrofit2.Call
 import retrofit2.http.*
 
 interface UsuarioService {
+    @GET("/usuarios/login/{email}/{senha}")
+    fun auth(@Path("email") email: String, @Path("senha") senha: String): Call<Usuario>
+
     @POST("/usuarios/cadastro-usuario")
     fun createUser(@Body user: Usuario): Call<Void>
 

@@ -10,17 +10,23 @@ import android.view.animation.AnimationUtils
 import android.widget.*
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
+import com.example.ink4youapp.models.Endereco
 import com.example.ink4youapp.models.Tatuador
 import com.example.ink4youapp.rest.Rest
 import com.example.ink4youapp.rest.RestViaCep
+import com.example.ink4youapp.services.EnderecoService
 import com.example.ink4youapp.services.TatuadorService
+import com.example.ink4youapp.utils.SnackBar
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import com.example.ink4youapp.utils.SnackBar
 import com.vicmikhailau.maskededittext.MaskedEditText
+import kotlinx.coroutines.*
 
 class UserTattooRegistry : AppCompatActivity() {
+    private val inkApi = Rest.getInstance()
+    private val viaCepApi = RestViaCep.getInstance()
+
 
     private lateinit var et_name: EditText
     private lateinit var et_username: EditText
@@ -30,6 +36,9 @@ class UserTattooRegistry : AppCompatActivity() {
     private lateinit var et_zip_code: MaskedEditText
     private lateinit var et_number_home: EditText
 
+    private var adress: String? = null
+    private var uf: String? = null
+
     private lateinit var et_email: EditText
     private lateinit var et_password: EditText
     private lateinit var et_confirm_password: EditText
@@ -38,14 +47,8 @@ class UserTattooRegistry : AppCompatActivity() {
 
     private lateinit var builder : AlertDialog.Builder
 
-//    private lateinit var adress: String
-//    private lateinit var uf: String
-
     private lateinit var linear_personal_date: LinearLayout
     private lateinit var linear_date_account: LinearLayout
-
-    private val inkApi = Rest.getInstance()
-    private val viaCepApi = RestViaCep.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -131,74 +134,69 @@ class UserTattooRegistry : AppCompatActivity() {
         }
 
         val tattooArtist = inkApi.create(TatuadorService::class.java)
-        // val pattern = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss z")
-        // val parseBirthDate = LocalDate.parse(et_birth_date.text.toString(), pattern);
-        // getAdressFromViaCep(et_zip_code.text.toString())
+        getAdressFromViaCep(et_zip_code.text.toString())
 
-        val postData = Tatuador(
-            null,
-            et_name.text.toString(),
-            et_username.text.toString(),
-            et_birth_date.text.toString(),
-            et_cnpj.unMaskedText.toString(),
-            et_zip_code.unMaskedText.toString(),
-            null,
-            et_number_home.text.toString(),
-            et_telephone.unMaskedText.toString(),
-            et_email.text.toString(),
-            et_password.text.toString(),
-            et_username.text.toString(),
-            null,
-            null,
-            null,
-            null
-        )
+        Handler().postDelayed({
+            val postData = Tatuador(
+                null,
+                et_name.text.toString(),
+                et_username.text.toString(),
+                et_birth_date.text.toString(),
+                et_cnpj.unMaskedText.toString(),
+                et_zip_code.unMaskedText.toString(),
+                adress,
+                et_number_home.text.toString(),
+                et_telephone.unMaskedText.toString(),
+                et_email.text.toString(),
+                et_password.text.toString(),
+                et_username.text.toString(),
+                null,
+                uf,
+                null,
+                null
+            )
 
-        tattooArtist.createTattooArtist(postData).enqueue(object : Callback<Void> {
-            override fun onResponse(call: Call<Void>, response: Response<Void>) {
+            tattooArtist.createTattooArtist(postData).enqueue(object : Callback<Void> {
+                override fun onResponse(call: Call<Void>, response: Response<Void>) {
+                    if (response.isSuccessful) {
+                        SnackBar.showSnackBar(view, "success", "Cadastro realizado com sucesso!")
+
+                        Handler().postDelayed({
+                            startActivity(Intent(baseContext, HomeActivity::class.java))
+                        }, 600)
+
+                    } else {
+                        SnackBar.showSnackBar(view, "error", "Erro ao realizar cadastro :(")
+                    }
+                }
+
+                override fun onFailure(call: Call<Void>, t: Throwable) {
+                    t.message?.let { SnackBar.showSnackBar(view, "error", it) }
+                }
+            })
+        }, 5000)
+    }
+
+    fun getAdressFromViaCep(zipCode: String) {
+        val tattooArtistAdress = viaCepApi.create(EnderecoService::class.java)
+
+        tattooArtistAdress.getAdressInfos(zipCode).enqueue(object : Callback<Endereco> {
+            override fun onResponse(call: Call<Endereco>, response: Response<Endereco>) {
                 if (response.isSuccessful) {
-                    SnackBar.showSnackBar(view, "success", "Cadastro realizado com sucesso!")
+                    adress = response.body()?.logradouro.toString()
+                    uf = response.body()?.uf.toString()
 
-                    Handler().postDelayed({
-                        startActivity(Intent(baseContext, HomeActivity::class.java))
-                    }, 600)
-
+                    Toast.makeText(baseContext, "Endereço obtido com sucesso", Toast.LENGTH_LONG).show()
                 } else {
-                    SnackBar.showSnackBar(view, "error", "Erro ao realizar cadastro :(")
+                    Toast.makeText(baseContext, "Erro ao obter endereço", Toast.LENGTH_LONG).show()
                 }
             }
 
-            override fun onFailure(call: Call<Void>, t: Throwable) {
-                t.message?.let { SnackBar.showSnackBar(view, "error", it) }
+            override fun onFailure(call: Call<Endereco>, t: Throwable) {
+                Toast.makeText(baseContext, t.message, Toast.LENGTH_LONG).show()
             }
         })
     }
-
-//    fun getAdressFromViaCep(zipCode: String) {
-//        // var status: Boolean
-//        val tattooArtistAdress = viaCepApi.create(EnderecoService::class.java)
-//
-//        tattooArtistAdress.getAdressInfos(zipCode).enqueue(object : Callback<Endereco> {
-//            override fun onResponse(call: Call<Endereco>, response: Response<Endereco>) {
-//                if (response.isSuccessful) {
-//                    adress = response.body()?.logradouro.toString()
-//                    uf = response.body()?.uf.toString()
-//
-//                    Toast.makeText(baseContext, "Endereço obtido com sucesso", Toast.LENGTH_LONG)
-//                        .show()
-//                    // status = true
-//                } else {
-//                    Toast.makeText(baseContext, "Erro ao obter endereço", Toast.LENGTH_LONG).show()
-//                }
-//            }
-//
-//            override fun onFailure(call: Call<Endereco>, t: Throwable) {
-//                Toast.makeText(baseContext, t.message, Toast.LENGTH_LONG).show()
-//            }
-//        })
-//
-//        //return status
-//    }
 
     fun isValidPersonalInfos(
         et_name: EditText,
@@ -301,7 +299,7 @@ class UserTattooRegistry : AppCompatActivity() {
 
     fun showTermsOfUse(view: View) {
         builder.setTitle(getString(R.string.term_of_use_label))
-            .setMessage(getString(R.string.large_text))
+            .setMessage(getString(R.string.terms_of_use))
             .setCancelable(true)
             .setPositiveButton("OK"){ dialogInterface, it ->
                 dialogInterface.cancel()

@@ -18,8 +18,10 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.ink4youapp.adapters.TatuagemSimpleDtoAdapter
 import com.example.ink4youapp.models.Tatuador
 import com.example.ink4youapp.models.TatuagemDtoImageModel
+import com.example.ink4youapp.models.Usuario
 import com.example.ink4youapp.rest.Rest
 import com.example.ink4youapp.services.TatuadorService
+import com.example.ink4youapp.services.UsuarioService
 import com.example.ink4youapp.utils.SnackBar
 import retrofit2.Call
 import retrofit2.Callback
@@ -98,12 +100,37 @@ class MainActivity : AppCompatActivity() {
         val email = etEmail.text.toString()
         val password = etPassword.text.toString()
 
+        val tattooUser = retrofit.create(UsuarioService::class.java)
+
+        tattooUser.auth(email, password).enqueue(object: Callback<Usuario> {
+            override fun onResponse(call: Call<Usuario>, response: Response<Usuario>) {
+                if (response.isSuccessful) {
+                    goToHome(view)
+
+                } else {
+                   authTattooUser(view)
+                }
+            }
+
+            override fun onFailure(call: Call<Usuario>, t: Throwable) {
+                t.message?.let { SnackBar.showSnackBar(view, "error", it) }
+            }
+        })
+    }
+
+    fun authTattooUser(view: View) {
+        if (!isValidFields(etEmail, etPassword)) {
+            return
+        }
+
+        val email = etEmail.text.toString()
+        val password = etPassword.text.toString()
+
         val tattooArtist = retrofit.create(TatuadorService::class.java)
 
         tattooArtist.auth(email, password).enqueue(object: Callback<Tatuador> {
             override fun onResponse(call: Call<Tatuador>, response: Response<Tatuador>) {
                 if (response.isSuccessful) {
-                    //Toast.makeText(baseContext, "Logado com sucesso!", Toast.LENGTH_LONG).show()
                     goToHome(view)
 
                 } else {
