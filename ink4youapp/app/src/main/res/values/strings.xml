@@ -66,4 +66,5 @@
     <string name="tattoo_desc_label">Descrição</string>
     <string name="tattoo_about_label">Sobre</string>
     <string name="tattoo_local_label">Local: </string>
+    <string name="large_text">largeText</string>
 </resources>

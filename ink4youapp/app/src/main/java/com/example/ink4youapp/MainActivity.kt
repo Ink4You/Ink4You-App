@@ -13,13 +13,18 @@ import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.example.ink4youapp.adapters.TatuagemSimpleDtoAdapter
 import com.example.ink4youapp.models.Tatuador
+import com.example.ink4youapp.models.TatuagemDtoImageModel
 import com.example.ink4youapp.rest.Rest
 import com.example.ink4youapp.services.TatuadorService
 import com.example.ink4youapp.utils.SnackBar
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.util.ArrayList
 import kotlin.concurrent.timerTask
 import kotlin.math.log
 

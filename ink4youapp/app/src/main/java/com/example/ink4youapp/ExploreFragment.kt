@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ink4youapp.adapters.TatuadorDtoAdapter
-import com.example.ink4youapp.adapters.TatuagemDtoAdpter
+import com.example.ink4youapp.adapters.TatuagemCardDtoAdapter
 import com.example.ink4youapp.models.fakeTatuadores
 import com.example.ink4youapp.models.fakeTatuagens
 
@@ -22,7 +22,7 @@ class ExploreFragment : Fragment() {
         var view = inflater.inflate(R.layout.fragment_explore, container, false)
 
         val recyclerViewNewTattoos = view.findViewById<RecyclerView>(R.id.recyclerViewNewTattoos);
-        recyclerViewNewTattoos.adapter = TatuagemDtoAdpter(fakeTatuagens());
+        recyclerViewNewTattoos.adapter = TatuagemCardDtoAdapter(fakeTatuagens());
         recyclerViewNewTattoos.layoutManager = LinearLayoutManager(this.context, LinearLayoutManager.HORIZONTAL, false);
 
         val recyclerViewNewTattoosArtists = view.findViewById<RecyclerView>(R.id.recyclerViewNewTattoosArtists);

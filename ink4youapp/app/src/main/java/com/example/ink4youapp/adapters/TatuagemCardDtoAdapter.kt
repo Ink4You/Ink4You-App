@@ -1,21 +1,14 @@
 package com.example.ink4youapp.adapters
 
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
-import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
-import androidx.core.view.marginLeft
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ink4youapp.R
 import com.example.ink4youapp.models.TatuagemDTO
-import java.io.InputStream
-import java.net.URL
 
-class TatuagemDtoAdpter(val tatuagens: MutableList<TatuagemDTO>) : RecyclerView.Adapter<TatuagemDtoAdpter.TatuagemViewHolder>() {
+class TatuagemCardDtoAdapter(val tatuagens: MutableList<TatuagemDTO>) : RecyclerView.Adapter<TatuagemCardDtoAdapter.TatuagemViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TatuagemViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.fragment_tattoo_card, parent, false);
