@@ -3,11 +3,90 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ArtistsFragment">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/text_margin"
-        android:text="Tatuadoresssssssssssssssssssssss" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginBottom="90dp">
+
+        <LinearLayout
+            android:id="@+id/linearPai"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginHorizontal="32dp"
+                android:layout_marginTop="20dp"
+                android:gravity="center">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Tatuadores"
+                        android:layout_weight="1"
+                        android:textSize="25dp"
+                        android:fontFamily="@font/saira_medium"
+                        android:textColor="@color/black"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Encontre tatuadores por estilos, região, etc."
+                        android:layout_weight="1"
+                        android:textSize="14dp"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/saira_regular"/>
+
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="23dp"
+                    android:layout_height="23dp"
+                    android:background="@drawable/ic_filtro"/>
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/et_pesquisa"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/custom_input2"
+                android:drawableEnd="@drawable/ic_search"
+                android:drawablePadding="5dp"
+                android:hint="@string/search_placeholder_tatuadores"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:layout_marginHorizontal="32dp"
+                android:textSize="14dp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/estilosTattoosRecycleViewMenuTatuadoresScreen"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:clipToPadding="false"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+
+
+        </LinearLayout>
+
+
+
+
+
+    </ScrollView>
 </androidx.core.widget.NestedScrollView>

@@ -51,7 +51,6 @@ class EstilosTatuagensMenuDtoAdapter(
                             button.setTextColor(view.resources.getColor(R.color.darker_gray_search_input));
                         }
                     }
-
             }
         }
     }

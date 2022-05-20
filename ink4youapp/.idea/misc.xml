@@ -39,6 +39,7 @@
         <entry key="app/src/main/res/layout/activity_user_registry.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_user_registry2.xml" value="0.3713768115942029" />
         <entry key="app/src/main/res/layout/activity_user_tattoo_registry.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_artists.xml" value="0.2078125" />
         <entry key="app/src/main/res/layout/fragment_explore.xml" value="0.2078125" />
         <entry key="app/src/main/res/layout/fragment_explore_new_tattoo_artists.xml" value="0.2078125" />
         <entry key="app/src/main/res/layout/fragment_tattoo_card.xml" value="0.19375" />
