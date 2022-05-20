@@ -14,6 +14,9 @@
         android:theme="@style/Theme.Ink4youapp"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".TattooArtistProfile"
+            android:exported="true" />
+        <activity
             android:name=".TattooDetails"
             android:exported="true" />
         <activity
