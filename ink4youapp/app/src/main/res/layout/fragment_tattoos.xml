@@ -78,7 +78,7 @@
                android:id="@+id/estilosTattoosRecycleViewMenu"
                android:layout_width="match_parent"
                android:layout_height="wrap_content"
-               android:paddingHorizontal="25dp"
+               android:paddingHorizontal="32dp"
                android:paddingVertical="16dp"
                android:clipToPadding="false"
                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
