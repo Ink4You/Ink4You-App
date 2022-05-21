@@ -38,7 +38,7 @@
             android:layout_marginHorizontal="32dp"
             android:background="@color/primary_blue"
             app:cardCornerRadius="20dp"
-            tools:context=".TattooArtistCardFragment">
+            tools:context=".CarouselTattooArtistCardFragment">
 
             <ImageView
                 android:layout_width="match_parent"
@@ -181,39 +181,6 @@
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
         </LinearLayout>
-
-
-
-<!--        <fragment-->
-<!--            android:id="@+id/lastPostsFragment"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginTop="32dp"-->
-<!--            class="com.example.ink4youapp.ExploreRecentTattoosFragment"-->
-<!--            tools:layout="@layout/fragment_explore_recent_tattos">-->
-<!--        </fragment>-->
-
-<!--        <fragment-->
-<!--            android:id="@+id/popularStylesFragment"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginTop="32dp"-->
-<!--            class="com.example.ink4youapp.ExplorePopularStylesFragment"-->
-<!--            tools:layout="@layout/fragment_explore_popular_styles">-->
-<!--        </fragment>-->
-
-<!--        <fragment-->
-<!--            android:id="@+id/newTattooArtistsFragment"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginTop="32dp"-->
-<!--            class="com.example.ink4youapp.ExploreNewTattooArtistsFragment"-->
-<!--            tools:layout="@layout/fragment_explore_new_tattoo_artists">-->
-<!--        </fragment>-->
-
-
-
-
 
     </LinearLayout>
 

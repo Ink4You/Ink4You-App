@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.ink4youapp.R
 import com.example.ink4youapp.models.TatuadorDTO
 
-class TatuadorDtoAdapter(val tatuadores: MutableList<TatuadorDTO>) : RecyclerView.Adapter<TatuadorDtoAdapter.TatuadorViewHolder>() {
+class TatuadorCardDtoAdapter(val tatuadores: MutableList<TatuadorDTO>) : RecyclerView.Adapter<TatuadorCardDtoAdapter.TatuadorViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TatuadorViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.fragment_tattoo_artist_card, parent, false);
         return TatuadorViewHolder(view);
@@ -16,16 +16,29 @@ class TatuadorDtoAdapter(val tatuadores: MutableList<TatuadorDTO>) : RecyclerVie
 
     override fun getItemCount(): Int = tatuadores.size;
 
-    override fun onBindViewHolder(holder: TatuadorDtoAdapter.TatuadorViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: TatuadorCardDtoAdapter.TatuadorViewHolder, position: Int) {
         holder.bind(tatuadores[position])
     }
 
     inner class TatuadorViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(tatuador: TatuadorDTO) {
             with(tatuador) {
-                itemView.findViewById<TextView>(R.id.tv_infos).text = "${nome} - ${uf}";
+                itemView.findViewById<TextView>(R.id.tv_name).text = nome;
+                itemView.findViewById<TextView>(R.id.tv_description).text = sobre;
+                itemView.findViewById<TextView>(R.id.tv_cep).text = cep;
+                itemView.findViewById<TextView>(R.id.tv_style).text = StylesToString(estilos!!);
 //                itemView.findViewById<TextView>(R.id.tv_styles).text = nome;
             }
+        }
+
+        fun StylesToString(styles: List<String>) : String {
+            var result: String = "";
+            styles.forEach { style ->
+                if (style != styles.last())
+                    result += "${style},"
+                else result += "${style}";
+            }
+            return result;
         }
     }
 }
