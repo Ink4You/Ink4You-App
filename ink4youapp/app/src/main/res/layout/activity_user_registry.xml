@@ -1,19 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fillViewport="true">
+        android:fillViewport="true"
+        tools:layout_editor_absoluteX="143dp"
+        tools:layout_editor_absoluteY="160dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
             android:background="@color/white"
+            android:orientation="vertical"
             android:padding="25dp">
 
             <LinearLayout
@@ -116,7 +119,7 @@
                         android:paddingStart="12dp"
                         android:paddingEnd="12dp"
                         android:textSize="14dp"
-                        app:mask="###.###.###-##"/>
+                        app:mask="###.###.###-##" />
 
                     <com.vicmikhailau.maskededittext.MaskedEditText
                         android:id="@+id/et_birth_date"
@@ -131,7 +134,7 @@
                         android:paddingStart="12dp"
                         android:paddingEnd="12dp"
                         android:textSize="14dp"
-                        app:mask="####-##-##"/>
+                        app:mask="####-##-##" />
 
                     <com.vicmikhailau.maskededittext.MaskedEditText
                         android:id="@+id/et_telephone"
@@ -161,17 +164,17 @@
                         android:paddingStart="12dp"
                         android:paddingEnd="12dp"
                         android:textSize="14dp"
-                        app:mask="#####-###"/>
+                        app:mask="#####-###" />
 
                     <Button
                         android:layout_width="match_parent"
                         android:layout_height="55dp"
                         android:layout_marginTop="15dp"
                         android:background="@drawable/blue_gradient"
+                        android:onClick="goToSecondStep"
                         android:text="@string/next_label"
                         android:textAllCaps="false"
-                        android:textColor="@color/white"
-                        android:onClick="goToSecondStep"/>
+                        android:textColor="@color/white" />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -293,8 +296,8 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/accept_term_of_use"
-                            android:onClick="showTermsOfUse"/>
+                            android:onClick="showTermsOfUse"
+                            android:text="@string/accept_term_of_use" />
 
                     </LinearLayout>
 
@@ -303,10 +306,10 @@
                         android:layout_height="55dp"
                         android:layout_marginTop="15dp"
                         android:background="@drawable/blue_gradient"
+                        android:onClick="createUser"
                         android:text="@string/finish_label"
                         android:textAllCaps="false"
-                        android:textColor="@color/white"
-                        android:onClick="createUser" />
+                        android:textColor="@color/white" />
 
                     <TextView
                         android:layout_width="match_parent"

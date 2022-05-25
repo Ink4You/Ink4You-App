@@ -3,8 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".TattooArtistProfile">
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -159,11 +158,12 @@
                 android:gravity="right|center">
 
                 <ImageButton
+                    android:id="@+id/btn_edit"
                     android:layout_width="35dp"
                     android:layout_height="35dp"
                     android:layout_centerHorizontal="true"
                     android:background="@drawable/circle_btn"
-                    android:src="@drawable/ic_edit" />
+                    android:src="@drawable/ic_edit"/>
 
             </LinearLayout>
 
@@ -174,7 +174,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp" />
-
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -202,14 +201,11 @@
 
         </LinearLayout>
 
-
-
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/tattoosInstaRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp" />
-
 
     </LinearLayout>
 
