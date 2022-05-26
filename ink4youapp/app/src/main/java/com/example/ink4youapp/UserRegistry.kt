@@ -25,13 +25,18 @@ import android.util.Base64
 import android.util.Base64.DEFAULT
 import android.util.Base64.encodeToString
 import androidx.appcompat.app.AlertDialog
+import com.akiniyalocts.imgurapiexample.model.UploadResponse
+import com.example.ink4youapp.rest.RestIngur
+import com.example.ink4youapp.services.IngurService
 import okhttp3.MediaType
+import okhttp3.MultipartBody
 import java.io.ByteArrayOutputStream
 import java.util.*
 import okhttp3.RequestBody
 
 class UserRegistry : AppCompatActivity() {
     private val inkApi = Rest.getInstance()
+    private val ingurApi = RestIngur.getInstance()
 
     private lateinit var linear_personal_infos: LinearLayout
     private lateinit var linear_account_infos: LinearLayout
@@ -51,8 +56,9 @@ class UserRegistry : AppCompatActivity() {
     private lateinit var builder : AlertDialog.Builder
 
     private var SELECT_PICTURE: Int = 200
-//    private var userImage: ByteArray? = null
-//    private var stringImage: String? = null
+    private var byteArrayImage: ByteArray? = null
+    private var base64Image: String? = null
+    private var imageLink: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -125,27 +131,19 @@ class UserRegistry : AppCompatActivity() {
                 val selectedImageUri: Uri? = data?.data
                 if (selectedImageUri != null) {
                     IVPreviewImage.setImageURI(selectedImageUri)
-//                    val imageStream = contentResolver.openInputStream(selectedImageUri)
-//                    val selectedImage = BitmapFactory.decodeStream(imageStream)
-//                    stringImage = encodeImage(selectedImage)
-//                    print(stringImage)
+                    val imageStream = contentResolver.openInputStream(selectedImageUri)
+                    val selectedImage = BitmapFactory.decodeStream(imageStream)
+
+                    val saida = ByteArrayOutputStream()
+                    selectedImage.compress(Bitmap.CompressFormat.PNG, 100, saida)
+                    val img = saida.toByteArray()
+
+                    byteArrayImage = img
+                    base64Image = Base64.encodeToString(img, Base64.DEFAULT)
                 }
             }
         }
     }
-
-//    private fun encodeImage(bm: Bitmap): String? {
-//        val byteArrayOutputStream = ByteArrayOutputStream()
-//        bm.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream)
-//        val imageBytes: ByteArray = byteArrayOutputStream.toByteArray()
-//        return Base64.encodeToString(imageBytes, Base64.DEFAULT)
-//    }
-//
-//    fun ByteArray.toHexString() : String {
-//        return this.joinToString("") {
-//            java.lang.String.format("%02x", it)
-//        }
-//    }
 
     @RequiresApi(Build.VERSION_CODES.O)
     fun createUser(view: View) {
@@ -154,60 +152,63 @@ class UserRegistry : AppCompatActivity() {
         }
 
         val user = inkApi.create(UsuarioService::class.java)
+        val ingur = ingurApi.create(IngurService::class.java)
 
-        val postData = Usuario(
-            null,
-            et_name.text.toString(),
-            et_birth_date.text.toString(),
-            et_cpf.unMaskedText.toString(),
-            et_zip_code.unMaskedText.toString(),
-            et_telephone.unMaskedText.toString(),
-            et_email.text.toString(),
-            et_password.text.toString(),
-            null,
-            null
-        )
+        val requestBody = RequestBody.create(MediaType.parse("image/*"), byteArrayImage)
+        val part = MultipartBody.Part.createFormData("image", "image", requestBody)
 
-        user.createUser(postData).enqueue(object : Callback<Void> {
-            override fun onResponse(call: Call<Void>, response: Response<Void>) {
+        ingur.uploadFile("Client-ID 241dc1dec32c2d8", part).enqueue(object : Callback<UploadResponse> {
+            override fun onResponse(
+                call: Call<UploadResponse>,
+                response: Response<UploadResponse>
+            ) {
                 if (response.isSuccessful) {
-                    SnackBar.showSnackBar(view, "success", "Cadastro realizado com sucesso!")
-
-                    Handler().postDelayed({
-                        startActivity(Intent(baseContext, HomeActivity::class.java))
-                    }, 600)
+                    SnackBar.showSnackBar(view, "success", "Upload realizado com sucesso!")
+                    imageLink = response.body()?.data?.link
 
                 } else {
-                    SnackBar.showSnackBar(view, "error", "Erro ao realizar cadastro :(")
+                    SnackBar.showSnackBar(view, "error", "Erro ao realizar upload :(")
                 }
             }
 
-            override fun onFailure(call: Call<Void>, t: Throwable) {
+            override fun onFailure(call: Call<UploadResponse>, t: Throwable) {
                 t.message?.let { SnackBar.showSnackBar(view, "error", it) }
             }
         })
-//
-//
-//        val body: RequestBody = RequestBody.create(MediaType.parse("foto"), stringImage)
-//
-//        user.insertPhoto(body).enqueue(object : Callback<Void> {
-//            override fun onResponse(call: Call<Void>, response: Response<Void>) {
-//                if (response.isSuccessful) {
-//                    SnackBar.showSnackBar(view, "success", "Foto inserida com sucesso!")
-//
-//                    Handler().postDelayed({
-//                        startActivity(Intent(baseContext, HomeActivity::class.java))
-//                    }, 600)
-//
-//                } else {
-//                    SnackBar.showSnackBar(view, "error", "Erro ao realizar inserção da foto :(")
-//                }
-//            }
-//
-//            override fun onFailure(call: Call<Void>, t: Throwable) {
-//                t.message?.let { SnackBar.showSnackBar(view, "error", it) }
-//            }
-//        })
+
+        Handler().postDelayed({
+            val postData = Usuario(
+                null,
+                et_name.text.toString(),
+                et_birth_date.text.toString(),
+                et_cpf.unMaskedText.toString(),
+                et_zip_code.unMaskedText.toString(),
+                et_telephone.unMaskedText.toString(),
+                et_email.text.toString(),
+                et_password.text.toString(),
+                imageLink,
+                null
+            )
+
+            user.createUser(postData).enqueue(object : Callback<Void> {
+                override fun onResponse(call: Call<Void>, response: Response<Void>) {
+                    if (response.isSuccessful) {
+                        SnackBar.showSnackBar(view, "success", "Cadastro realizado com sucesso!")
+
+                        Handler().postDelayed({
+                            startActivity(Intent(baseContext, HomeActivity::class.java))
+                        }, 600)
+
+                    } else {
+                        SnackBar.showSnackBar(view, "error", "Erro ao realizar cadastro :(")
+                    }
+                }
+
+                override fun onFailure(call: Call<Void>, t: Throwable) {
+                    t.message?.let { SnackBar.showSnackBar(view, "error", it) }
+                }
+            })
+        }, 6000)
     }
 
     fun isValidPersonalInfos(

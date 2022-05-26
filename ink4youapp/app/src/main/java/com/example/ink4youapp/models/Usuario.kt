@@ -9,6 +9,6 @@ data class Usuario (
     val telefone: String?,
     val email: String?,
     val senha: String?,
-    val foto_perfil: ByteArray?,
+    val foto_perfil: String?,
     val idade: Int?
 )
