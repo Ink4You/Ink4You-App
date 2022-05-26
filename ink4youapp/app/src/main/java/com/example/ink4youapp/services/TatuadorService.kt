@@ -12,6 +12,9 @@ interface TatuadorService {
     @GET("/tatuadores/{id}")
     fun getTattooArtist(@Path("id") id :Int) : Call<Tatuador>
 
+    @GET("/tatuadores/")
+    fun getTattooArtists() : Call<List<Tatuador>>
+
     @GET("/tatuadores/login/{email}/{senha}")
     fun auth(@Path("email") email: String, @Path("senha") senha: String): Call<Tatuador>
 
