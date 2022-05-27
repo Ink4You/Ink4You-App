@@ -1,32 +1,44 @@
 package com.example.ink4youapp
 
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.net.Uri
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import android.util.Base64
 import android.view.View
 import android.view.animation.AnimationUtils
 import android.widget.*
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
+import com.akiniyalocts.imgurapiexample.model.UploadResponse
 import com.example.ink4youapp.models.Endereco
 import com.example.ink4youapp.models.Tatuador
 import com.example.ink4youapp.rest.Rest
+import com.example.ink4youapp.rest.RestIngur
 import com.example.ink4youapp.rest.RestViaCep
 import com.example.ink4youapp.services.EnderecoService
+import com.example.ink4youapp.services.IngurService
 import com.example.ink4youapp.services.TatuadorService
+import com.example.ink4youapp.services.UsuarioService
 import com.example.ink4youapp.utils.SnackBar
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import com.vicmikhailau.maskededittext.MaskedEditText
 import kotlinx.coroutines.*
+import okhttp3.MediaType
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import java.io.ByteArrayOutputStream
 
 class UserTattooRegistry : AppCompatActivity() {
     private val inkApi = Rest.getInstance()
+    private val ingurApi = RestIngur.getInstance()
     private val viaCepApi = RestViaCep.getInstance()
-
 
     private lateinit var et_name: EditText
     private lateinit var et_username: EditText
@@ -45,14 +57,22 @@ class UserTattooRegistry : AppCompatActivity() {
     private lateinit var sw_import_photos_instagram: Switch
     private lateinit var cb_term_of_use: CheckBox
 
-    private lateinit var builder : AlertDialog.Builder
+    private lateinit var builder: AlertDialog.Builder
+    private lateinit var IVPreviewImage: ImageView
 
     private lateinit var linear_personal_date: LinearLayout
     private lateinit var linear_date_account: LinearLayout
 
+    private var SELECT_PICTURE: Int = 200
+    private var byteArrayImage: ByteArray? = null
+    private var base64Image: String? = null
+    private var imageLink: String? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_tattoo_registry)
+
+        IVPreviewImage = findViewById(R.id.iv_profile)
 
         linear_personal_date = findViewById(R.id.linear_personal_date)
         linear_date_account = findViewById(R.id.linear_date_account)
@@ -119,6 +139,35 @@ class UserTattooRegistry : AppCompatActivity() {
         startActivity(Intent(baseContext, HomeActivity::class.java))
     }
 
+    fun imageChooser(view: View) {
+        val i = Intent()
+        i.type = "image/*"
+        i.action = Intent.ACTION_GET_CONTENT
+
+        startActivityForResult(Intent.createChooser(i, "Select Picture"), SELECT_PICTURE)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == RESULT_OK) {
+            if (requestCode == SELECT_PICTURE) {
+                val selectedImageUri: Uri? = data?.data
+                if (selectedImageUri != null) {
+                    IVPreviewImage.setImageURI(selectedImageUri)
+                    val imageStream = contentResolver.openInputStream(selectedImageUri)
+                    val selectedImage = BitmapFactory.decodeStream(imageStream)
+
+                    val saida = ByteArrayOutputStream()
+                    selectedImage.compress(Bitmap.CompressFormat.PNG, 100, saida)
+                    val img = saida.toByteArray()
+
+                    byteArrayImage = img
+                    base64Image = Base64.encodeToString(img, Base64.DEFAULT)
+                }
+            }
+        }
+    }
+
     @RequiresApi(Build.VERSION_CODES.O)
     fun createUserTattoo(view: View) {
         if (!isValidAccountInfos(
@@ -134,7 +183,34 @@ class UserTattooRegistry : AppCompatActivity() {
         }
 
         val tattooArtist = inkApi.create(TatuadorService::class.java)
-        getAdressFromViaCep(et_zip_code.text.toString())
+        val ingur = ingurApi.create(IngurService::class.java)
+
+        getAdressFromViaCep(et_zip_code.text.toString(), view)
+
+        val requestBody = RequestBody.create(MediaType.parse("image/*"), byteArrayImage)
+        val part = MultipartBody.Part.createFormData("image", "image", requestBody)
+
+
+        ingur.uploadFile("Client-ID 241dc1dec32c2d8", part)
+            .enqueue(object : Callback<UploadResponse> {
+                override fun onResponse(
+                    call: Call<UploadResponse>,
+                    response: Response<UploadResponse>
+                ) {
+                    if (response.isSuccessful) {
+                        SnackBar.showSnackBar(view, "success", "Upload realizado com sucesso!")
+                        imageLink = response.body()?.data?.link
+
+                    } else {
+                        SnackBar.showSnackBar(view, "error", "Erro ao realizar upload :(")
+                    }
+                }
+
+                override fun onFailure(call: Call<UploadResponse>, t: Throwable) {
+                    t.message?.let { SnackBar.showSnackBar(view, "error", it) }
+                }
+            })
+
 
         Handler().postDelayed({
             val postData = Tatuador(
@@ -150,7 +226,7 @@ class UserTattooRegistry : AppCompatActivity() {
                 et_email.text.toString(),
                 et_password.text.toString(),
                 et_username.text.toString(),
-                null,
+                imageLink,
                 uf,
                 null,
                 null
@@ -177,7 +253,7 @@ class UserTattooRegistry : AppCompatActivity() {
         }, 5000)
     }
 
-    fun getAdressFromViaCep(zipCode: String) {
+    fun getAdressFromViaCep(zipCode: String, view: View) {
         val tattooArtistAdress = viaCepApi.create(EnderecoService::class.java)
 
         tattooArtistAdress.getAdressInfos(zipCode).enqueue(object : Callback<Endereco> {
@@ -185,15 +261,12 @@ class UserTattooRegistry : AppCompatActivity() {
                 if (response.isSuccessful) {
                     adress = response.body()?.logradouro.toString()
                     uf = response.body()?.uf.toString()
-
-                    Toast.makeText(baseContext, "Endereço obtido com sucesso", Toast.LENGTH_LONG).show()
-                } else {
-                    Toast.makeText(baseContext, "Erro ao obter endereço", Toast.LENGTH_LONG).show()
+                    uf = response.body()?.uf.toString()
                 }
             }
 
             override fun onFailure(call: Call<Endereco>, t: Throwable) {
-                Toast.makeText(baseContext, t.message, Toast.LENGTH_LONG).show()
+                t.message?.let { error(it) }
             }
         })
     }
@@ -301,7 +374,7 @@ class UserTattooRegistry : AppCompatActivity() {
         builder.setTitle(getString(R.string.term_of_use_label))
             .setMessage(getString(R.string.terms_of_use))
             .setCancelable(true)
-            .setPositiveButton("OK"){ dialogInterface, it ->
+            .setPositiveButton("OK") { dialogInterface, it ->
                 dialogInterface.cancel()
             }
             .show()
