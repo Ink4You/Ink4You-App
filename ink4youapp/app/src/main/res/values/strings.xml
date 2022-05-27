@@ -64,6 +64,7 @@
     <string name="explore_new_tattoo_artists_description">Os tatuadores que acabaram de chegar!</string>
 
     <string name="search_placeholder_tattoo">Pesquisar tatuagens</string>
+    <string name="search_placeholder_tatuadores">Pesquisar tatuadores</string>
     <string name="tattoo_desc_label">Descrição</string>
     <string name="tattoo_about_label">Sobre</string>
     <string name="tattoo_local_label">Local: </string>

@@ -24,6 +24,7 @@
         <entry key="app/src/main/res/drawable/circle_btn.xml" value="0.278125" />
         <entry key="app/src/main/res/drawable/ic_edit.xml" value="0.278125" />
         <entry key="app/src/main/res/drawable/ic_email.xml" value="0.36944444444444446" />
+        <entry key="app/src/main/res/drawable/ic_explore.xml" value="0.1115" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.278125" />
         <entry key="app/src/main/res/drawable/ic_logout.xml" value="0.1935185185185185" />
         <entry key="app/src/main/res/drawable/ic_password.xml" value="0.278125" />
@@ -38,7 +39,7 @@
         <entry key="app/src/main/res/layout/activity_edit_user_profile.xml" value="0.20878623188405798" />
         <entry key="app/src/main/res/layout/activity_edit_user_tattoo_profile.xml" value="0.17983789260385005" />
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.22780797101449277" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="app/src/main/res/layout/activity_tattoo_artist_profile.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_tattoo_details.xml" value="0.1431159420289855" />
         <entry key="app/src/main/res/layout/activity_tattoo_manager.xml" value="0.21161825726141079" />

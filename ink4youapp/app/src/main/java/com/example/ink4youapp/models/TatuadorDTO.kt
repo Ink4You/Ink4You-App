@@ -37,7 +37,7 @@ class TatuadorDTOBuilder {
     var uf: String? = "";
     var idade: Int? = 0;
     var sobre: String? = "";
-    var estilos: List<String>? = null;
+    var estilos: List<String>? = listOf("teste1", "teste2", "teste3");
 
     fun build() : TatuadorDTO =
         TatuadorDTO(
@@ -80,7 +80,6 @@ fun fakeTatuadores() = mutableListOf(
         uf = "SP";
         idade = 21;
         sobre = "Tatuador brabo";
-        estilos = null
     },
     tatuador {
         id_tatuador = 2;
@@ -98,7 +97,6 @@ fun fakeTatuadores() = mutableListOf(
         uf = "SP";
         idade = 22;
         sobre = "Chhrahrhuashuhasuh raines";
-        estilos = null
     },
     tatuador {
         id_tatuador = 3;
@@ -116,6 +114,5 @@ fun fakeTatuadores() = mutableListOf(
         uf = "SP";
         idade = 19;
         sobre = "Suicidio é a solução :)";
-        estilos = null
     }
 )
