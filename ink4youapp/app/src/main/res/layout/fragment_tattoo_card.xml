@@ -7,7 +7,7 @@
     android:layout_marginLeft="16dp"
     android:background="@color/primary_blue"
     app:cardCornerRadius="20dp"
-    tools:context=".TattooArtistCardFragment">
+    tools:context=".CarouselTattooArtistCardFragment">
 
     <LinearLayout
         android:layout_width="250dp"
