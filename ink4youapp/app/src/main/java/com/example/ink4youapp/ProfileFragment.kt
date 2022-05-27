@@ -51,6 +51,12 @@ class ProfileFragment : Fragment() {
             startActivity(intent)
         }
 
+        val btnEditProfile = view.findViewById<Button>(R.id.btn_edit_profile)
+        btnEditProfile.setOnClickListener { view ->
+            val intent=Intent(activity,EditUserTattooProfile::class.java)
+            startActivity(intent)
+        }
+
         tatuagebsAssemble()
         return view
     }

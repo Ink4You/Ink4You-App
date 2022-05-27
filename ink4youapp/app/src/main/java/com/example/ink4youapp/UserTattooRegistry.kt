@@ -41,6 +41,7 @@ class UserTattooRegistry : AppCompatActivity() {
     private val viaCepApi = RestViaCep.getInstance()
 
     private lateinit var et_name: EditText
+    private lateinit var et_about: EditText
     private lateinit var et_username: EditText
     private lateinit var et_cnpj: MaskedEditText
     private lateinit var et_birth_date: MaskedEditText
@@ -78,6 +79,7 @@ class UserTattooRegistry : AppCompatActivity() {
         linear_date_account = findViewById(R.id.linear_date_account)
 
         et_name = findViewById(R.id.et_name)
+        et_about = findViewById(R.id.et_about)
         et_username = findViewById(R.id.et_username)
         et_birth_date = findViewById(R.id.et_birth_date)
         et_cnpj = findViewById(R.id.et_cnpj)
@@ -229,7 +231,7 @@ class UserTattooRegistry : AppCompatActivity() {
                 imageLink,
                 uf,
                 null,
-                null
+                et_about.text.toString()
             )
 
             tattooArtist.createTattooArtist(postData).enqueue(object : Callback<Void> {
