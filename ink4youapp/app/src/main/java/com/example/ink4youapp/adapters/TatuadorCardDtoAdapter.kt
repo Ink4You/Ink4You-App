@@ -25,20 +25,9 @@ class TatuadorCardDtoAdapter(val tatuadores: MutableList<TatuadorDTO>) : Recycle
             with(tatuador) {
                 itemView.findViewById<TextView>(R.id.tv_name).text = nome;
                 itemView.findViewById<TextView>(R.id.tv_description).text = sobre;
-                itemView.findViewById<TextView>(R.id.tv_cep).text = cep;
-                itemView.findViewById<TextView>(R.id.tv_style).text = StylesToString(estilos!!);
-//                itemView.findViewById<TextView>(R.id.tv_styles).text = nome;
+                itemView.findViewById<TextView>(R.id.tv_logradouro).text = logradouro;
+                itemView.findViewById<TextView>(R.id.tv_cep_uf).text = "${cep} - ${uf}";
             }
-        }
-
-        fun StylesToString(styles: List<String>) : String {
-            var result: String = "";
-            styles.forEach { style ->
-                if (style != styles.last())
-                    result += "${style},"
-                else result += "${style}";
-            }
-            return result;
         }
     }
 }

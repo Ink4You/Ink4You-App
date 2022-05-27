@@ -22,7 +22,7 @@
             android:layout_width="70dp"
             android:layout_height="70dp"
             app:cardCornerRadius="40dp"
-            android:layout_marginRight="16dp">
+            android:layout_marginRight="8dp">
 
             <ImageView
                 android:id="@+id/iv_artist"
@@ -87,15 +87,14 @@
                         android:background="@drawable/ic_location"/>
 
                     <TextView
-                        android:id="@+id/tv_cep"
+                        android:id="@+id/tv_logradouro"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:singleLine="true"
                         android:ellipsize="marquee"
-                        android:text="0814012 - SP"
+                        android:text="Rua dos playboyssssssssssssssssss"
                         android:textSize="18sp"
-
-                        android:layout_gravity="center_vertical"
+                        android:layout_gravity="center"
                         />
 
                 </LinearLayout>
@@ -104,23 +103,18 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:background="@drawable/ic_style"/>
+                    android:orientation="horizontal"
+                    android:gravity="center">
 
                     <TextView
-                        android:id="@+id/tv_style"
+                        android:id="@+id/tv_cep_uf"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:singleLine="true"
                         android:ellipsize="marquee"
-                        android:text="Tribal,Aquarela e old School"
+                        android:text="08140125 - SP"
                         android:textSize="18sp"
-                        android:layout_gravity="center_vertical"
+                        android:layout_gravity="center"
                         />
 
                 </LinearLayout>

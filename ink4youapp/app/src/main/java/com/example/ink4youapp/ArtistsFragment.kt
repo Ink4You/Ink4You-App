@@ -2,9 +2,11 @@ package com.example.ink4youapp
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -12,6 +14,7 @@ import com.example.ink4youapp.adapters.EstilosTatuagensMenuDtoAdapter
 import com.example.ink4youapp.adapters.TatuadorCardDtoAdapter
 import com.example.ink4youapp.models.EstilosTatuagensDtoModel
 import com.example.ink4youapp.models.Tatuador
+import com.example.ink4youapp.models.TatuadorDTO
 import com.example.ink4youapp.models.fakeTatuadores
 import com.example.ink4youapp.rest.Rest
 import com.example.ink4youapp.services.TatuadorService
@@ -24,9 +27,7 @@ class ArtistsFragment : Fragment() {
 
     private var estilosList = ArrayList<EstilosTatuagensDtoModel>();
     private val retrofit = Rest.getInstance();
-//    private var idTattooArtist: Int = 0;
-    private lateinit var artistsList: List<Tatuador>;
-
+    private var artistsList: MutableList<TatuadorDTO> = mutableListOf();
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -34,9 +35,6 @@ class ArtistsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         var view = inflater.inflate(R.layout.fragment_artists, container, false);
-
-//        val it = Intent();
-//        idTattooArtist = it.getIntExtra("idTatuador", 68);
 
         estilosMock();
 
@@ -46,9 +44,11 @@ class ArtistsFragment : Fragment() {
 
         getTattooArtist()
 
-        val TattooArtistsRecycleView = view.findViewById<RecyclerView>(R.id.rv_tattooArtists);
-        TattooArtistsRecycleView.adapter = TatuadorCardDtoAdapter(fakeTatuadores());
-        TattooArtistsRecycleView.layoutManager = LinearLayoutManager(this.context, LinearLayoutManager.VERTICAL, false);
+        Handler().postDelayed({
+            val TattooArtistsRecycleView = view.findViewById<RecyclerView>(R.id.rv_tattooArtists);
+            TattooArtistsRecycleView.adapter = TatuadorCardDtoAdapter(artistsList);
+            TattooArtistsRecycleView.layoutManager = LinearLayoutManager(this.context, LinearLayoutManager.VERTICAL, false);
+        }, 5000)
 
         return view
     }
@@ -56,27 +56,30 @@ class ArtistsFragment : Fragment() {
     fun getTattooArtist() {
         val tattoo = retrofit.create(TatuadorService::class.java);
 
-        tattoo.getTattooArtists().enqueue(object: Callback<List<Tatuador>> {
+        tattoo.getTattooArtists().enqueue(object: Callback<List<TatuadorDTO>> {
             override fun onResponse(
-                call: Call<List<Tatuador>>,
-                response: Response<List<Tatuador>>
+                call: Call<List<TatuadorDTO>>,
+                response: Response<List<TatuadorDTO>>
             ) {
                 if (response.isSuccessful) {
                     println("foi")
                     println(response.body());
 
                     if (response.body() != null) {
-                        artistsList = response.body()!!.toList();
+                        artistsList = response.body()!!.toMutableList();
+                    } else {
+                        println()
                     }
 
                 } else {
                     println("n foi")
+                    println(response)
                     println(response.body())
                 }
             }
 
-            override fun onFailure(call: Call<List<Tatuador>>, t: Throwable) {
-                t.message?.let { println(it) }
+            override fun onFailure(call: Call<List<TatuadorDTO>>, t: Throwable) {
+                t.message?.let { println("erro ---- " + it) }
             }
         });
     }
