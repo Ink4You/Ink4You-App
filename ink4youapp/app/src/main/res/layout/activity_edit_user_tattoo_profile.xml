@@ -89,10 +89,10 @@
                     android:id="@+id/linear_personal_date"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_marginBottom="15dp"
                     android:gravity="center"
                     android:orientation="vertical"
-                    android:paddingHorizontal="15dp"
-                    android:layout_marginBottom="15dp">
+                    android:paddingHorizontal="15dp">
 
                     <com.mikhaellopez.circularimageview.CircularImageView
                         android:id="@+id/iv_profile"
@@ -127,10 +127,10 @@
                         android:textSize="14dp" />
 
                     <EditText
-                        android:layout_marginTop="12dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
+                        android:layout_marginTop="12dp"
                         android:background="@drawable/custom_input"
                         android:drawablePadding="10dp"
                         android:hint="@string/tattoo_artist_about_label"
@@ -267,6 +267,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
                         android:text="@string/import_photos_instagram" />
 
                 </LinearLayout>
@@ -274,7 +275,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:paddingHorizontal="20dp">
 
                     <EditText
                         android:id="@id/et_username"

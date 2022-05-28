@@ -8,7 +8,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.EditText
 import android.widget.ImageButton
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -20,12 +22,16 @@ import com.example.ink4youapp.models.TatuagemDtoImageModel
 import java.util.ArrayList
 
 class ProfileFragment : Fragment() {
-    private var tattooList = ArrayList<TatuagemDtoImageModel>()
-    private lateinit var rvTatuagens : RecyclerView
-    private lateinit var  adapter : TatuagemSimpleDtoAdapter
+    private lateinit var tv_name: TextView
+    private lateinit var tv_username_insta: TextView
+    private lateinit var tv_about: TextView
 
-    private lateinit var rvTatuagensInsta : RecyclerView
-    private lateinit var  adapterInsta : TatuagemSimpleDtoAdapter
+    private var tattooList = ArrayList<TatuagemDtoImageModel>()
+    private lateinit var rvTatuagens: RecyclerView
+    private lateinit var adapter: TatuagemSimpleDtoAdapter
+
+    private lateinit var rvTatuagensInsta: RecyclerView
+    private lateinit var adapterInsta: TatuagemSimpleDtoAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -33,32 +39,61 @@ class ProfileFragment : Fragment() {
         savedInstanceState: Bundle?,
 
         ): View? {
-        var view = inflater.inflate(R.layout.fragment_profile, container, false)
 
-        rvTatuagens = view.findViewById(R.id.tattoosRecyclerView)
-        rvTatuagens.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
-        adapter = TatuagemSimpleDtoAdapter(this.requireContext(), tattooList)
-        rvTatuagens.adapter = adapter
+        var view: View
+        val prefs = this.activity?.getSharedPreferences("storage", 0)
+        val userType = prefs?.getString("user_type", "")
 
-        rvTatuagensInsta = view.findViewById(R.id.tattoosInstaRecyclerView)
-        rvTatuagensInsta.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
-        adapterInsta = TatuagemSimpleDtoAdapter(this.requireContext(), tattooList)
-        rvTatuagensInsta.adapter = adapterInsta
+        if (userType.equals("tattooArtist")) {
+            view = inflater.inflate(R.layout.fragment_profile, container, false)
+            tv_name = view.findViewById(R.id.tv_name)
+            tv_username_insta = view.findViewById(R.id.tv_username_insta)
+            tv_about = view.findViewById(R.id.tv_about)
 
-        val btn = view.findViewById<ImageButton>(R.id.btn_edit)
-        btn.setOnClickListener { view ->
-            val intent=Intent(activity,TattooManager::class.java)
-            startActivity(intent)
+            rvTatuagens = view.findViewById(R.id.tattoosRecyclerView)
+            rvTatuagens.layoutManager =
+                StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+            adapter = TatuagemSimpleDtoAdapter(this.requireContext(), tattooList)
+            rvTatuagens.adapter = adapter
+
+            rvTatuagensInsta = view.findViewById(R.id.tattoosInstaRecyclerView)
+            rvTatuagensInsta.layoutManager =
+                StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+            adapterInsta = TatuagemSimpleDtoAdapter(this.requireContext(), tattooList)
+            rvTatuagensInsta.adapter = adapterInsta
+
+            val btn = view.findViewById<ImageButton>(R.id.btn_edit)
+            btn.setOnClickListener { view ->
+                val intent = Intent(activity, TattooManager::class.java)
+                startActivity(intent)
+            }
+
+            val btnEditProfile = view.findViewById<Button>(R.id.btn_edit_profile)
+            btnEditProfile.setOnClickListener { view ->
+                val intent = Intent(activity, EditUserTattooProfile::class.java)
+                startActivity(intent)
+            }
+
+            setUserInfos(view)
+            tatuagebsAssemble()
+
+        } else {
+            view = inflater.inflate(R.layout.activity_edit_user_profile, container, false)
         }
 
-        val btnEditProfile = view.findViewById<Button>(R.id.btn_edit_profile)
-        btnEditProfile.setOnClickListener { view ->
-            val intent=Intent(activity,EditUserTattooProfile::class.java)
-            startActivity(intent)
-        }
-
-        tatuagebsAssemble()
         return view
+    }
+
+    private fun setUserInfos(view: View) {
+        val prefs = this.activity?.getSharedPreferences("storage", 0)
+
+        val name = prefs?.getString("nome", "")
+        val instagramUsername = prefs?.getString("username_insta", "")
+        val about = prefs?.getString("sobre", "")
+
+        tv_name.text = name
+        tv_username_insta.text = instagramUsername
+        tv_about.text = about
     }
 
     private fun tatuagebsAssemble() {

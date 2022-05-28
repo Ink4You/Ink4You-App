@@ -263,7 +263,6 @@ class UserTattooRegistry : AppCompatActivity() {
                 if (response.isSuccessful) {
                     adress = response.body()?.logradouro.toString()
                     uf = response.body()?.uf.toString()
-                    uf = response.body()?.uf.toString()
                 }
             }
 
