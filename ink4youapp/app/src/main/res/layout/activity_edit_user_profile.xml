@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".UserTattooRegistry">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal|bottom"
+            android:isScrollContainer="false"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="25dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="30dp"
+                    android:gravity="center_vertical">
+
+                    <ImageView
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
+                        android:background="@drawable/ink_logo" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="right|center_vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="8"
+                            android:fontFamily="@font/saira_regular"
+                            android:text="@string/edit_tattoo_artist_label"
+                            android:textAlignment="textEnd"
+                            android:textColor="@color/black"
+                            android:textSize="15dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/saira_regular"
+                            android:text="|"
+                            android:textAlignment="center"
+                            android:textColor="@color/black"
+                            android:textSize="20dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/saira_semibold"
+                            android:text="@string/user_label"
+                            android:textAlignment="textEnd"
+                            android:textColor="@color/black"
+                            android:textSize="22dp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linear_personal_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:paddingHorizontal="15dp"
+                    android:layout_marginBottom="70dp">
+
+                    <com.mikhaellopez.circularimageview.CircularImageView
+                        android:id="@+id/iv_profile"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:src="@drawable/profile"
+                        app:civ_shadow_radius="10dp" />
+
+                    <ImageButton
+                        android:id="@+id/BSelectImage"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginLeft="40dp"
+                        android:layout_marginTop="-35dp"
+                        android:background="@drawable/circle_btn"
+                        android:onClick="imageChooser"
+                        android:src="@drawable/ic_photo"
+                        android:textColor="@android:color/white" />
+
+                    <EditText
+                        android:id="@+id/et_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="55dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="12dp"
+                        android:background="@drawable/custom_input"
+                        android:drawablePadding="10dp"
+                        android:hint="@string/name_placeholder"
+                        android:paddingStart="12dp"
+                        android:paddingEnd="12dp"
+                        android:textSize="14dp" />
+
+                    <com.vicmikhailau.maskededittext.MaskedEditText
+                        android:id="@+id/et_cpf"
+                        android:layout_width="match_parent"
+                        android:layout_height="55dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="12dp"
+                        android:background="@drawable/custom_input"
+                        android:drawablePadding="10dp"
+                        android:hint="@string/cpf_placeholder"
+                        android:paddingStart="12dp"
+                        android:paddingEnd="12dp"
+                        android:textSize="14dp"
+                        app:mask="###.###.###-##" />
+
+                    <com.vicmikhailau.maskededittext.MaskedEditText
+                        android:id="@+id/et_birth_date"
+                        android:layout_width="match_parent"
+                        android:layout_height="55dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="12dp"
+                        android:background="@drawable/custom_input"
+                        android:drawablePadding="10dp"
+                        android:hint="@string/birth_date_placeholder"
+                        android:inputType="date"
+                        android:paddingStart="12dp"
+                        android:paddingEnd="12dp"
+                        android:textSize="14dp"
+                        app:mask="####-##-##" />
+
+                    <com.vicmikhailau.maskededittext.MaskedEditText
+                        android:id="@+id/et_telephone"
+                        android:layout_width="match_parent"
+                        android:layout_height="55dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="12dp"
+                        android:background="@drawable/custom_input"
+                        android:drawablePadding="10dp"
+                        android:hint="@string/telephone_placeholder"
+                        android:inputType="phone"
+                        android:paddingStart="12dp"
+                        android:paddingEnd="12dp"
+                        android:textSize="14dp"
+                        app:mask="(##) #####-####" />
+
+                    <com.vicmikhailau.maskededittext.MaskedEditText
+                        android:id="@+id/et_zip_code"
+                        android:layout_width="match_parent"
+                        android:layout_height="55dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="12dp"
+                        android:background="@drawable/custom_input"
+                        android:drawablePadding="10dp"
+                        android:hint="@string/zip_code_placeholder"
+                        android:inputType="number"
+                        android:paddingStart="12dp"
+                        android:paddingEnd="12dp"
+                        android:textSize="14dp"
+                        app:mask="#####-###" />
+
+                    <EditText
+                        android:id="@id/et_email"
+                        android:layout_width="match_parent"
+                        android:layout_height="55dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="12dp"
+                        android:background="@drawable/custom_input"
+                        android:drawablePadding="10dp"
+                        android:hint="@string/email_placeholder"
+                        android:inputType="text"
+                        android:paddingStart="12dp"
+                        android:paddingEnd="12dp"
+                        android:textSize="14dp" />
+
+                    <EditText
+                        android:id="@+id/et_password"
+                        android:layout_width="match_parent"
+                        android:layout_height="55dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="12dp"
+                        android:background="@drawable/custom_input"
+                        android:drawablePadding="10dp"
+                        android:hint="@string/password_placeholder"
+                        android:inputType="text"
+                        android:paddingStart="12dp"
+                        android:paddingEnd="12dp"
+                        android:textSize="14dp" />
+
+                    <Button
+                        android:id="@+id/btn_finish"
+                        android:layout_marginTop="20dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="55dp"
+                        android:background="@drawable/blue_pill_gradient"
+                        android:onClick="createUserTattoo"
+                        android:text="@string/update_label"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

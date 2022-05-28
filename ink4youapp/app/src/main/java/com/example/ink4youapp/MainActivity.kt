@@ -1,6 +1,7 @@
 package com.example.ink4youapp
 
 import android.animation.ObjectAnimator
+import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
@@ -105,8 +106,21 @@ class MainActivity : AppCompatActivity() {
         tattooUser.auth(email, password).enqueue(object: Callback<Usuario> {
             override fun onResponse(call: Call<Usuario>, response: Response<Usuario>) {
                 if (response.isSuccessful) {
-                    goToHome(view)
+                    val body = response.body()
+                    val prefs = getSharedPreferences("storage", 0)
+                    val editor = prefs.edit()
 
+                    editor.putString("userType", "sampleUser")
+                    body?.id_usuario?.let { editor.putInt("id_usuario", it) }
+                    editor.putString("nome", body?.nome)
+                    editor.putString("cnpj", body?.cpf)
+                    editor.putString("data_nascimento", body?.data_nascimento)
+                    editor.putString("telefone", body?.telefone)
+                    editor.putString("cep", body?.cep)
+                    editor.putString("email", body?.email)
+                    editor.putString("senha", body?.senha)
+
+                    goToHome(view)
                 } else {
                    authTattooUser(view)
                 }
@@ -131,8 +145,26 @@ class MainActivity : AppCompatActivity() {
         tattooArtist.auth(email, password).enqueue(object: Callback<Tatuador> {
             override fun onResponse(call: Call<Tatuador>, response: Response<Tatuador>) {
                 if (response.isSuccessful) {
-                    goToHome(view)
+                    val body = response.body()
+                    val prefs = getSharedPreferences("storage", 0)
+                    val editor = prefs.edit()
 
+                    editor.putString("user_type", "tattooArtist")
+                    body?.id_tatuador?.let { editor.putInt("id_tatuador", it) }
+                    editor.putString("nome", body?.nome)
+                    editor.putString("sobre", body?.sobre)
+                    editor.putString("cnpj", body?.cnpj)
+                    editor.putString("data_nascimento", body?.data_nascimento)
+                    editor.putString("telefone", body?.telefone)
+                    editor.putString("cep", body?.cep)
+                    editor.putString("numero_logradouro", body?.numero_logradouro)
+                    editor.putString("email", body?.email)
+                    editor.putString("senha", body?.senha)
+                    editor.putString("username_insta", body?.conta_instagram)
+                    editor.putString("sobre", body?.sobre)
+
+                    editor.apply()
+                    goToHome(view)
                 } else {
                     SnackBar.showSnackBar(view, "error", "Email ou senha inválidos!")
                 }
