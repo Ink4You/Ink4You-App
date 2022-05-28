@@ -72,6 +72,7 @@
     <string name="tattoo_manager_label">Gerenciamento</string>
     <string name="title_placeholder">Título</string>
     <string name="local_placeholder">Local</string>
+    <string name="style_placeholder">Estilo</string>
     <string name="description_placeholder">Descrição</string>
 
     <string name="edit_tattoo_artist_label">Edição de perfil</string>

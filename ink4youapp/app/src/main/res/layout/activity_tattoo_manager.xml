@@ -85,6 +85,7 @@
             android:layout_marginLeft="40dp"
             android:layout_marginTop="-35dp"
             android:background="@drawable/circle_btn"
+            android:onClick="imageChooser"
             android:src="@drawable/ic_photo"
             android:textColor="@android:color/white" />
 
@@ -96,6 +97,7 @@
             android:orientation="horizontal">
 
             <EditText
+                android:id="@+id/et_tattoo_title"
                 android:layout_width="match_parent"
                 android:layout_height="55dp"
                 android:layout_gravity="center"
@@ -109,6 +111,7 @@
                 android:textSize="14dp" />
 
             <EditText
+                android:id="@+id/et_tattoo_local"
                 android:layout_width="match_parent"
                 android:layout_height="55dp"
                 android:layout_gravity="center"
@@ -122,13 +125,24 @@
 
         </LinearLayout>
 
+        <Spinner
+            android:id="@+id/spinner_styles"
+            android:background="@drawable/custom_input"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:textSize="14dp" />
+
         <EditText
+            android:id="@+id/et_tattoo_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginTop="12dp"
             android:background="@drawable/custom_input"
             android:drawablePadding="10dp"
-            android:hint="@string/tattoo_artist_about_label"
+            android:hint="@string/description_placeholder"
             android:inputType="textMultiLine"
             android:lines="8"
             android:maxLines="10"
@@ -145,6 +159,7 @@
             android:background="@drawable/blue_pill_gradient"
             android:text="@string/insert_tattoo_label"
             android:textAllCaps="false"
+            android:onClick="createTattoo"
             android:textColor="@color/white" />
 
         <LinearLayout

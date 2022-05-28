@@ -111,6 +111,7 @@ class MainActivity : AppCompatActivity() {
                     val editor = prefs.edit()
 
                     editor.putString("userType", "sampleUser")
+                    body?.id_usuario?.let { editor.putInt("id_usuario", it) }
                     editor.putString("nome", body?.nome)
                     editor.putString("cnpj", body?.cpf)
                     editor.putString("data_nascimento", body?.data_nascimento)
@@ -149,6 +150,7 @@ class MainActivity : AppCompatActivity() {
                     val editor = prefs.edit()
 
                     editor.putString("user_type", "tattooArtist")
+                    body?.id_tatuador?.let { editor.putInt("id_tatuador", it) }
                     editor.putString("nome", body?.nome)
                     editor.putString("sobre", body?.sobre)
                     editor.putString("cnpj", body?.cnpj)
