@@ -3,8 +3,10 @@ package com.example.ink4youapp.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.ink4youapp.R
 import com.example.ink4youapp.models.TatuadorDTO
 
@@ -27,6 +29,11 @@ class TatuadorCardDtoAdapter(val tatuadores: MutableList<TatuadorDTO>) : Recycle
                 itemView.findViewById<TextView>(R.id.tv_description).text = sobre;
                 itemView.findViewById<TextView>(R.id.tv_logradouro).text = logradouro;
                 itemView.findViewById<TextView>(R.id.tv_cep_uf).text = "${cep} - ${uf}";
+
+                Glide.with(itemView)
+                    .load(foto_perfil)
+                    .centerCrop()
+                    .into(itemView.findViewById<ImageView>(R.id.iv_artist))
             }
         }
     }
