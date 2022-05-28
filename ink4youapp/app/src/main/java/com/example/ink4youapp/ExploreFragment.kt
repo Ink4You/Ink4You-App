@@ -1,6 +1,7 @@
 package com.example.ink4youapp
 
 import android.os.Bundle
+import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,14 +9,24 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ink4youapp.adapters.TatuadorCardCarouselDtoAdapter
+import com.example.ink4youapp.adapters.TatuadorCardDtoAdapter
 import com.example.ink4youapp.adapters.TatuagemCardDtoAdapter
+import com.example.ink4youapp.models.TatuadorDTO
 import com.example.ink4youapp.models.fakeTatuadores
 import com.example.ink4youapp.models.fakeTatuagens
+import com.example.ink4youapp.rest.Rest
+import com.example.ink4youapp.services.TatuadorService
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class ExploreFragment : Fragment() {
 
     val fakeStyles = arrayOf("Estilo1", "Estilo2", "Estilo3", "Estilo4");
+    private val retrofit = Rest.getInstance();
+    private var artistsList: MutableList<TatuadorDTO> = mutableListOf();
+    val amountDefault = 4;
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -31,9 +42,13 @@ class ExploreFragment : Fragment() {
 
         popularStyles();
 
-        val recyclerViewNewTattoosArtists = view.findViewById<RecyclerView>(R.id.recyclerViewNewTattoosArtists);
-        recyclerViewNewTattoosArtists.adapter = TatuadorCardCarouselDtoAdapter(fakeTatuadores());
-        recyclerViewNewTattoosArtists.layoutManager = LinearLayoutManager(this.context, LinearLayoutManager.HORIZONTAL, false);
+        getTattooArtist()
+
+        Handler().postDelayed({
+            val recyclerViewNewTattoosArtists = view.findViewById<RecyclerView>(R.id.recyclerViewNewTattoosArtists);
+            recyclerViewNewTattoosArtists.adapter = TatuadorCardCarouselDtoAdapter(artistsList);
+            recyclerViewNewTattoosArtists.layoutManager = LinearLayoutManager(this.context, LinearLayoutManager.HORIZONTAL, false);
+        }, 5000)
 
         return view;
     }
@@ -61,4 +76,34 @@ class ExploreFragment : Fragment() {
         ft.commitAllowingStateLoss();
     }
 
+    fun getTattooArtist() {
+        val tattoo = retrofit.create(TatuadorService::class.java);
+
+        tattoo.getTattooArtistsByQttd(amountDefault).enqueue(object: Callback<List<TatuadorDTO>> {
+            override fun onResponse(
+                call: Call<List<TatuadorDTO>>,
+                response: Response<List<TatuadorDTO>>
+            ) {
+                if (response.isSuccessful) {
+                    println("foi")
+                    println(response.body());
+
+                    if (response.body() != null) {
+                        artistsList = response.body()!!.toMutableList();
+                    } else {
+                        println()
+                    }
+
+                } else {
+                    println("n foi")
+                    println(response)
+                    println(response.body())
+                }
+            }
+
+            override fun onFailure(call: Call<List<TatuadorDTO>>, t: Throwable) {
+                t.message?.let { println("erro ---- " + it) }
+            }
+        });
+    }
 }

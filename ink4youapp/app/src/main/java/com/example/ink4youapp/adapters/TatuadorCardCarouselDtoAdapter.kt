@@ -3,8 +3,10 @@ package com.example.ink4youapp.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.ink4youapp.R
 import com.example.ink4youapp.models.TatuadorDTO
 
@@ -23,8 +25,12 @@ class TatuadorCardCarouselDtoAdapter(val tatuadores: MutableList<TatuadorDTO>) :
     inner class TatuadorViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(tatuador: TatuadorDTO) {
             with(tatuador) {
+                var imageView = itemView.findViewById<ImageView>(R.id.iv_profile);
                 itemView.findViewById<TextView>(R.id.tv_infos).text = "${nome} - ${uf}";
-//                itemView.findViewById<TextView>(R.id.tv_styles).text = nome;
+                Glide.with(itemView)
+                    .load(foto_perfil)
+                    .centerCrop()
+                    .into(imageView)
             }
         }
     }
