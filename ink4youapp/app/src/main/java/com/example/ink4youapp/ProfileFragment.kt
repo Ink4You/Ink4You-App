@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.ink4youapp.adapters.EstilosTatuagensMenuDtoAdapter
 import com.example.ink4youapp.adapters.TatuagemSimpleDtoAdapter
+import com.example.ink4youapp.adapters.TatuagemSimpleEditDtoAdapter
 import com.example.ink4youapp.models.EstilosTatuagensDtoModel
 import com.example.ink4youapp.models.TatuagemDtoImageModel
 import java.util.ArrayList
@@ -27,11 +28,11 @@ class ProfileFragment : Fragment() {
     private lateinit var tv_about: TextView
 
     private var tattooList = ArrayList<TatuagemDtoImageModel>()
-    private lateinit var rvTatuagens: RecyclerView
-    private lateinit var adapter: TatuagemSimpleDtoAdapter
+    private lateinit var rvTatuagens : RecyclerView
+    private lateinit var  adapter : TatuagemSimpleEditDtoAdapter
 
-    private lateinit var rvTatuagensInsta: RecyclerView
-    private lateinit var adapterInsta: TatuagemSimpleDtoAdapter
+    private lateinit var rvTatuagensInsta : RecyclerView
+    private lateinit var  adapterInsta : TatuagemSimpleEditDtoAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -39,7 +40,7 @@ class ProfileFragment : Fragment() {
         savedInstanceState: Bundle?,
 
         ): View? {
-
+      
         var view: View
         val prefs = this.activity?.getSharedPreferences("storage", 0)
         val userType = prefs?.getString("user_type", "")
@@ -53,13 +54,13 @@ class ProfileFragment : Fragment() {
             rvTatuagens = view.findViewById(R.id.tattoosRecyclerView)
             rvTatuagens.layoutManager =
                 StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
-            adapter = TatuagemSimpleDtoAdapter(this.requireContext(), tattooList)
+            adapter = TatuagemSimpleEditDtoAdapter(this.requireContext(), tattooList)
             rvTatuagens.adapter = adapter
 
             rvTatuagensInsta = view.findViewById(R.id.tattoosInstaRecyclerView)
             rvTatuagensInsta.layoutManager =
                 StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
-            adapterInsta = TatuagemSimpleDtoAdapter(this.requireContext(), tattooList)
+            adapterInsta = TatuagemSimpleEditDtoAdapter(this.requireContext(), tattooList)
             rvTatuagensInsta.adapter = adapterInsta
 
             val btn = view.findViewById<ImageButton>(R.id.btn_edit)

@@ -3,15 +3,26 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../../../../../../layout/custom_preview.xml" value="0.18703703703703703" />
+        <entry key="..\:/Bandtec/4_Semestre/PI/Ink4You-App/ink4youapp/app/src/main/res/drawable/ic_baseline_location_on_24.xml" value="0.3828125" />
         <entry key="..\:/Bandtec/4_Semestre/PI/Ink4You-App/ink4youapp/app/src/main/res/layout/activity_home.xml" value="0.19427083333333334" />
+        <entry key="..\:/Bandtec/4_Semestre/PI/Ink4You-App/ink4youapp/app/src/main/res/layout/activity_main.xml" value="0.25769927536231885" />
         <entry key="..\:/Bandtec/4_Semestre/PI/Ink4You-App/ink4youapp/app/src/main/res/layout/activity_tattoo_details.xml" value="0.30933333333333335" />
+        <entry key="..\:/Bandtec/4_Semestre/PI/Ink4You-App/ink4youapp/app/src/main/res/layout/activity_tattoo_manager.xml" value="0.20520833333333333" />
+        <entry key="..\:/Bandtec/4_Semestre/PI/Ink4You-App/ink4youapp/app/src/main/res/layout/bottom_sheet_layout.xml" value="0.20520833333333333" />
         <entry key="..\:/Bandtec/4_Semestre/PI/Ink4You-App/ink4youapp/app/src/main/res/layout/fragment_artists.xml" value="0.36666666666666664" />
+        <entry key="..\:/Bandtec/4_Semestre/PI/Ink4You-App/ink4youapp/app/src/main/res/layout/fragment_carousel_tattoo_artist_card.xml" value="0.36666666666666664" />
         <entry key="..\:/Bandtec/4_Semestre/PI/Ink4You-App/ink4youapp/app/src/main/res/layout/fragment_explore.xml" value="0.25" />
         <entry key="..\:/Bandtec/4_Semestre/PI/Ink4You-App/ink4youapp/app/src/main/res/layout/fragment_explore_new_tattoo_artists.xml" value="0.19791666666666666" />
         <entry key="..\:/Bandtec/4_Semestre/PI/Ink4You-App/ink4youapp/app/src/main/res/layout/fragment_explore_popular_styles.xml" value="0.26403985507246375" />
         <entry key="..\:/Bandtec/4_Semestre/PI/Ink4You-App/ink4youapp/app/src/main/res/layout/fragment_explore_recent_tattos.xml" value="0.19791666666666666" />
+        <entry key="..\:/Bandtec/4_Semestre/PI/Ink4You-App/ink4youapp/app/src/main/res/layout/fragment_profile.xml" value="0.36666666666666664" />
         <entry key="..\:/Bandtec/4_Semestre/PI/Ink4You-App/ink4youapp/app/src/main/res/layout/fragment_tattoo_artist_card.xml" value="0.19427083333333334" />
         <entry key="..\:/Bandtec/4_Semestre/PI/Ink4You-App/ink4youapp/app/src/main/res/layout/fragment_tattoo_card.xml" value="0.2015625" />
+        <entry key="..\:/Bandtec/4_Semestre/PI/Ink4You-App/ink4youapp/app/src/main/res/layout/fragment_tattoos.xml" value="0.36666666666666664" />
+        <entry key="..\:/Bandtec/4_Semestre/PI/Ink4You-App/ink4youapp/app/src/main/res/layout/tattoo_estilos_button_menu.xml" value="0.36666666666666664" />
+        <entry key="..\:/Bandtec/4_Semestre/PI/Ink4You-App/ink4youapp/app/src/main/res/layout/tattoo_item_container.xml" value="0.20520833333333333" />
+        <entry key="..\:/Bandtec/4_Semestre/PI/Ink4You-App/ink4youapp/app/src/main/res/menu/bottom_sheet_layout.xml" value="0.20520833333333333" />
         <entry key="..\:/Bandtec/4_Semestre/PI/ink4youapp/app/src/main/res/drawable/custom_input.xml" value="0.3828125" />
         <entry key="..\:/Bandtec/4_Semestre/PI/ink4youapp/app/src/main/res/drawable/ic_email.xml" value="0.3828125" />
         <entry key="..\:/Bandtec/4_Semestre/PI/ink4youapp/app/src/main/res/drawable/ic_password.xml" value="0.3828125" />
@@ -19,17 +30,15 @@
         <entry key="..\:/Bandtec/4_Semestre/PI/ink4youapp/app/src/main/res/layout/activity_main.xml" value="0.2957427536231884" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.278125" />
         <entry key="app/src/main/res/drawable/blue_gradient.xml" value="0.14351851851851852" />
-        <entry key="app/src/main/res/drawable/blue_pill_gradient.xml" value="0.1935185185185185" />
-        <entry key="app/src/main/res/drawable/button_border.xml" value="0.1935185185185185" />
+        <entry key="app/src/main/res/drawable/button_border.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/circle_btn.xml" value="0.278125" />
-        <entry key="app/src/main/res/drawable/ic_edit.xml" value="0.278125" />
+        <entry key="app/src/main/res/drawable/custom_input.xml" value="0.153" />
+        <entry key="app/src/main/res/drawable/custom_input2.xml" value="0.153" />
         <entry key="app/src/main/res/drawable/ic_email.xml" value="0.36944444444444446" />
-        <entry key="app/src/main/res/drawable/ic_explore.xml" value="0.1115" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.278125" />
-        <entry key="app/src/main/res/drawable/ic_logout.xml" value="0.1935185185185185" />
         <entry key="app/src/main/res/drawable/ic_password.xml" value="0.278125" />
         <entry key="app/src/main/res/drawable/ic_photo.xml" value="0.278125" />
-        <entry key="app/src/main/res/drawable/ic_profile.xml" value="0.27384615384615385" />
+        <entry key="app/src/main/res/drawable/ic_search.xml" value="0.153" />
         <entry key="app/src/main/res/drawable/image_rounded.xml" value="0.278125" />
         <entry key="app/src/main/res/drawable/linear_rounded.xml" value="0.278125" />
         <entry key="app/src/main/res/drawable/profile_img_background.xml" value="0.278125" />
