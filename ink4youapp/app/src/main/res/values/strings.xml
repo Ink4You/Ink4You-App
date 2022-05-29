@@ -35,6 +35,7 @@
     <string name="getin_label">Entrar</string>
     <string name="next_label">Próximo</string>
     <string name="finish_label">Finalizar</string>
+    <string name="tattoo_artist_about_label">Sobre você</string>
 
     <string name="have_registry">Já possuo cadastro</string>
     <string name="havent_registry">Não possuo cadastro</string>
@@ -71,7 +72,11 @@
     <string name="tattoo_manager_label">Gerenciamento</string>
     <string name="title_placeholder">Título</string>
     <string name="local_placeholder">Local</string>
+    <string name="style_placeholder">Estilo</string>
     <string name="description_placeholder">Descrição</string>
+
+    <string name="edit_tattoo_artist_label">Edição de perfil</string>
+    <string name="update_label">Atualizar</string>
 
     <string name="insert_tattoo_label">Cadastrar</string>
     <string name="my_tattoos_label">Minhas tatuagens</string>
@@ -247,6 +252,5 @@
         E-mail: karla.moncayo@bandtec.com.br\n
         Endereço: Rua Haddock Lobo, 595 – Cerqueira César, São Paulo – SP, 01414-001\n
     </string>
-
 
 </resources>
