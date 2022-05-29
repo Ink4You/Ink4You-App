@@ -50,8 +50,7 @@ class TatuagemSimpleEditDtoAdapter(
             val tattooImage = (context as Activity).findViewById<EditText>(R.id.et_tattoo_image)
             val tattooTitle = (context as Activity).findViewById<EditText>(R.id.et_tattoo_title)
             val tattooLocal = (context as Activity).findViewById<EditText>(R.id.et_tattoo_local)
-            val tattooDesc =
-                (context as Activity).findViewById<EditText>(R.id.et_tattoo_description)
+            val tattooDesc = (context as Activity).findViewById<EditText>(R.id.et_tattoo_description)
 
             val btnCreate = (context as Activity).findViewById<Button>(R.id.btn_create)
             val btnEdit = (context as Activity).findViewById<Button>(R.id.btn_update)
@@ -86,6 +85,5 @@ class TatuagemSimpleEditDtoAdapter(
     class TatuagensViewHolder(ItemView: View): RecyclerView.ViewHolder(ItemView){
         val ivTatuagens = itemView.findViewById<ImageView>(R.id.iv_tattoo_item)
         val tvTatuagens = itemView.findViewById<TextView>(R.id.tv_tattoo_title)
-
     }
 }

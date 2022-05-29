@@ -64,7 +64,6 @@ class ProfileFragment : Fragment() {
         val prefs = this.activity?.getSharedPreferences("storage", 0)
         val userType = prefs?.getString("user_type", "")
 
-
         if (userType.equals("tattooArtist")) {
             view = inflater.inflate(R.layout.fragment_profile, container, false)
 
@@ -116,7 +115,6 @@ class ProfileFragment : Fragment() {
 
             val btnEdit: ImageView = view.findViewById(R.id.BSelectImage)
             btnEdit.setOnClickListener {
-                println("teste")
                 //imageChooser(it)
             }
         }

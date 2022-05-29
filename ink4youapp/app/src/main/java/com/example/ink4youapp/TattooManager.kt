@@ -247,7 +247,7 @@ class TattooManager : AppCompatActivity() {
                     stylesList = response.body()!!
                     stylesList?.forEach { styleStringList.add(it.titulo) }
                 } else {
-                    println("Erro ao buscar os estilos, tentando novamente...")
+                    println(response.errorBody())
                     populateTattooStylesSpinner()
                 }
             }
@@ -263,8 +263,6 @@ class TattooManager : AppCompatActivity() {
     }
 
     fun isValidFields(view: View): Boolean {
-        println(skipImageValidation)
-
         if (et_tattoo_title.text.toString().isEmpty()) {
             et_tattoo_title.error = "O campo não pode estar em branco!"
             return false
@@ -303,18 +301,15 @@ class TattooManager : AppCompatActivity() {
                     response.body()?.forEach { tattooList.add(it) }
                     rvTatuagens.adapter = adapter
                 } else {
-                    println("erro leve")
+                    println(response.errorBody())
                 }
             }
 
             override fun onFailure(call: Call<List<Tatuagem>>, t: Throwable) {
-                println("erro")
+                t.message?.let { println(it) }
             }
 
         })
-
-//        tattooList.add(Tatuagem(1, "teste", "braco", "sla", "www", 1, 1))
-//        tattooList.add(Tatuagem(1, "teste", "braco", "sla", "www", 1, 1))
     }
 
     fun getTattooArtistId(): Int? {
