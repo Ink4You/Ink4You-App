@@ -40,10 +40,10 @@ class ProfileFragment : Fragment() {
     private var tattooList = ArrayList<TatuagemDtoImageModel>()
     private var tattooInstaList = ArrayList<TatuagemDtoImageModel>()
     private lateinit var rvTatuagens : RecyclerView
-    private lateinit var  adapter : TatuagemSimpleEditDtoAdapter
+    private lateinit var  adapter : TatuagemSimpleDtoAdapter
 
     private lateinit var rvTatuagensInsta : RecyclerView
-    private lateinit var  adapterInsta : TatuagemSimpleEditDtoAdapter
+    private lateinit var  adapterInsta : TatuagemSimpleDtoAdapter
 
     private var allowRefresh = false
 
@@ -73,7 +73,6 @@ class ProfileFragment : Fragment() {
         val prefs = this.activity?.getSharedPreferences("storage", 0)
         val userType = prefs?.getString("user_type", "")
 
-
         if (userType.equals("tattooArtist")) {
             view = inflater.inflate(R.layout.fragment_profile, container, false)
 
@@ -98,7 +97,8 @@ class ProfileFragment : Fragment() {
             rvTatuagensInsta = view.findViewById(R.id.tattoosInstaRecyclerView)
             rvTatuagensInsta.layoutManager =
                 StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
-            adapterInsta = TatuagemSimpleEditDtoAdapter(this.requireContext(), tattooInstaList)
+                
+            adapterInsta = TatuagemSimpleDtoAdapter(this.requireContext(), tattooInstaList)
             rvTatuagensInsta.adapter = adapterInsta
 
             val btn = view.findViewById<ImageButton>(R.id.btn_edit)
@@ -129,7 +129,6 @@ class ProfileFragment : Fragment() {
 
             val btnEdit: ImageView = view.findViewById(R.id.BSelectImage)
             btnEdit.setOnClickListener {
-                println("teste")
                 //imageChooser(it)
             }
         }
