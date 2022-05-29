@@ -12,10 +12,12 @@ import com.example.ink4youapp.adapters.TatuadorCardCarouselDtoAdapter
 import com.example.ink4youapp.adapters.TatuadorCardDtoAdapter
 import com.example.ink4youapp.adapters.TatuagemCardDtoAdapter
 import com.example.ink4youapp.models.TatuadorDTO
+import com.example.ink4youapp.models.TatuagemDTO
 import com.example.ink4youapp.models.fakeTatuadores
 import com.example.ink4youapp.models.fakeTatuagens
 import com.example.ink4youapp.rest.Rest
 import com.example.ink4youapp.services.TatuadorService
+import com.example.ink4youapp.services.TatuagemService
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -26,6 +28,7 @@ class ExploreFragment : Fragment() {
     val fakeStyles = arrayOf("Estilo1", "Estilo2", "Estilo3", "Estilo4");
     private val retrofit = Rest.getInstance();
     private var artistsList: MutableList<TatuadorDTO> = mutableListOf();
+    private var tattoosList: MutableList<TatuagemDTO> = mutableListOf();
     val amountDefault = 4;
 
     override fun onCreateView(
@@ -36,9 +39,13 @@ class ExploreFragment : Fragment() {
 
         var view = inflater.inflate(R.layout.fragment_explore, container, false)
 
-        val recyclerViewNewTattoos = view.findViewById<RecyclerView>(R.id.recyclerViewNewTattoos);
-        recyclerViewNewTattoos.adapter = TatuagemCardDtoAdapter(fakeTatuagens());
-        recyclerViewNewTattoos.layoutManager = LinearLayoutManager(this.context, LinearLayoutManager.HORIZONTAL, false);
+        getTattoos();
+
+        Handler().postDelayed({
+            val recyclerViewNewTattoos = view.findViewById<RecyclerView>(R.id.recyclerViewNewTattoos);
+            recyclerViewNewTattoos.adapter = TatuagemCardDtoAdapter(tattoosList);
+            recyclerViewNewTattoos.layoutManager = LinearLayoutManager(this.context, LinearLayoutManager.HORIZONTAL, false);
+        }, 5000)
 
         popularStyles();
 
@@ -91,7 +98,7 @@ class ExploreFragment : Fragment() {
                     if (response.body() != null) {
                         artistsList = response.body()!!.toMutableList();
                     } else {
-                        println()
+                        println(response)
                     }
 
                 } else {
@@ -102,6 +109,37 @@ class ExploreFragment : Fragment() {
             }
 
             override fun onFailure(call: Call<List<TatuadorDTO>>, t: Throwable) {
+                t.message?.let { println("erro ---- " + it) }
+            }
+        });
+    }
+
+    fun getTattoos() {
+        val tattoo = retrofit.create(TatuagemService::class.java);
+
+        tattoo.getTattoosByQttd(amountDefault).enqueue(object: Callback<List<TatuagemDTO>> {
+            override fun onResponse(
+                call: Call<List<TatuagemDTO>>,
+                response: Response<List<TatuagemDTO>>
+            ) {
+                if (response.isSuccessful) {
+                    println("foi")
+                    println(response.body());
+
+                    if (response.body() != null) {
+                        tattoosList = response.body()!!.toMutableList();
+                    } else {
+                        println(response)
+                    }
+
+                } else {
+                    println("n foi")
+                    println(response)
+                    println(response.body())
+                }
+            }
+
+            override fun onFailure(call: Call<List<TatuagemDTO>>, t: Throwable) {
                 t.message?.let { println("erro ---- " + it) }
             }
         });

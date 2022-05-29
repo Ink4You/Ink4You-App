@@ -27,6 +27,7 @@ class TatuadorCardCarouselDtoAdapter(val tatuadores: MutableList<TatuadorDTO>) :
             with(tatuador) {
                 var imageView = itemView.findViewById<ImageView>(R.id.iv_profile);
                 itemView.findViewById<TextView>(R.id.tv_infos).text = "${nome} - ${uf}";
+                itemView.findViewById<TextView>(R.id.tv_description).text = sobre;
                 Glide.with(itemView)
                     .load(foto_perfil)
                     .centerCrop()

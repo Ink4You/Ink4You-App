@@ -1,6 +1,6 @@
 package com.example.ink4youapp.models
 
-data class TatuagemDTO (
+class TatuagemDTO (
     val id_tatuagem: Int?,
     val titulo: String?,
     val src_imagem: String,
