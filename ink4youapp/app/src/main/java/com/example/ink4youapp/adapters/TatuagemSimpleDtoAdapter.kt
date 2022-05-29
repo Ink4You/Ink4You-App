@@ -1,14 +1,18 @@
 package com.example.ink4youapp.adapters
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.ink4youapp.R
+import com.example.ink4youapp.TattooDetails
 import com.example.ink4youapp.models.TatuagemDTO
 import com.example.ink4youapp.models.TatuagemDtoImageModel
 
@@ -24,11 +28,22 @@ class TatuagemSimpleDtoAdapter(
 
     override fun onBindViewHolder(holder: TatuagensViewHolder, position: Int) {
         val tattooList = tatuagensList[position]
-        holder.ivTatuagens.setImageResource(tattooList.image)
+
+        Glide.with(holder.itemView)
+            .load(tattooList.image)
+            .centerCrop()
+            .into(holder.ivTatuagens)
+
         holder.tvTatuagens.setText(tattooList.title)
 
         holder.itemView.setOnClickListener {
-        Toast.makeText(context, ""+tattooList.title, Toast.LENGTH_SHORT).show()
+//        Toast.makeText(context, ""+tattooList.title, Toast.LENGTH_SHORT).show()
+            val intent = Intent(holder.itemView.context, TattooDetails::class.java)
+            if (tattooList.id_tatuagem != 0){
+//                        println("dados ------- " + id_tatuagem + " -- " + id_tatuador)
+                intent.putExtra("idTatuagem", tattooList.id_tatuagem);
+            }
+            ContextCompat.startActivity(holder.itemView.context, intent, null);
         }
     }
 

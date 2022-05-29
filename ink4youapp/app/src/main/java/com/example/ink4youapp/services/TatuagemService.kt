@@ -13,8 +13,12 @@ interface TatuagemService {
     @GET("/tatuagens/{id}")
     fun getTattoo(@Path("id") id: Int): Call<Tatuagem>
 
+    @GET("/tatuagens/")
+    fun getTattoos() : Call<List<TatuagemDTO>>
+
     @GET("/tatuagens/qttd/{qttd}")
     fun getTattoosByQttd(@Path("qttd") qttd: Int) : Call<List<TatuagemDTO>>
+
     @POST("/tatuagens")
     fun createTattoo(@Body tattoo: Tatuagem): Call<Void>
 }
