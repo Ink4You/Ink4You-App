@@ -31,10 +31,10 @@ class ProfileFragment : Fragment() {
 
     private var tattooList = ArrayList<TatuagemDtoImageModel>()
     private lateinit var rvTatuagens : RecyclerView
-    private lateinit var  adapter : TatuagemSimpleEditDtoAdapter
+    private lateinit var  adapter : TatuagemSimpleDtoAdapter
 
     private lateinit var rvTatuagensInsta : RecyclerView
-    private lateinit var  adapterInsta : TatuagemSimpleEditDtoAdapter
+    private lateinit var  adapterInsta : TatuagemSimpleDtoAdapter
 
     private var allowRefresh = false
 
@@ -79,13 +79,13 @@ class ProfileFragment : Fragment() {
             rvTatuagens = view.findViewById(R.id.tattoosRecyclerView)
             rvTatuagens.layoutManager =
                 StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
-            adapter = TatuagemSimpleEditDtoAdapter(this.requireContext(), tattooList)
+            adapter = TatuagemSimpleDtoAdapter(this.requireContext(), tattooList)
             rvTatuagens.adapter = adapter
 
             rvTatuagensInsta = view.findViewById(R.id.tattoosInstaRecyclerView)
             rvTatuagensInsta.layoutManager =
                 StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
-            adapterInsta = TatuagemSimpleEditDtoAdapter(this.requireContext(), tattooList)
+            adapterInsta = TatuagemSimpleDtoAdapter(this.requireContext(), tattooList)
             rvTatuagensInsta.adapter = adapterInsta
 
             val btn = view.findViewById<ImageButton>(R.id.btn_edit)
@@ -161,7 +161,7 @@ class ProfileFragment : Fragment() {
         val tattoo1 = TatuagemDtoImageModel(R.drawable.tattoo1, "tatuagem1")
         tattooList.add(tattoo1)
 
-        val tattoo2 = TatuagemDtoImageModel(R.drawable.tattoo2, "tatuagem1")
+        val tattoo2 = TatuagemDtoImageModel(R.drawable.tattoo2, "tatuagem2")
         tattooList.add(tattoo2)
 
         val tattoo3 = TatuagemDtoImageModel(R.drawable.tattoo3, "tatuagem1")

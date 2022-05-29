@@ -94,6 +94,42 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="12dp"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <EditText
+                android:id="@+id/et_tattoo_id"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:layout_gravity="center"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/custom_input"
+                android:drawablePadding="10dp"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:textSize="14dp" />
+
+            <EditText
+                android:id="@+id/et_tattoo_image"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:background="@drawable/custom_input"
+                android:drawablePadding="10dp"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:textSize="14dp" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="12dp"
             android:orientation="horizontal">
 
             <EditText
@@ -153,6 +189,7 @@
             android:textSize="14dp" />
 
         <Button
+            android:id="@+id/btn_create"
             android:layout_width="180dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
@@ -161,6 +198,19 @@
             android:textAllCaps="false"
             android:onClick="createTattoo"
             android:textColor="@color/white" />
+
+        <Button
+            android:id="@+id/btn_update"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/blue_pill_gradient"
+            android:text="Atualizar"
+            android:textAllCaps="false"
+            android:onClick="updateTattoo"
+            android:textColor="@color/white"
+            android:visibility="gone"/>
+
 
         <LinearLayout
             android:layout_width="match_parent"

@@ -1,5 +1,6 @@
 package com.example.ink4youapp
 
+import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
@@ -35,11 +36,14 @@ import java.io.ByteArrayOutputStream
 import java.util.ArrayList
 
 class TattooManager : AppCompatActivity() {
-    private var tattooList = ArrayList<TatuagemDtoImageModel>()
+    private var tattooList = ArrayList<Tatuagem>()
     private lateinit var rvTatuagens: RecyclerView
     private lateinit var adapter: TatuagemSimpleEditDtoAdapter
 
     private var tattooArtistId: Int? = null
+
+    private lateinit var et_tattoo_id: EditText
+    private lateinit var et_tattoo_image: EditText
     private lateinit var et_tattoo_title: EditText
     private lateinit var et_tattoo_local: EditText
     private lateinit var et_tattoo_description: EditText
@@ -47,6 +51,7 @@ class TattooManager : AppCompatActivity() {
     private lateinit var stylesList: Array<Estilo>
     private lateinit var spinnerStyles: Spinner
 
+    private var skipImageValidation: Boolean = false
     private var selectedImageUri: Uri? = null
     private var IVPreviewImage: ImageView? = null
     private var SELECT_PICTURE: Int = 200
@@ -62,8 +67,9 @@ class TattooManager : AppCompatActivity() {
         setContentView(R.layout.activity_tattoo_manager)
 
         IVPreviewImage = findViewById(R.id.iv_profile);
-
         tattooArtistId = getTattooArtistId()
+        et_tattoo_id = findViewById(R.id.et_tattoo_id)
+        et_tattoo_image = findViewById(R.id.et_tattoo_image)
         et_tattoo_title = findViewById(R.id.et_tattoo_title)
         et_tattoo_local = findViewById(R.id.et_tattoo_local)
         et_tattoo_description = findViewById(R.id.et_tattoo_description)
@@ -73,10 +79,9 @@ class TattooManager : AppCompatActivity() {
         rvTatuagens.layoutManager =
             StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
         adapter = TatuagemSimpleEditDtoAdapter(this, tattooList)
-        rvTatuagens.adapter = adapter
 
         populateTattooStylesSpinner()
-        tatuagebsAssemble()
+        getTattoos()
     }
 
     fun imageChooser(view: View) {
@@ -103,6 +108,9 @@ class TattooManager : AppCompatActivity() {
 
                     byteArrayImage = img
                     base64Image = Base64.encodeToString(img, Base64.DEFAULT)
+
+                    et_tattoo_image.setText("")
+                    skipImageValidation = true
                 }
             }
         }
@@ -165,6 +173,70 @@ class TattooManager : AppCompatActivity() {
         }, 6000)
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun updateTattoo(view: View) {
+        if (et_tattoo_image.text.toString() != "") { skipImageValidation = true }
+        if (!isValidFields(view)) { return }
+
+        val tattoo = retrofit.create(TatuagemService::class.java)
+        if (et_tattoo_image.text.toString() == "") {
+            val ingur = ingurApi.create(IngurService::class.java)
+            val requestBody = RequestBody.create(MediaType.parse("image/*"), byteArrayImage)
+            val part = MultipartBody.Part.createFormData("image", "image", requestBody)
+
+            ingur.uploadFile("Client-ID 241dc1dec32c2d8", part)
+                .enqueue(object : Callback<UploadResponse> {
+                    override fun onResponse(
+                        call: Call<UploadResponse>,
+                        response: Response<UploadResponse>
+                    ) {
+                        if (response.isSuccessful) {
+                            SnackBar.showSnackBar(view, "success", "Upload realizado com sucesso!")
+                            imageLink = response.body()?.data?.link.toString()
+                        } else {
+                            SnackBar.showSnackBar(view, "error", "Erro ao realizar upload :(")
+                        }
+                    }
+
+                    override fun onFailure(call: Call<UploadResponse>, t: Throwable) {
+                        t.message?.let { SnackBar.showSnackBar(view, "error", it) }
+                    }
+                })
+
+        } else {
+            imageLink = et_tattoo_image.text.toString()
+        }
+
+        Handler().postDelayed({
+            val tattooId = et_tattoo_id.text.toString().toInt()
+            val postData = Tatuagem(
+                null,
+                et_tattoo_title.text.toString(),
+                et_tattoo_local.text.toString(),
+                et_tattoo_description.text.toString(),
+                imageLink,
+                tattooArtistId,
+                getStyleId()
+            )
+
+            tattoo.updateTattoo(tattooId, postData).enqueue(object : Callback<Tatuagem> {
+                override fun onResponse(call: Call<Tatuagem>, response: Response<Tatuagem>) {
+                    if (response.isSuccessful) {
+                        SnackBar.showSnackBar(view, "success", "Tatuagem atualizada com sucesso!")
+                        clearFields()
+                        getTattoos()
+                    } else {
+                        SnackBar.showSnackBar(view, "error", "Erro ao atualizar tatuagem :(")
+                    }
+                }
+
+                override fun onFailure(call: Call<Tatuagem>, t: Throwable) {
+                    t.message?.let { SnackBar.showSnackBar(view, "error", it) }
+                }
+            })
+        }, 6000)
+    }
+
     fun populateTattooStylesSpinner() {
         val tattooStyles = retrofit.create(EstiloService::class.java)
         var styleStringList = arrayListOf<String>("Selecione um estilo");
@@ -185,13 +257,14 @@ class TattooManager : AppCompatActivity() {
             }
         })
 
-        var stylesAdapter =
-            ArrayAdapter(this, android.R.layout.simple_spinner_item, styleStringList);
+        var stylesAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, styleStringList);
         stylesAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinnerStyles.setAdapter(stylesAdapter)
     }
 
     fun isValidFields(view: View): Boolean {
+        println(skipImageValidation)
+
         if (et_tattoo_title.text.toString().isEmpty()) {
             et_tattoo_title.error = "O campo não pode estar em branco!"
             return false
@@ -208,35 +281,40 @@ class TattooManager : AppCompatActivity() {
             SnackBar.showSnackBar(view, "error", "Selecione um estilo!")
             return false
 
-        } else if (selectedImageUri == null) {
+        } else if (!skipImageValidation) {
             SnackBar.showSnackBar(view, "error", "Selecione uma imagem!")
             return false
+
         }
 
         return true
     }
 
-    private fun tatuagebsAssemble() {
-        val tattoo1 = TatuagemDtoImageModel(R.drawable.tattoo1, "tatuagem1")
-        tattooList.add(tattoo1)
+    private fun getTattoos() {
+        val tattoo = retrofit.create(TatuagemService::class.java)
 
-        val tattoo2 = TatuagemDtoImageModel(R.drawable.tattoo2, "tatuagem1")
-        tattooList.add(tattoo2)
+        tattoo.getTattoosByTattooArtist(tattooArtistId!!).enqueue(object : Callback<List<Tatuagem>> {
+            override fun onResponse(
+                call: Call<List<Tatuagem>>,
+                response: Response<List<Tatuagem>>
+            ) {
+                if (response.isSuccessful) {
+                    tattooList.clear()
+                    response.body()?.forEach { tattooList.add(it) }
+                    rvTatuagens.adapter = adapter
+                } else {
+                    println("erro leve")
+                }
+            }
 
-        val tattoo3 = TatuagemDtoImageModel(R.drawable.tattoo3, "tatuagem1")
-        tattooList.add(tattoo3)
+            override fun onFailure(call: Call<List<Tatuagem>>, t: Throwable) {
+                println("erro")
+            }
 
-        val tattoo4 = TatuagemDtoImageModel(R.drawable.tattoo1, "tatuagem1")
-        tattooList.add(tattoo4)
+        })
 
-        val tattoo5 = TatuagemDtoImageModel(R.drawable.tattoo2, "tatuagem1")
-        tattooList.add(tattoo5)
-
-        val tattoo6 = TatuagemDtoImageModel(R.drawable.tattoo1, "tatuagem1")
-        tattooList.add(tattoo6)
-
-        val tattoo7 = TatuagemDtoImageModel(R.drawable.tattoo2, "tatuagem1")
-        tattooList.add(tattoo7)
+//        tattooList.add(Tatuagem(1, "teste", "braco", "sla", "www", 1, 1))
+//        tattooList.add(Tatuagem(1, "teste", "braco", "sla", "www", 1, 1))
     }
 
     fun getTattooArtistId(): Int? {
@@ -255,6 +333,8 @@ class TattooManager : AppCompatActivity() {
     }
 
     fun clearFields() {
+        et_tattoo_id.setText("")
+        et_tattoo_image.setText("")
         et_tattoo_title.setText("")
         et_tattoo_local.setText("")
         et_tattoo_description.setText("")
