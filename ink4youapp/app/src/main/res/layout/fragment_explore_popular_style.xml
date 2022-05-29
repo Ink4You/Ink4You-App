@@ -11,19 +11,26 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
 
-        android:backgroundTint="@color/teste"
-        android:backgroundTintMode="src_over"
-
         android:background="@drawable/ink_logo"
         android:scaleType="centerCrop" />
 
     <TextView
         android:id="@+id/tv_style"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_gravity="center"
         android:textSize="28sp"
         android:textColor="@color/white"
-        android:text="Estilo" />
+        android:text="Estilosssssssssssssssssss"
+        android:textAlignment="center"
+        android:gravity="center"
+        android:singleLine="true"
+        android:ellipsize="marquee"
+        android:background="@color/dark_gray"
+        android:backgroundTintMode="src_over"
+        android:paddingHorizontal="16dp"
+        />
 
+<!--    android:backgroundTint="@color/dark_gray"
+        android:backgroundTintMode="src_over"-->
 </androidx.cardview.widget.CardView>

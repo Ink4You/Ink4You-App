@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.ink4youapp.R
 import com.example.ink4youapp.models.Tatuagem
 import com.example.ink4youapp.models.TatuagemDTO

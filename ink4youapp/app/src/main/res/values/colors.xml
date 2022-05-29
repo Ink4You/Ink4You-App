@@ -11,7 +11,7 @@
     <color name="primary_blue">#38A5FF</color>
     <color name="primary_purple">#525EFF</color>
     <color name="primary_grey">#333333</color>
-    <color name="teste">#7F000000</color>
+    <color name="dark_gray">#7F000000</color>
     <color name="red">#D21F3C</color>
     <color name="darker_gray_search_input">#707070</color>
 </resources>
