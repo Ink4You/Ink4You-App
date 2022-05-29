@@ -3,11 +3,7 @@ package com.example.ink4youapp.services
 import com.example.ink4youapp.models.Tatuador
 import com.example.ink4youapp.models.TatuadorDTO
 import retrofit2.Call
-import retrofit2.http.GET
-import retrofit2.http.Path
-import retrofit2.http.Body
-
-import retrofit2.http.POST
+import retrofit2.http.*
 
 interface TatuadorService {
     @GET("/tatuadores/{id}")
@@ -21,4 +17,8 @@ interface TatuadorService {
 
     @POST("/tatuadores/cadastro-tatuador")
     fun createTattooArtist(@Body tattooArtist: Tatuador): Call<Void>
+
+    @PUT("/tatuadores/{id}")
+    fun updateTattooArtist(@Body tattooArtist: Tatuador, @Path("id") id :Int?): Call<Tatuador>
+
 }

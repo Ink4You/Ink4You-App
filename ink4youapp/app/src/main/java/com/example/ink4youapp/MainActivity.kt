@@ -10,10 +10,7 @@ import android.os.Handler
 import android.view.View
 import android.view.Window
 import android.view.animation.AnimationUtils
-import android.widget.EditText
-import android.widget.LinearLayout
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.ink4youapp.adapters.TatuagemSimpleDtoAdapter
@@ -41,6 +38,8 @@ class MainActivity : AppCompatActivity() {
     private val retrofit = Rest.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        checkAuth()
+
         super.onCreate(savedInstanceState)
         requestWindowFeature(Window.FEATURE_NO_TITLE)
         setContentView(R.layout.activity_main)
@@ -50,6 +49,20 @@ class MainActivity : AppCompatActivity() {
 
         etEmail = findViewById(R.id.et_email)
         etPassword = findViewById(R.id.et_password)
+
+        val inkLogo: ImageView = findViewById(R.id.iv_ink_logo)
+        inkLogo.setOnClickListener { view ->
+           goToHome()
+        }
+    }
+
+    fun checkAuth() {
+        val prefs = getSharedPreferences("storage", 0)
+        val userName = prefs?.getString("nome", "")
+
+        if(userName != "") {
+            goToHome()
+        }
     }
 
     fun showRegistryOptions(view: View) {
@@ -88,7 +101,7 @@ class MainActivity : AppCompatActivity() {
         startActivity(tattooRegistry)
     }
 
-    fun goToHome(view: View) {
+    fun goToHome() {
         val homeActivity: Intent = Intent(baseContext, HomeActivity::class.java)
         startActivity(homeActivity)
     }
@@ -120,7 +133,7 @@ class MainActivity : AppCompatActivity() {
                     editor.putString("email", body?.email)
                     editor.putString("senha", body?.senha)
 
-                    goToHome(view)
+                    goToHome()
                 } else {
                    authTattooUser(view)
                 }
@@ -151,6 +164,7 @@ class MainActivity : AppCompatActivity() {
 
                     editor.putString("user_type", "tattooArtist")
                     body?.id_tatuador?.let { editor.putInt("id_tatuador", it) }
+                    editor.putString("foto_perfil", body?.foto_perfil)
                     editor.putString("nome", body?.nome)
                     editor.putString("sobre", body?.sobre)
                     editor.putString("cnpj", body?.cnpj)
@@ -164,7 +178,7 @@ class MainActivity : AppCompatActivity() {
                     editor.putString("sobre", body?.sobre)
 
                     editor.apply()
-                    goToHome(view)
+                    goToHome()
                 } else {
                     SnackBar.showSnackBar(view, "error", "Email ou senha inválidos!")
                 }

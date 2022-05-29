@@ -40,10 +40,11 @@
                     android:textSize="18dp" />
 
                 <ImageView
+                    android:id="@+id/iv_logout"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="1dp"
-                    android:background="@drawable/ic_logout" />
+                    android:background="@drawable/ic_logout"/>
 
             </LinearLayout>
 
@@ -55,17 +56,6 @@
             android:layout_height="150dp"
             android:src="@drawable/profile"
             app:civ_shadow_radius="10dp" />
-
-        <!--            <ImageButton-->
-        <!--                android:id="@+id/BSelectImage"-->
-        <!--                android:layout_width="40dp"-->
-        <!--                android:layout_height="40dp"-->
-        <!--                android:layout_centerHorizontal="true"-->
-        <!--                android:layout_marginLeft="40dp"-->
-        <!--                android:layout_marginTop="-35dp"-->
-        <!--                android:background="@drawable/circle_btn"-->
-        <!--                android:src="@drawable/ic_photo"-->
-        <!--                android:textColor="@android:color/white" />-->
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -83,6 +73,7 @@
                 android:textSize="20dp" />
 
             <LinearLayout
+                android:id="@+id/ll_insta_box"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
@@ -118,9 +109,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:text="Sou um tatuador iniciante, apesar de ter algum tempo de experiência. Costumo praticar ótimos preços! veja alguns dos meus trabalhos! "
+                android:textAlignment="center"
                 android:textColor="@color/black"
-                android:textSize="14dp"
-                android:textAlignment="center"/>
+                android:textSize="14dp" />
 
             <Button
                 android:id="@+id/btn_edit_profile"
@@ -176,7 +167,7 @@
                     android:layout_height="35dp"
                     android:layout_centerHorizontal="true"
                     android:background="@drawable/circle_btn"
-                    android:src="@drawable/ic_edit"/>
+                    android:src="@drawable/ic_edit" />
 
             </LinearLayout>
 
@@ -189,37 +180,38 @@
             android:layout_marginTop="15dp" />
 
         <LinearLayout
+            android:id="@+id/ll_insta_tattoo_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/saira_medium"
-                    android:text="Postagens do Instagram"
-                    android:textColor="@color/black"
-                    android:textSize="17dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/saira_medium"
+                android:text="Postagens do Instagram"
+                android:textColor="@color/black"
+                android:textSize="17dp" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/saira_regular"
-                    android:text="Os últimos trabalhos postados no Instagram"
-                    android:textColor="@color/black"
-                    android:textSize="14dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/saira_regular"
+                android:text="Os últimos trabalhos postados no Instagram"
+                android:textColor="@color/black"
+                android:textSize="14dp" />
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/tattoosInstaRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp" />
 
         </LinearLayout>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/tattoosInstaRecyclerView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp" />
-
     </LinearLayout>
 
 </androidx.core.widget.NestedScrollView>
