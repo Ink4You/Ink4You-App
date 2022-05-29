@@ -4,7 +4,6 @@ import android.app.Activity
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
-import com.bumptech.glide.Glide
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
