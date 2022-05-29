@@ -217,26 +217,27 @@ class TattooManager : AppCompatActivity() {
     }
 
     private fun tatuagebsAssemble() {
-        val tattoo1 = TatuagemDtoImageModel(R.drawable.tattoo1, "tatuagem1")
+        val tattoo1 = TatuagemDtoImageModel(1,"https://user-images.githubusercontent.com/30958501/68553365-d03aa880-0463-11ea-9e98-96c6a10265e8.png", "tatuagem1")
         tattooList.add(tattoo1)
 
-        val tattoo2 = TatuagemDtoImageModel(R.drawable.tattoo2, "tatuagem1")
+        val tattoo2 = TatuagemDtoImageModel(2,"https://user-images.githubusercontent.com/30958501/68553365-d03aa880-0463-11ea-9e98-96c6a10265e8.png", "tatuagem1")
         tattooList.add(tattoo2)
 
-        val tattoo3 = TatuagemDtoImageModel(R.drawable.tattoo3, "tatuagem1")
+        val tattoo3 = TatuagemDtoImageModel(3,"https://user-images.githubusercontent.com/30958501/68553365-d03aa880-0463-11ea-9e98-96c6a10265e8.png", "tatuagem1")
         tattooList.add(tattoo3)
 
-        val tattoo4 = TatuagemDtoImageModel(R.drawable.tattoo1, "tatuagem1")
+        val tattoo4 = TatuagemDtoImageModel(4,"https://user-images.githubusercontent.com/30958501/68553365-d03aa880-0463-11ea-9e98-96c6a10265e8.png", "tatuagem1")
         tattooList.add(tattoo4)
 
-        val tattoo5 = TatuagemDtoImageModel(R.drawable.tattoo2, "tatuagem1")
+        val tattoo5 = TatuagemDtoImageModel(5,"https://user-images.githubusercontent.com/30958501/68553365-d03aa880-0463-11ea-9e98-96c6a10265e8.png", "tatuagem1")
         tattooList.add(tattoo5)
 
-        val tattoo6 = TatuagemDtoImageModel(R.drawable.tattoo1, "tatuagem1")
+        val tattoo6 = TatuagemDtoImageModel(6,"https://user-images.githubusercontent.com/30958501/68553365-d03aa880-0463-11ea-9e98-96c6a10265e8.png", "tatuagem1")
         tattooList.add(tattoo6)
 
-        val tattoo7 = TatuagemDtoImageModel(R.drawable.tattoo2, "tatuagem1")
+        val tattoo7 = TatuagemDtoImageModel(7,"https://user-images.githubusercontent.com/30958501/68553365-d03aa880-0463-11ea-9e98-96c6a10265e8.png", "tatuagem1")
         tattooList.add(tattoo7)
+
     }
 
     fun getTattooArtistId(): Int? {

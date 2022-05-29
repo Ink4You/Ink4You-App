@@ -42,7 +42,9 @@ class TattooDetails : AppCompatActivity() {
 
 //        Handler().postDelayed({
             GetTatuagem();
-            getTattooArtist();
+
+        if (idTattooArtist != 0)
+            getTattooArtist(idTattooArtist);
 //        }, 5000)
     }
 
@@ -54,7 +56,11 @@ class TattooDetails : AppCompatActivity() {
                 if (response.isSuccessful) {
                     println("foi")
                     println(response.body());
-                    response.body()?.let { showTatooDetails(it) }
+                    response.body()?.let {
+                        showTatooDetails(it)
+                        if (idTattooArtist == 0)
+                            it.id_tatuador?.let { id -> getTattooArtist(id) };
+                    }
                 } else {
                     println("n foi")
                     println(response.body())
@@ -67,10 +73,10 @@ class TattooDetails : AppCompatActivity() {
         });
     }
 
-    fun getTattooArtist() {
+    fun getTattooArtist(id: Int) {
         val tattoo = retrofit.create(TatuadorService::class.java);
 
-        tattoo.getTattooArtist(idTattooArtist).enqueue(object: Callback<Tatuador> {
+        tattoo.getTattooArtist(id).enqueue(object: Callback<Tatuador> {
             override fun onResponse(call: Call<Tatuador>, response: Response<Tatuador>) {
                 if (response.isSuccessful) {
                     println("foi")

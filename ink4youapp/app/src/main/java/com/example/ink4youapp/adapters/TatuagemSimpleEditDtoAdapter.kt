@@ -9,6 +9,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.ink4youapp.R
 import com.example.ink4youapp.models.TatuagemDTO
 import com.example.ink4youapp.models.TatuagemDtoImageModel
@@ -36,7 +37,11 @@ class TatuagemSimpleEditDtoAdapter(
         val tattooList = tatuagensList[position]
 
 
-        holder.ivTatuagens.setImageResource(tattooList.image)
+        Glide.with(holder.itemView)
+            .load(tattooList.image)
+            .centerCrop()
+            .into(holder.ivTatuagens)
+
         holder.tvTatuagens.setText(tattooList.title)
 
         holder.itemView.setOnClickListener {

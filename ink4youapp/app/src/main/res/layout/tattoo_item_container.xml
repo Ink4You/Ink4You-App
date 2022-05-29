@@ -16,8 +16,10 @@
             android:id="@+id/iv_tattoo_item"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:maxHeight="300dp"
             android:adjustViewBounds="true"
-            android:scaleType="centerCrop" />
+            android:scaleType="centerCrop"
+            android:background="@drawable/ink_logo"/>
 
         <LinearLayout
             android:layout_width="match_parent"
