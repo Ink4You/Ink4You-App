@@ -113,6 +113,12 @@ class ProfileFragment : Fragment() {
 
         } else {
             view = inflater.inflate(R.layout.activity_edit_user_profile, container, false)
+
+            val btnEdit: ImageView = view.findViewById(R.id.BSelectImage)
+            btnEdit.setOnClickListener {
+                println("teste")
+                //imageChooser(it)
+            }
         }
 
         return view
@@ -122,6 +128,7 @@ class ProfileFragment : Fragment() {
         val prefs = this.activity?.getSharedPreferences("storage", 0)
 
         val profilePic = prefs?.getString("foto_perfil", "")
+        val usernameInsta = prefs?.getString("username_insta", "")
         val name = prefs?.getString("nome", "")
         val about = prefs?.getString("sobre", "")
 
@@ -131,6 +138,7 @@ class ProfileFragment : Fragment() {
             .into(IVPreviewImage)
 
         tv_name.text = name
+        tv_username_insta.text = usernameInsta
         tv_about.text = about
 
     }
