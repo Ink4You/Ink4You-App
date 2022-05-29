@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.akiniyalocts.imgurapiexample.model.UploadResponse
 import com.example.ink4youapp.adapters.TatuagemSimpleDtoAdapter
+import com.example.ink4youapp.adapters.TatuagemSimpleEditDtoAdapter
 import com.example.ink4youapp.models.*
 import com.example.ink4youapp.rest.Rest
 import com.example.ink4youapp.rest.RestIngur
@@ -36,7 +37,7 @@ import java.util.ArrayList
 class TattooManager : AppCompatActivity() {
     private var tattooList = ArrayList<TatuagemDtoImageModel>()
     private lateinit var rvTatuagens: RecyclerView
-    private lateinit var adapter: TatuagemSimpleDtoAdapter
+    private lateinit var adapter: TatuagemSimpleEditDtoAdapter
 
     private var tattooArtistId: Int? = null
     private lateinit var et_tattoo_title: EditText
@@ -71,7 +72,7 @@ class TattooManager : AppCompatActivity() {
         rvTatuagens = findViewById(R.id.tattoosRecyclerView)
         rvTatuagens.layoutManager =
             StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
-        adapter = TatuagemSimpleDtoAdapter(baseContext, tattooList)
+        adapter = TatuagemSimpleEditDtoAdapter(this, tattooList)
         rvTatuagens.adapter = adapter
 
         populateTattooStylesSpinner()

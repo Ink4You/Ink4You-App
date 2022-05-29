@@ -32,10 +32,10 @@
                 android:padding="25dp">
 
                 <ImageView
+                    android:id="@+id/iv_ink_logo"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
-                    android:background="@drawable/ink_logo"
-                    android:onClick="goToHome" />
+                    android:background="@drawable/ink_logo"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"

@@ -6,11 +6,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import com.bumptech.glide.Glide
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ImageButton
-import android.widget.TextView
+import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -23,9 +21,13 @@ import com.example.ink4youapp.models.TatuagemDtoImageModel
 import java.util.ArrayList
 
 class ProfileFragment : Fragment() {
+    private lateinit var ll_insta_tattoo_list: LinearLayout
+    private lateinit var ll_insta_box: LinearLayout
     private lateinit var tv_name: TextView
     private lateinit var tv_username_insta: TextView
     private lateinit var tv_about: TextView
+
+    private lateinit var IVPreviewImage: ImageView
 
     private var tattooList = ArrayList<TatuagemDtoImageModel>()
     private lateinit var rvTatuagens : RecyclerView
@@ -33,6 +35,23 @@ class ProfileFragment : Fragment() {
 
     private lateinit var rvTatuagensInsta : RecyclerView
     private lateinit var  adapterInsta : TatuagemSimpleEditDtoAdapter
+
+    private var allowRefresh = false
+
+    override fun onResume() {
+        super.onResume()
+        //Initialize();
+        if (allowRefresh) {
+            allowRefresh = false
+            setUserInfos()
+            showOrHideInstagramList()
+        }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        if (!allowRefresh) allowRefresh = true
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -45,8 +64,14 @@ class ProfileFragment : Fragment() {
         val prefs = this.activity?.getSharedPreferences("storage", 0)
         val userType = prefs?.getString("user_type", "")
 
+
         if (userType.equals("tattooArtist")) {
             view = inflater.inflate(R.layout.fragment_profile, container, false)
+
+            IVPreviewImage = view.findViewById(R.id.iv_profile)
+
+            ll_insta_box = view.findViewById(R.id.ll_insta_box)
+            ll_insta_tattoo_list = view.findViewById(R.id.ll_insta_tattoo_list)
             tv_name = view.findViewById(R.id.tv_name)
             tv_username_insta = view.findViewById(R.id.tv_username_insta)
             tv_about = view.findViewById(R.id.tv_about)
@@ -75,26 +100,61 @@ class ProfileFragment : Fragment() {
                 startActivity(intent)
             }
 
-            setUserInfos(view)
+            val btnLogout = view.findViewById<ImageView>(R.id.iv_logout)
+            btnLogout.setOnClickListener { view ->
+                clearSharedPreferences()
+                val intent = Intent(activity, MainActivity::class.java)
+                startActivity(intent)
+            }
+
+            setUserInfos()
+            showOrHideInstagramList()
             tatuagebsAssemble()
 
         } else {
             view = inflater.inflate(R.layout.activity_edit_user_profile, container, false)
+
+            val btnEdit: ImageView = view.findViewById(R.id.BSelectImage)
+            btnEdit.setOnClickListener {
+                println("teste")
+                //imageChooser(it)
+            }
         }
 
         return view
     }
 
-    private fun setUserInfos(view: View) {
+    private fun setUserInfos() {
         val prefs = this.activity?.getSharedPreferences("storage", 0)
 
+        val profilePic = prefs?.getString("foto_perfil", "")
+        val usernameInsta = prefs?.getString("username_insta", "")
         val name = prefs?.getString("nome", "")
-        val instagramUsername = prefs?.getString("username_insta", "")
         val about = prefs?.getString("sobre", "")
 
+        Glide.with(IVPreviewImage.context)
+            .load(profilePic)
+            .centerCrop()
+            .into(IVPreviewImage)
+
         tv_name.text = name
-        tv_username_insta.text = instagramUsername
+        tv_username_insta.text = usernameInsta
         tv_about.text = about
+
+    }
+
+    private fun showOrHideInstagramList() {
+        val prefs = this.activity?.getSharedPreferences("storage", 0)
+        val instagramUsername = prefs?.getString("username_insta", "")
+
+        if (instagramUsername == "") {
+            ll_insta_box.visibility = View.GONE
+            ll_insta_tattoo_list.visibility = View.GONE
+
+        } else {
+            ll_insta_box.visibility = View.VISIBLE
+            ll_insta_tattoo_list.visibility = View.VISIBLE
+        }
     }
 
     private fun tatuagebsAssemble() {
@@ -118,5 +178,12 @@ class ProfileFragment : Fragment() {
 
         val tattoo7 = TatuagemDtoImageModel(R.drawable.tattoo2, "tatuagem1")
         tattooList.add(tattoo7)
+    }
+
+    private fun clearSharedPreferences() {
+        val prefs = this.activity?.getSharedPreferences("storage", 0)
+        if (prefs != null) {
+            prefs.edit().clear().commit()
+        }
     }
 }
