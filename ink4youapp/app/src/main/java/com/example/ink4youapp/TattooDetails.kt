@@ -5,9 +5,11 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import com.bumptech.glide.Glide
 import com.example.ink4youapp.models.Tatuador
 import com.example.ink4youapp.models.Tatuagem
 import com.example.ink4youapp.models.tatuagem
@@ -31,12 +33,17 @@ class TattooDetails : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tattoo_details)
 
-        val it = Intent();
-        idTattoo = it.getIntExtra("idTatuagem", 49);
-        println("id" + idTattoo.toString());
-        idTattooArtist = it.getIntExtra("idTatuador", 68);
-        GetTatuagem();
-        getTattooArtist();
+        var it = intent;
+        idTattoo = it.getIntExtra("idTatuagem", 0);
+//        println("idTattoo" + idTattoo.toString());
+
+        idTattooArtist = it.getIntExtra("idTatuador", 0);
+//        println("idTatuador" + idTattooArtist.toString());
+
+//        Handler().postDelayed({
+            GetTatuagem();
+            getTattooArtist();
+//        }, 5000)
     }
 
     fun GetTatuagem() {
@@ -86,15 +93,11 @@ class TattooDetails : AppCompatActivity() {
             findViewById<TextView>(R.id.tv_title).text = titulo;
             findViewById<TextView>(R.id.tv_local).text = local_tatuagem;
             findViewById<TextView>(R.id.tv_description).text = if (descricao != null) descricao else "teste";
-
-//            val raw: Bitmap;
-//            val fotoArray: ByteArray = src_imagem.toByteArray(Charsets.UTF_8);
-//            val foto = findViewById<ImageView>(R.id.iv_tattoo);
-//            if (fotoArray != null) {
-//                raw = BitmapFactory.decodeByteArray(fotoArray, 0, fotoArray.size)
-//                foto.setImageBitmap(raw)
-//            }
         }
+        Glide.with(this)
+            .load(tattoo.src_imagem)
+            .centerCrop()
+            .into(findViewById(R.id.iv_tattoo))
     }
 
     fun showTattooArtistDetails(tattooArtist: Tatuador) {
@@ -103,5 +106,9 @@ class TattooDetails : AppCompatActivity() {
             findViewById<TextView>(R.id.tv_infos).text = "${cep} - ${uf}";
             findViewById<TextView>(R.id.tv_about).text = sobre;
         }
+        Glide.with(this)
+            .load(tattooArtist.foto_perfil)
+            .centerCrop()
+            .into(findViewById(R.id.iv_tattoArtist))
     }
 }

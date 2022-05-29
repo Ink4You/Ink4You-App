@@ -10,4 +10,7 @@ interface EstiloService {
 
     @GET("/estilo")
     fun getTattoosStyles(): Call<Array<Estilo>>
+
+    @GET("/estilo/populares/")
+    fun getTattoosPopularStyles(): Call<List<Estilo>>
 }

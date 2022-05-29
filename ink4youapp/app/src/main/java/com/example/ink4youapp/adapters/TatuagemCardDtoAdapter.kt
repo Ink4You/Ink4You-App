@@ -21,6 +21,10 @@ import java.net.URL
 import androidx.core.content.ContextCompat.startActivity
 import androidx.core.content.ContextCompat.startActivity
 import com.bumptech.glide.Glide
+import android.os.Bundle
+
+
+
 
 class TatuagemCardDtoAdapter(val tatuagens: MutableList<TatuagemDTO>) : RecyclerView.Adapter<TatuagemCardDtoAdapter.TatuagemViewHolder>() {
 
@@ -56,8 +60,9 @@ class TatuagemCardDtoAdapter(val tatuagens: MutableList<TatuagemDTO>) : Recycler
                 itemView.setOnClickListener { view ->
                     val intent = Intent(view.context, TattooDetails::class.java)
                     if (id_tatuagem != null && id_tatuador != null){
-                        intent.putExtra("idTatuagem", id_tatuagem.toString());
-                        intent.putExtra("idTatuador", id_tatuador.toString());
+//                        println("dados ------- " + id_tatuagem + " -- " + id_tatuador)
+                        intent.putExtra("idTatuagem", id_tatuagem);
+                        intent.putExtra("idTatuador", id_tatuador);
                     }
                     startActivity(view.context,intent, null);
                 }
