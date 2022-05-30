@@ -13,6 +13,9 @@ interface TatuagemService {
     @GET("/tatuagens/")
     fun getTattoos() : Call<List<TatuagemDTO>>
 
+    @GET("/tatuagens/")
+    fun getInstaTattoos() : Call<List<Tatuagem>>
+
     @GET("/tatuagens/qttd/{qttd}")
     fun getTattoosByQttd(@Path("qttd") qttd: Int) : Call<List<TatuagemDTO>>
 
@@ -24,4 +27,7 @@ interface TatuagemService {
 
     @GET("/tatuagens/tatuador/{id}")
     fun getTattoosByTattooArtist(@Path("id") id: Int) : Call<List<Tatuagem>>
+
+    @DELETE("tatuagens/{id}")
+    fun deleteTattoo(@Path("id") id: Int) : Call<Void>
 }

@@ -8,13 +8,11 @@ import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.widget.*
-import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.ink4youapp.R
+import com.example.ink4youapp.TattooManager
 import com.example.ink4youapp.models.Tatuagem
-import com.example.ink4youapp.models.TatuagemDTO
-import com.example.ink4youapp.models.TatuagemDtoImageModel
 import com.google.android.material.bottomsheet.BottomSheetDialog
 
 class TatuagemSimpleEditDtoAdapter(
@@ -70,11 +68,16 @@ class TatuagemSimpleEditDtoAdapter(
 
                 btnCreate.visibility = GONE
                 btnEdit.visibility = VISIBLE
-            }
-        }
 
-        bottomSheetDialog.findViewById<LinearLayout>(R.id.ll_delete)?.setOnClickListener {
-            Toast.makeText(context, "Excluindo", Toast.LENGTH_LONG).show()
+                bottomSheetDialog.dismiss()
+            }
+
+            bottomSheetDialog.findViewById<LinearLayout>(R.id.ll_delete)?.setOnClickListener {
+                if (context is TattooManager) {
+                    (context as TattooManager).deleteTattoo(tattooList, holder.itemView)
+                    bottomSheetDialog.dismiss()
+                }
+            }
         }
     }
 

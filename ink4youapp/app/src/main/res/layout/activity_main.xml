@@ -119,7 +119,7 @@
                         android:drawableStart="@drawable/ic_password"
                         android:drawablePadding="10dp"
                         android:hint="@string/password_placeholder"
-                        android:inputType="numberPassword"
+                        android:inputType="textPassword"
                         android:paddingStart="12dp"
                         android:paddingEnd="12dp"
                         android:textSize="14dp" />
