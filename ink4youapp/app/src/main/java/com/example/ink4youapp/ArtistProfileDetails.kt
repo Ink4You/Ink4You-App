@@ -3,6 +3,7 @@ package com.example.ink4youapp
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
@@ -42,7 +43,10 @@ class ArtistProfileDetails : AppCompatActivity() {
 
         if (idTattooArtist != 0)
             getTattooArtist(idTattooArtist);
-//        }, 5000)
+
+        findViewById<ImageView>(R.id.iv_back).setOnClickListener {
+            finish();
+        }
     }
 
     fun getTattooArtist(id: Int) {

@@ -40,15 +40,14 @@ class TattoosFragment : Fragment() {
     ): View? {
         var view = inflater.inflate(R.layout.fragment_tattoos, container, false)
 
-        getTattoosImageDto();
+        getTattoosImageDto()
 
         Handler().postDelayed({
             rvTatuagens = view.findViewById(R.id.tattoosRecyclerView)
             rvTatuagens.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
-//            println("TattooList ------- " + tattooList);
             adapter = TatuagemSimpleDtoAdapter(this.requireContext(), tattooList)
             rvTatuagens.adapter = adapter;
-        }, 5000)
+        }, 1500)
 
         estilosMock();
 
@@ -56,7 +55,6 @@ class TattoosFragment : Fragment() {
         estilosTattoosRecycleViewMenu.adapter = EstilosTatuagensMenuDtoAdapter(estilosList);
         estilosTattoosRecycleViewMenu.layoutManager = LinearLayoutManager(this.context, LinearLayoutManager.HORIZONTAL, false);
 
-//        tatuagebsAssemble()
         return view
     }
 

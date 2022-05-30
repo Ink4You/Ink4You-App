@@ -42,6 +42,9 @@ class TattooDetails : AppCompatActivity() {
         if (idTattooArtist != 0)
             getTattooArtist(idTattooArtist);
 //        }, 5000)
+        findViewById<ImageView>(R.id.iv_back).setOnClickListener {
+            finish();
+        }
     }
 
     fun GetTatuagem() {

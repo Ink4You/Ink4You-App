@@ -44,6 +44,7 @@
         <entry key="app/src/main/res/drawable/linear_rounded.xml" value="0.278125" />
         <entry key="app/src/main/res/drawable/profile_img_background.xml" value="0.278125" />
         <entry key="app/src/main/res/font/saira_bold.xml" value="0.2921875" />
+        <entry key="app/src/main/res/layout/activity_artist_profile_details.xml" value="0.19375" />
         <entry key="app/src/main/res/layout/activity_edit_profile.xml" value="0.20878623188405798" />
         <entry key="app/src/main/res/layout/activity_edit_tattoo_profile.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_edit_user_profile.xml" value="0.20878623188405798" />
@@ -64,9 +65,9 @@
         <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.18888888888888888" />
         <entry key="app/src/main/res/layout/fragment_tattoo_artist_card.xml" value="0.21603260869565216" />
         <entry key="app/src/main/res/layout/fragment_tattoo_card.xml" value="0.21603260869565216" />
-        <entry key="app/src/main/res/layout/fragment_tattoos.xml" value="0.21603260869565216" />
+        <entry key="app/src/main/res/layout/fragment_tattoos.xml" value="0.19313304721030042" />
         <entry key="app/src/main/res/layout/tattoo_estilos_button_menu.xml" value="0.21603260869565216" />
-        <entry key="app/src/main/res/layout/tattoo_item_container.xml" value="0.21603260869565216" />
+        <entry key="app/src/main/res/layout/tattoo_item_container.xml" value="0.1875" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/profile_img.xml" value="0.15260416666666668" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/profile_img_round.xml" value="0.15260416666666668" />
       </map>

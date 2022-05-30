@@ -86,6 +86,9 @@ class EditUserTattooProfile : AppCompatActivity() {
         sw_import_photos_instagram = findViewById(R.id.sw_import_photos_instagram)
 
         setTattooArtistInfos()
+        findViewById<ImageView>(R.id.iv_back).setOnClickListener {
+            finish();
+        }
     }
 
     fun imageChooser(view: View) {

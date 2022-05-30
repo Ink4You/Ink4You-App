@@ -48,7 +48,7 @@ class ArtistsFragment : Fragment() {
             val TattooArtistsRecycleView = view.findViewById<RecyclerView>(R.id.rv_tattooArtists);
             TattooArtistsRecycleView.adapter = TatuadorCardDtoAdapter(artistsList);
             TattooArtistsRecycleView.layoutManager = LinearLayoutManager(this.context, LinearLayoutManager.VERTICAL, false);
-        }, 5000)
+        }, 1500)
 
         return view
     }
