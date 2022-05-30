@@ -48,9 +48,9 @@ class ExploreFragment : Fragment() {
 
         getPopularStyles();
 
-//        Handler().postDelayed({
-//            popularStyles();
-//        }, 5000)
+        Handler().postDelayed({
+            popularStyles();
+        }, 5000)
 
         getTattooArtist()
 
@@ -65,8 +65,6 @@ class ExploreFragment : Fragment() {
 
     fun popularStyles() {
         val fmStylesIds = arrayOf(R.id.fm_first_style, R.id.fm_second_style, R.id.fm_third_style, R.id.fm_fourth_style);
-
-        println(popularSylesList);
 
         var i = 0;
         while (i < fmStylesIds.size) {
@@ -98,9 +96,6 @@ class ExploreFragment : Fragment() {
                 response: Response<List<TatuadorDTO>>
             ) {
                 if (response.isSuccessful) {
-                    println("foi")
-                    println(response.body());
-
                     if (response.body() != null) {
                         artistsList = response.body()!!.toMutableList();
                     } else {
@@ -108,14 +103,12 @@ class ExploreFragment : Fragment() {
                     }
 
                 } else {
-                    println("n foi")
-                    println(response)
                     println(response.body())
                 }
             }
 
             override fun onFailure(call: Call<List<TatuadorDTO>>, t: Throwable) {
-                t.message?.let { println("erro ---- " + it) }
+                t.message?.let { println("erro: " + it) }
             }
         });
     }
