@@ -28,6 +28,8 @@ class ExploreFragment : Fragment() {
     private var artistsList: MutableList<TatuadorDTO> = mutableListOf();
     private var popularSylesList: MutableList<Estilo> = mutableListOf();
     private var tattoosList: MutableList<TatuagemDTO> = mutableListOf();
+    private lateinit var  recyclerViewNewTattoos: RecyclerView;
+    private lateinit var  recyclerViewNewTattoosArtists: RecyclerView;
     val amountDefault = 4;
 
     override fun onCreateView(
@@ -40,25 +42,24 @@ class ExploreFragment : Fragment() {
 
         getTattoos();
 
-        Handler().postDelayed({
-            val recyclerViewNewTattoos = view.findViewById<RecyclerView>(R.id.recyclerViewNewTattoos);
-            recyclerViewNewTattoos.adapter = TatuagemCardDtoAdapter(tattoosList);
-            recyclerViewNewTattoos.layoutManager = LinearLayoutManager(this.context, LinearLayoutManager.HORIZONTAL, false);
-        }, 5000)
+//        Handler().postDelayed({
+//            val recyclerViewNewTattoos = view.findViewById<RecyclerView>(R.id.recyclerViewNewTattoos);
+//            recyclerViewNewTattoos.adapter = TatuagemCardDtoAdapter(tattoosList);
+//            recyclerViewNewTattoos.layoutManager = LinearLayoutManager(this.context, LinearLayoutManager.HORIZONTAL, false);
+//        }, 5000)
 
         getPopularStyles();
 
-        Handler().postDelayed({
-            popularStyles();
-        }, 5000)
-
         getTattooArtist()
 
-        Handler().postDelayed({
-            val recyclerViewNewTattoosArtists = view.findViewById<RecyclerView>(R.id.recyclerViewNewTattoosArtists);
-            recyclerViewNewTattoosArtists.adapter = TatuadorCardCarouselDtoAdapter(artistsList);
-            recyclerViewNewTattoosArtists.layoutManager = LinearLayoutManager(this.context, LinearLayoutManager.HORIZONTAL, false);
-        }, 5000)
+//        Handler().postDelayed({
+//            val recyclerViewNewTattoosArtists = view.findViewById<RecyclerView>(R.id.recyclerViewNewTattoosArtists);
+//            recyclerViewNewTattoosArtists.adapter = TatuadorCardCarouselDtoAdapter(artistsList);
+//            recyclerViewNewTattoosArtists.layoutManager = LinearLayoutManager(this.context, LinearLayoutManager.HORIZONTAL, false);
+//        }, 5000)
+
+        recyclerViewNewTattoos = view.findViewById<RecyclerView>(R.id.recyclerViewNewTattoos);
+        recyclerViewNewTattoosArtists = view.findViewById<RecyclerView>(R.id.recyclerViewNewTattoosArtists);
 
         return view;
     }
@@ -103,6 +104,9 @@ class ExploreFragment : Fragment() {
 
                     if (response.body() != null) {
                         artistsList = response.body()!!.toMutableList();
+
+                        recyclerViewNewTattoosArtists.adapter = TatuadorCardCarouselDtoAdapter(artistsList);
+                        recyclerViewNewTattoosArtists.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);
                     } else {
                         println(response)
                     }
@@ -134,6 +138,9 @@ class ExploreFragment : Fragment() {
 
                     if (response.body() != null) {
                         tattoosList = response.body()!!.toMutableList();
+
+                        recyclerViewNewTattoos.adapter = TatuagemCardDtoAdapter(tattoosList);
+                        recyclerViewNewTattoos.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);
                     } else {
                         println(response)
                     }
@@ -165,6 +172,7 @@ class ExploreFragment : Fragment() {
 
                     if (response.body() != null) {
                         popularSylesList = response.body()!!.toMutableList();
+                        popularStyles();
                     } else {
                         println(response)
                     }

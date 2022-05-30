@@ -9,6 +9,8 @@ import android.os.Handler
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.cardview.widget.CardView
+import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import com.example.ink4youapp.models.Tatuador
 import com.example.ink4youapp.models.Tatuagem
@@ -104,6 +106,15 @@ class TattooDetails : AppCompatActivity() {
             .load(tattoo.src_imagem)
             .centerCrop()
             .into(findViewById(R.id.iv_tattoo))
+
+        findViewById<CardView>(R.id.cv_artist).setOnClickListener { view ->
+            val intent = Intent(view.context, ArtistProfileDetails::class.java)
+            if (idTattooArtist != null){
+//                        println("dados ------- " + id_tatuador)
+                intent.putExtra("idTatuador", idTattooArtist);
+            }
+            ContextCompat.startActivity(view.context, intent, null);
+        }
     }
 
     fun showTattooArtistDetails(tattooArtist: Tatuador) {
