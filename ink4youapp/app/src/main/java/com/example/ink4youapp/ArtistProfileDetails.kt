@@ -72,7 +72,7 @@ class ArtistProfileDetails : AppCompatActivity() {
     fun showTattooArtistDetails(tattooArtist: Tatuador) {
         with(tattooArtist) {
             findViewById<TextView>(R.id.tv_name).text = nome;
-            findViewById<TextView>(R.id.tv_username_insta).text = "@${conta_instagram}";
+            findViewById<TextView>(R.id.tv_username_insta).text = conta_instagram;
             findViewById<TextView>(R.id.tv_about).text = sobre;
             findViewById<TextView>(R.id.tv_logradouro).text = logradouro;
             findViewById<TextView>(R.id.tv_uf).text = " - ${uf}";

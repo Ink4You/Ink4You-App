@@ -5,6 +5,7 @@ import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -39,6 +40,13 @@ class ExploreFragment : Fragment() {
     ): View? {
 
         var view = inflater.inflate(R.layout.fragment_explore, container, false)
+
+        val prefs = this.activity?.getSharedPreferences("storage", 0);
+        val userName = prefs?.getString("nome", "")
+
+        if (userName != null) {
+            view.findViewById<TextView>(R.id.tv_welcome).text = "Olá ${userName}!";
+        }
 
         getTattoos();
 
@@ -103,7 +111,8 @@ class ExploreFragment : Fragment() {
                     println(response.body());
 
                     if (response.body() != null) {
-                        artistsList = response.body()!!.toMutableList();
+                        // reverso pq está vindo os ultimos 4 mas o ultimo cadastrado ta no final da lista
+                        artistsList = response.body()!!.reversed().toMutableList();
 
                         recyclerViewNewTattoosArtists.adapter = TatuadorCardCarouselDtoAdapter(artistsList);
                         recyclerViewNewTattoosArtists.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);
@@ -137,7 +146,8 @@ class ExploreFragment : Fragment() {
                     println(response.body());
 
                     if (response.body() != null) {
-                        tattoosList = response.body()!!.toMutableList();
+                        // reverso pq está vindo as ultimas 4 mas a ultima cadastrada ta no final da lista
+                        tattoosList = response.body()!!.reversed().toMutableList();
 
                         recyclerViewNewTattoos.adapter = TatuagemCardDtoAdapter(tattoosList);
                         recyclerViewNewTattoos.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);
