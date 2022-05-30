@@ -1,23 +1,19 @@
 package com.example.ink4youapp
 
 import android.content.Intent
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
-import androidx.appcompat.app.AppCompatActivity
+import android.net.Uri
 import android.os.Bundle
-import android.os.Handler
-import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+import androidx.cardview.widget.CardView
+import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import com.example.ink4youapp.models.Tatuador
 import com.example.ink4youapp.models.Tatuagem
-import com.example.ink4youapp.models.tatuagem
 import com.example.ink4youapp.rest.Rest
 import com.example.ink4youapp.services.TatuadorService
 import com.example.ink4youapp.services.TatuagemService
-import com.example.ink4youapp.utils.SnackBar
-import org.w3c.dom.Text
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -104,6 +100,15 @@ class TattooDetails : AppCompatActivity() {
             .load(tattoo.src_imagem)
             .centerCrop()
             .into(findViewById(R.id.iv_tattoo))
+
+        findViewById<CardView>(R.id.cv_artist).setOnClickListener { view ->
+            val intent = Intent(view.context, ArtistProfileDetails::class.java)
+            if (idTattooArtist != null){
+//                        println("dados ------- " + id_tatuador)
+                intent.putExtra("idTatuador", idTattooArtist);
+            }
+            ContextCompat.startActivity(view.context, intent, null);
+        }
     }
 
     fun showTattooArtistDetails(tattooArtist: Tatuador) {
@@ -111,6 +116,12 @@ class TattooDetails : AppCompatActivity() {
             findViewById<TextView>(R.id.tv_name).text = nome;
             findViewById<TextView>(R.id.tv_infos).text = "${cep} - ${uf}";
             findViewById<TextView>(R.id.tv_about).text = sobre;
+
+            findViewById<ImageView>(R.id.iv_phone).setOnClickListener { view ->
+                val intent = Intent(Intent.ACTION_DIAL)
+                intent.data = Uri.parse("tel:${telefone}")
+                startActivity(intent)
+            }
         }
         Glide.with(this)
             .load(tattooArtist.foto_perfil)

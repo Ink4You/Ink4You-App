@@ -5,6 +5,7 @@ import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -28,6 +29,8 @@ class ExploreFragment : Fragment() {
     private var artistsList: MutableList<TatuadorDTO> = mutableListOf();
     private var popularSylesList: MutableList<Estilo> = mutableListOf();
     private var tattoosList: MutableList<TatuagemDTO> = mutableListOf();
+    private lateinit var  recyclerViewNewTattoos: RecyclerView;
+    private lateinit var  recyclerViewNewTattoosArtists: RecyclerView;
     val amountDefault = 4;
 
     override fun onCreateView(
@@ -38,27 +41,33 @@ class ExploreFragment : Fragment() {
 
         var view = inflater.inflate(R.layout.fragment_explore, container, false)
 
+        val prefs = this.activity?.getSharedPreferences("storage", 0);
+        val userName = prefs?.getString("nome", "")
+
+        if (userName != null) {
+            view.findViewById<TextView>(R.id.tv_welcome).text = "Olá ${userName}!";
+        }
+
         getTattoos();
 
-        Handler().postDelayed({
-            val recyclerViewNewTattoos = view.findViewById<RecyclerView>(R.id.recyclerViewNewTattoos);
-            recyclerViewNewTattoos.adapter = TatuagemCardDtoAdapter(tattoosList);
-            recyclerViewNewTattoos.layoutManager = LinearLayoutManager(this.context, LinearLayoutManager.HORIZONTAL, false);
-        }, 5000)
+//        Handler().postDelayed({
+//            val recyclerViewNewTattoos = view.findViewById<RecyclerView>(R.id.recyclerViewNewTattoos);
+//            recyclerViewNewTattoos.adapter = TatuagemCardDtoAdapter(tattoosList);
+//            recyclerViewNewTattoos.layoutManager = LinearLayoutManager(this.context, LinearLayoutManager.HORIZONTAL, false);
+//        }, 5000)
 
         getPopularStyles();
 
-        Handler().postDelayed({
-            popularStyles();
-        }, 5000)
-
         getTattooArtist()
 
-        Handler().postDelayed({
-            val recyclerViewNewTattoosArtists = view.findViewById<RecyclerView>(R.id.recyclerViewNewTattoosArtists);
-            recyclerViewNewTattoosArtists.adapter = TatuadorCardCarouselDtoAdapter(artistsList);
-            recyclerViewNewTattoosArtists.layoutManager = LinearLayoutManager(this.context, LinearLayoutManager.HORIZONTAL, false);
-        }, 5000)
+//        Handler().postDelayed({
+//            val recyclerViewNewTattoosArtists = view.findViewById<RecyclerView>(R.id.recyclerViewNewTattoosArtists);
+//            recyclerViewNewTattoosArtists.adapter = TatuadorCardCarouselDtoAdapter(artistsList);
+//            recyclerViewNewTattoosArtists.layoutManager = LinearLayoutManager(this.context, LinearLayoutManager.HORIZONTAL, false);
+//        }, 5000)
+
+        recyclerViewNewTattoos = view.findViewById<RecyclerView>(R.id.recyclerViewNewTattoos);
+        recyclerViewNewTattoosArtists = view.findViewById<RecyclerView>(R.id.recyclerViewNewTattoosArtists);
 
         return view;
     }
@@ -97,7 +106,11 @@ class ExploreFragment : Fragment() {
             ) {
                 if (response.isSuccessful) {
                     if (response.body() != null) {
-                        artistsList = response.body()!!.toMutableList();
+                        // reverso pq está vindo os ultimos 4 mas o ultimo cadastrado ta no final da lista
+                        artistsList = response.body()!!.reversed().toMutableList();
+
+                        recyclerViewNewTattoosArtists.adapter = TatuadorCardCarouselDtoAdapter(artistsList);
+                        recyclerViewNewTattoosArtists.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);
                     } else {
                         println(response)
                     }
@@ -126,7 +139,11 @@ class ExploreFragment : Fragment() {
                     println(response.body());
 
                     if (response.body() != null) {
-                        tattoosList = response.body()!!.toMutableList();
+                        // reverso pq está vindo as ultimas 4 mas a ultima cadastrada ta no final da lista
+                        tattoosList = response.body()!!.reversed().toMutableList();
+
+                        recyclerViewNewTattoos.adapter = TatuagemCardDtoAdapter(tattoosList);
+                        recyclerViewNewTattoos.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);
                     } else {
                         println(response)
                     }
@@ -158,6 +175,7 @@ class ExploreFragment : Fragment() {
 
                     if (response.body() != null) {
                         popularSylesList = response.body()!!.toMutableList();
+                        popularStyles();
                     } else {
                         println(response)
                     }
