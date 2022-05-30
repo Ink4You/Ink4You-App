@@ -80,6 +80,9 @@ class UserRegistry : AppCompatActivity() {
         cb_term_of_use = findViewById(R.id.cb_term_of_use)
 
         builder = AlertDialog.Builder(this)
+        findViewById<TextView>(R.id.tv_back).setOnClickListener {
+            finish();
+        }
     }
 
     fun goToSecondStep (view: View){

@@ -80,6 +80,9 @@ class TattooManager : AppCompatActivity() {
 
         populateTattooStylesSpinner()
         getTattoos()
+        findViewById<ImageView>(R.id.iv_back).setOnClickListener {
+            finish();
+        }
     }
 
     fun imageChooser(view: View) {

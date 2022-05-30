@@ -93,7 +93,7 @@ class ProfileFragment : Fragment() {
                     StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
                 adapter = TatuagemSimpleDtoAdapter(this.requireContext(), tattooList)
                 rvTatuagens.adapter = adapter
-            }, 5000)
+            }, 1500)
 
             rvTatuagensInsta = view.findViewById(R.id.tattoosInstaRecyclerView)
             rvTatuagensInsta.layoutManager =

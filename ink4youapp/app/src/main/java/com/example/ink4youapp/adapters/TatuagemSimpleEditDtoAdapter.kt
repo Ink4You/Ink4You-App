@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.example.ink4youapp.R
 import com.example.ink4youapp.TattooManager
 import com.example.ink4youapp.models.Tatuagem
@@ -36,8 +37,11 @@ class TatuagemSimpleEditDtoAdapter(
     override fun onBindViewHolder(holder: TatuagensViewHolder, position: Int) {
         val tattooList = tatuagensList[position]
 
+        val requestOptions: RequestOptions = RequestOptions().placeholder(R.drawable.ic_launcher_background)
+
         Glide.with(holder.itemView)
             .load(tattooList.src_imagem)
+            .apply(requestOptions)
             .into(holder.ivTatuagens)
         holder.tvTatuagens.setText(tattooList.titulo)
 
