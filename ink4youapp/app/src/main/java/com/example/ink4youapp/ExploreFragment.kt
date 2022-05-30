@@ -48,9 +48,9 @@ class ExploreFragment : Fragment() {
 
         getPopularStyles();
 
-        Handler().postDelayed({
-            popularStyles();
-        }, 5000)
+//        Handler().postDelayed({
+//            popularStyles();
+//        }, 5000)
 
         getTattooArtist()
 

@@ -1,6 +1,6 @@
 package com.example.ink4youapp
 
-import android.content.Context
+import android.app.Activity
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
@@ -16,7 +16,6 @@ import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.akiniyalocts.imgurapiexample.model.UploadResponse
-import com.example.ink4youapp.adapters.TatuagemSimpleDtoAdapter
 import com.example.ink4youapp.adapters.TatuagemSimpleEditDtoAdapter
 import com.example.ink4youapp.models.*
 import com.example.ink4youapp.rest.Rest
@@ -24,7 +23,6 @@ import com.example.ink4youapp.rest.RestIngur
 import com.example.ink4youapp.services.EstiloService
 import com.example.ink4youapp.services.IngurService
 import com.example.ink4youapp.services.TatuagemService
-import com.example.ink4youapp.services.UsuarioService
 import com.example.ink4youapp.utils.SnackBar
 import okhttp3.MediaType
 import okhttp3.MultipartBody
@@ -161,6 +159,7 @@ class TattooManager : AppCompatActivity() {
                     if (response.isSuccessful) {
                         SnackBar.showSnackBar(view, "success", "Tatuagem criada com sucesso!")
                         clearFields()
+                        getTattoos()
                     } else {
                         SnackBar.showSnackBar(view, "error", "Erro ao criar tatuagem :(")
                     }
@@ -234,7 +233,39 @@ class TattooManager : AppCompatActivity() {
                     t.message?.let { SnackBar.showSnackBar(view, "error", it) }
                 }
             })
+
+            resetButtons(view)
         }, 6000)
+    }
+
+    fun resetButtons(view: View){
+        val btnCreate = findViewById<Button>(R.id.btn_create)
+        val btnEdit = findViewById<Button>(R.id.btn_update)
+
+        btnCreate.visibility = View.VISIBLE
+        btnEdit.visibility = View.GONE
+    }
+
+    fun deleteTattoo(tattooList: Tatuagem, view: View) {
+        val tattoo = retrofit.create(TatuagemService::class.java)
+
+        tattooList.id_tatuagem?.let {
+            tattoo.deleteTattoo(it).enqueue(object : Callback<Void> {
+                override fun onResponse(call: Call<Void>, response: Response<Void>) {
+                  if (response.isSuccessful) {
+                      SnackBar.showSnackBar(view, "success", "Tatuagem excluída com sucesso!")
+                      getTattoos()
+                  } else {
+                      SnackBar.showSnackBar(view, "error", "Erro ao excluir tatuagem :(")
+                  }
+                }
+
+                override fun onFailure(call: Call<Void>, t: Throwable) {
+                    t.message?.let { SnackBar.showSnackBar(view, "error", it) }
+                }
+
+            })
+        }
     }
 
     fun populateTattooStylesSpinner() {
