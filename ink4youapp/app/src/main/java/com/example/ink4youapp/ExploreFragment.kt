@@ -45,7 +45,7 @@ class ExploreFragment : Fragment() {
         val userName = prefs?.getString("nome", "")
 
         if (userName != null) {
-            view.findViewById<TextView>(R.id.tv_welcome).text = "Olá ${userName}!";
+            view.findViewById<TextView>(R.id.tv_welcome).text = "Olá, ${userName}!";
         }
 
         getTattoos();

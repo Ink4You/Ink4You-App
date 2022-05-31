@@ -2,6 +2,7 @@ package com.example.ink4youapp.services
 
 import com.example.ink4youapp.models.Tatuagem
 import com.example.ink4youapp.models.TatuagemDTO
+import com.example.ink4youapp.models.TatuagemInstagram
 import com.example.ink4youapp.models.Usuario
 import retrofit2.Call
 import retrofit2.http.*
@@ -13,8 +14,8 @@ interface TatuagemService {
     @GET("/tatuagens/")
     fun getTattoos() : Call<List<TatuagemDTO>>
 
-    @GET("/tatuagens/")
-    fun getInstaTattoos() : Call<List<Tatuagem>>
+    @GET("/instagram/json/{id}")
+    fun getInstaTattoos(@Path("id") id: Int) : Call<Array<TatuagemInstagram>>
 
     @GET("/tatuagens/qttd/{qttd}")
     fun getTattoosByQttd(@Path("qttd") qttd: Int) : Call<List<TatuagemDTO>>

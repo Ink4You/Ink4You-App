@@ -237,10 +237,31 @@ class UserTattooRegistry : AppCompatActivity() {
                 et_about.text.toString()
             )
 
-            tattooArtist.createTattooArtist(postData).enqueue(object : Callback<Void> {
-                override fun onResponse(call: Call<Void>, response: Response<Void>) {
+            tattooArtist.createTattooArtist(postData).enqueue(object : Callback<Tatuador> {
+                override fun onResponse(call: Call<Tatuador>, response: Response<Tatuador>) {
                     if (response.isSuccessful) {
                         SnackBar.showSnackBar(view, "success", "Cadastro realizado com sucesso!")
+
+                        val body = response.body()
+                        val prefs = getSharedPreferences("storage", 0)
+                        val editor = prefs.edit()
+
+                        editor.putString("user_type", "tattooArtist")
+                        body?.id_tatuador?.let { editor.putInt("id_tatuador", it) }
+                        editor.putString("foto_perfil", body?.foto_perfil)
+                        editor.putString("nome", body?.nome)
+                        editor.putString("sobre", body?.sobre)
+                        editor.putString("cnpj", body?.cnpj)
+                        editor.putString("data_nascimento", body?.data_nascimento)
+                        editor.putString("telefone", body?.telefone)
+                        editor.putString("cep", body?.cep)
+                        editor.putString("numero_logradouro", body?.numero_logradouro)
+                        editor.putString("email", body?.email)
+                        editor.putString("senha", body?.senha)
+                        editor.putString("username_insta", body?.conta_instagram)
+                        editor.putString("sobre", body?.sobre)
+
+                        editor.apply()
 
                         Handler().postDelayed({
                             startActivity(Intent(baseContext, HomeActivity::class.java))
@@ -251,7 +272,7 @@ class UserTattooRegistry : AppCompatActivity() {
                     }
                 }
 
-                override fun onFailure(call: Call<Void>, t: Throwable) {
+                override fun onFailure(call: Call<Tatuador>, t: Throwable) {
                     t.message?.let { SnackBar.showSnackBar(view, "error", it) }
                 }
             })
