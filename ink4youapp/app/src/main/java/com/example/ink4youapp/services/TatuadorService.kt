@@ -19,7 +19,7 @@ interface TatuadorService {
     fun auth(@Path("email") email: String, @Path("senha") senha: String): Call<Tatuador>
 
     @POST("/tatuadores/cadastro-tatuador")
-    fun createTattooArtist(@Body tattooArtist: Tatuador): Call<Void>
+    fun createTattooArtist(@Body tattooArtist: Tatuador): Call<Tatuador>
 
     @PUT("/tatuadores/{id}")
     fun updateTattooArtist(@Body tattooArtist: Tatuador, @Path("id") id :Int?): Call<Tatuador>

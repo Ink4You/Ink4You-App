@@ -17,10 +17,7 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.ink4youapp.adapters.EstilosTatuagensMenuDtoAdapter
 import com.example.ink4youapp.adapters.TatuagemSimpleDtoAdapter
 import com.example.ink4youapp.adapters.TatuagemSimpleEditDtoAdapter
-import com.example.ink4youapp.models.EstilosTatuagensDtoModel
-import com.example.ink4youapp.models.Tatuagem
-import com.example.ink4youapp.models.TatuagemDTO
-import com.example.ink4youapp.models.TatuagemDtoImageModel
+import com.example.ink4youapp.models.*
 import com.example.ink4youapp.rest.Rest
 import com.example.ink4youapp.services.TatuagemService
 import retrofit2.Call
@@ -30,6 +27,8 @@ import java.util.ArrayList
 
 class ProfileFragment : Fragment() {
     private val retrofit = Rest.getInstance();
+
+    private lateinit var ll_last_tattoos_list: LinearLayout
     private lateinit var ll_insta_tattoo_list: LinearLayout
     private lateinit var ll_insta_box: LinearLayout
     private lateinit var tv_name: TextView
@@ -39,8 +38,11 @@ class ProfileFragment : Fragment() {
     private lateinit var IVPreviewImage: ImageView
 
     private var idTattooArtist: Int? = null
+    private var usernameInsta: String? = null
+
     private var tattooList = ArrayList<TatuagemDtoImageModel>()
     private var tattooInstaList = ArrayList<TatuagemDtoImageModel>()
+
     private lateinit var rvTatuagens: RecyclerView
     private lateinit var adapter: TatuagemSimpleDtoAdapter
 
@@ -57,6 +59,7 @@ class ProfileFragment : Fragment() {
             setUserInfos()
             showOrHideInstagramList()
             getTattoosImageDto()
+            getInstagramTattoos()
         }
     }
 
@@ -81,26 +84,25 @@ class ProfileFragment : Fragment() {
 
             IVPreviewImage = view.findViewById(R.id.iv_profile)
 
+            ll_last_tattoos_list = view.findViewById(R.id.last_tattoos_box)
             ll_insta_box = view.findViewById(R.id.ll_insta_box)
             ll_insta_tattoo_list = view.findViewById(R.id.ll_insta_tattoo_list)
             tv_name = view.findViewById(R.id.tv_name)
             tv_username_insta = view.findViewById(R.id.tv_username_insta)
             tv_about = view.findViewById(R.id.tv_about)
 
-            Handler().postDelayed({
+
                 rvTatuagens = view.findViewById(R.id.tattoosRecyclerView)
                 rvTatuagens.layoutManager =
                     StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
                 adapter = TatuagemSimpleDtoAdapter(this.requireContext(), tattooList)
-                rvTatuagens.adapter = adapter
-            }, 1500)
+
 
             rvTatuagensInsta = view.findViewById(R.id.tattoosInstaRecyclerView)
             rvTatuagensInsta.layoutManager =
                 StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
 
             adapterInsta = TatuagemSimpleDtoAdapter(this.requireContext(), tattooInstaList)
-            rvTatuagensInsta.adapter = adapterInsta
 
             val btn = view.findViewById<ImageButton>(R.id.btn_edit)
             btn.setOnClickListener { view ->
@@ -124,7 +126,7 @@ class ProfileFragment : Fragment() {
             setUserInfos()
             showOrHideInstagramList()
             getTattoosImageDto()
-            tatuagebsAssemble(tattooInstaList)
+            getInstagramTattoos()
 
         } else {
             view = inflater.inflate(R.layout.activity_edit_user_profile, container, false)
@@ -142,8 +144,8 @@ class ProfileFragment : Fragment() {
         val prefs = this.activity?.getSharedPreferences("storage", 0)
 
         idTattooArtist = prefs?.getInt("id_tatuador", 0)
+        usernameInsta = prefs?.getString("username_insta", "")
         val profilePic = prefs?.getString("foto_perfil", "")
-        val usernameInsta = prefs?.getString("username_insta", "")
         val name = prefs?.getString("nome", "")
         val about = prefs?.getString("sobre", "")
 
@@ -182,6 +184,9 @@ class ProfileFragment : Fragment() {
                 ) {
                     if (response.isSuccessful) {
                         if (response.body() != null) {
+                            tattooList.clear()
+                            // ll_last_tattoos_list.visibility = View.VISIBLE
+
                             response.body()!!.forEach { tattoo ->
                                 tattoo.src_imagem?.let {
                                     TatuagemDtoImageModel(
@@ -190,8 +195,11 @@ class ProfileFragment : Fragment() {
                                     )
                                 }?.let { tattooList.add(it) }
                             }
+                            rvTatuagens.adapter = adapter
+
                         } else {
-                            println(response.errorBody())
+                            // ll_last_tattoos_list.visibility = View.GONE
+                            println(response.body())
                         }
                     } else {
                         println(response.code())
@@ -208,72 +216,39 @@ class ProfileFragment : Fragment() {
     fun getInstagramTattoos() {
         val tattoo = retrofit.create(TatuagemService::class.java);
 
-        tattoo.getInstaTattoos().enqueue(object : Callback<List<Tatuagem>> {
+        tattoo.getInstaTattoos(idTattooArtist!!).enqueue(object : Callback<Array<TatuagemInstagram>> {
             override fun onResponse(
-                call: Call<List<Tatuagem>>,
-                response: Response<List<Tatuagem>>
+                call: Call<Array<TatuagemInstagram>>,
+                response: Response<Array<TatuagemInstagram>>
             ) {
-                TODO("Not yet implemented")
+               if (response.isSuccessful) {
+                   if (response.body() != null) {
+                       tattooInstaList.clear()
+                       ll_insta_tattoo_list.visibility = View.VISIBLE
+
+                       response.body()!!.forEach { tattoo ->
+                           tattoo.imagem?.let {
+                               println(it)
+                               TatuagemDtoImageModel(
+                                   tattoo.id_tatuagem ?: 0,
+                                   it, usernameInsta!!
+                               )
+                           }?.let { tattooInstaList.add(it) }
+                       }
+                       rvTatuagensInsta.adapter = adapterInsta
+
+                   } else {
+                       ll_insta_tattoo_list.visibility = View.GONE
+                       println(response.body())
+                   }
+               }
             }
 
-            override fun onFailure(call: Call<List<Tatuagem>>, t: Throwable) {
-                TODO("Not yet implemented")
+            override fun onFailure(call: Call<Array<TatuagemInstagram>>, t: Throwable) {
+                t.message?.let { println("error: " + it) }
             }
 
         })
-
-    }
-
-    private fun tatuagebsAssemble(list: ArrayList<TatuagemDtoImageModel>) {
-        val tattoo1 = TatuagemDtoImageModel(
-            1,
-            "https://user-images.githubusercontent.com/30958501/68553365-d03aa880-0463-11ea-9e98-96c6a10265e8.png",
-            "tatuagem1"
-        )
-        list.add(tattoo1)
-
-        val tattoo2 = TatuagemDtoImageModel(
-            2,
-            "https://user-images.githubusercontent.com/30958501/68553365-d03aa880-0463-11ea-9e98-96c6a10265e8.png",
-            "tatuagem1"
-        )
-        list.add(tattoo2)
-
-        val tattoo3 = TatuagemDtoImageModel(
-            3,
-            "https://user-images.githubusercontent.com/30958501/68553365-d03aa880-0463-11ea-9e98-96c6a10265e8.png",
-            "tatuagem1"
-        )
-        list.add(tattoo3)
-
-        val tattoo4 = TatuagemDtoImageModel(
-            4,
-            "https://user-images.githubusercontent.com/30958501/68553365-d03aa880-0463-11ea-9e98-96c6a10265e8.png",
-            "tatuagem1"
-        )
-        list.add(tattoo4)
-
-        val tattoo5 = TatuagemDtoImageModel(
-            5,
-            "https://user-images.githubusercontent.com/30958501/68553365-d03aa880-0463-11ea-9e98-96c6a10265e8.png",
-            "tatuagem1"
-        )
-        list.add(tattoo5)
-
-        val tattoo6 = TatuagemDtoImageModel(
-            6,
-            "https://user-images.githubusercontent.com/30958501/68553365-d03aa880-0463-11ea-9e98-96c6a10265e8.png",
-            "tatuagem1"
-        )
-        list.add(tattoo6)
-
-        val tattoo7 = TatuagemDtoImageModel(
-            7,
-            "https://user-images.githubusercontent.com/30958501/68553365-d03aa880-0463-11ea-9e98-96c6a10265e8.png",
-            "tatuagem1"
-        )
-        list.add(tattoo7)
-
     }
 
     private fun clearSharedPreferences() {
